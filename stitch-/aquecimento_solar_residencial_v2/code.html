@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Aquecimento Solar &amp; Soluções Térmicas | Piscinas Evolution</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary": "#302100",
+                      "surface-container-high": "#eae7e7",
+                      "on-surface-variant": "#42474e",
+                      "on-tertiary-container": "#ce9b00",
+                      "on-tertiary-fixed": "#251a00",
+                      "secondary-fixed-dim": "#80cfff",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-tint": "#396285",
+                      "inverse-on-surface": "#f3f0f0",
+                      "surface-container": "#f0eded",
+                      "on-secondary-fixed": "#001e2d",
+                      "on-secondary": "#ffffff",
+                      "on-primary-container": "#7fa7cd",
+                      "on-primary": "#ffffff",
+                      "surface-bright": "#fcf9f8",
+                      "surface": "#fcf9f8",
+                      "on-primary-fixed": "#001d32",
+                      "error-container": "#ffdad6",
+                      "tertiary-fixed-dim": "#f9bd14",
+                      "on-surface": "#1b1c1c",
+                      "on-secondary-container": "#00597b",
+                      "on-error-container": "#93000a",
+                      "secondary-container": "#80cfff",
+                      "on-tertiary": "#ffffff",
+                      "error": "#ba1a1a",
+                      "tertiary-fixed": "#ffdf9d",
+                      "secondary-fixed": "#c5e7ff",
+                      "inverse-primary": "#a3cbf2",
+                      "outline-variant": "#c2c7ce",
+                      "on-primary-fixed-variant": "#1f4a6c",
+                      "primary": "#00263f",
+                      "primary-fixed-dim": "#a3cbf2",
+                      "on-error": "#ffffff",
+                      "on-secondary-fixed-variant": "#004c6a",
+                      "surface-container-highest": "#e4e2e1",
+                      "primary-fixed": "#cee5ff",
+                      "inverse-surface": "#303030",
+                      "secondary": "#00658c",
+                      "background": "#fcf9f8",
+                      "surface-variant": "#e4e2e1",
+                      "outline": "#72777e",
+                      "primary-container": "#0b3c5d",
+                      "on-background": "#1b1c1c",
+                      "surface-container-low": "#f6f3f2",
+                      "on-tertiary-fixed-variant": "#5b4300",
+                      "surface-dim": "#dcd9d9",
+                      "tertiary-container": "#4a3600",
+                      "solar-yellow": "#F2B705"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "container-max": "1280px",
+                      "margin-desktop": "48px",
+                      "gutter": "24px",
+                      "unit": "8px",
+                      "section-gap": "80px",
+                      "margin-mobile": "16px"
+              },
+              "fontFamily": {
+                      "h2": ["Work Sans"],
+                      "h3": ["Work Sans"],
+                      "label-caps": ["Manrope"],
+                      "body-lg": ["Manrope"],
+                      "h1": ["Work Sans"],
+                      "body-md": ["Manrope"],
+                      "button": ["Manrope"]
+              },
+              "fontSize": {
+                      "h2": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                      "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "h1": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "button": ["14px", {"lineHeight": "1.0", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .solar-glow {
+            box-shadow: 0 0 40px rgba(242, 183, 5, 0.15);
+        }
+        .blueprint-line {
+            background-image: radial-gradient(circle, #0b3c5d 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        .glass-morphism {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        @keyframes pulse-soft {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+        .animate-pulse-soft {
+            animation: pulse-soft 3s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200/50 dark:border-slate-800/50 shadow-sm shadow-blue-900/5 fixed top-0 z-50 w-full">
+<div class="flex justify-between items-center px-8 py-4 max-w-[1280px] mx-auto w-full">
+<span class="text-xl font-bold tracking-tighter text-blue-900 dark:text-white">Piscinas Evolution</span>
+<div class="hidden md:flex items-center space-x-8">
+<a class="font-['Work_Sans'] text-sm font-medium tracking-tight text-slate-600 dark:text-slate-400 hover:text-blue-900 transition-colors duration-200" href="#">Home</a>
+<a class="font-['Work_Sans'] text-sm font-medium tracking-tight text-blue-900 dark:text-blue-400 border-b-2 border-blue-900 dark:border-blue-400 pb-1" href="#">Aquecimento</a>
+<a class="font-['Work_Sans'] text-sm font-medium tracking-tight text-slate-600 dark:text-slate-400 hover:text-blue-900 transition-colors duration-200" href="#">Piscinas &amp; Lazer</a>
+<a class="font-['Work_Sans'] text-sm font-medium tracking-tight text-slate-600 dark:text-slate-400 hover:text-blue-900 transition-colors duration-200" href="#">Casa de Máquinas</a>
+<a class="font-['Work_Sans'] text-sm font-medium tracking-tight text-slate-600 dark:text-slate-400 hover:text-blue-900 transition-colors duration-200" href="#">Manutenção</a>
+<a class="font-['Work_Sans'] text-sm font-medium tracking-tight text-slate-600 dark:text-slate-400 hover:text-blue-900 transition-colors duration-200" href="#">Galeria</a>
+</div>
+<button class="bg-primary text-white px-6 py-2 rounded-lg font-button text-button hover:bg-primary-container transition-all active:scale-95">Solicitar Orçamento</button>
+</div>
+</nav>
+<!-- Hero Section -->
+<header class="pt-32 pb-20 px-8 relative overflow-hidden">
+<div class="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div class="z-10">
+<span class="font-label-caps text-label-caps text-secondary uppercase mb-4 block">Sustentabilidade &amp; Luxo</span>
+<h1 class="font-h1 text-h1 text-primary mb-6">Conforto térmico inteligente para sua residência.</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-xl">
+                    Soluções premium em aquecimento solar e trocadores de calor para casas de alto padrão e condomínios exclusivos. Eficiência energética classe A com estética impecável.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="bg-solar-yellow text-primary px-8 py-4 rounded-lg font-button text-button flex items-center justify-center gap-2 hover:brightness-110 transition-all solar-glow" href="#">
+<span class="material-symbols-outlined" data-icon="solar_power">solar_power</span>
+                        Quero Aquecimento Solar
+                    </a>
+<a class="border border-outline text-primary px-8 py-4 rounded-lg font-button text-button flex items-center justify-center gap-2 hover:bg-surface-container transition-all" href="#">
+                        Ver Catálogo Técnico
+                    </a>
+</div>
+</div>
+<div class="relative">
+<div class="aspect-video rounded-xl overflow-hidden shadow-2xl relative">
+<img alt="Luxury residential house with modern solar panel installation on roof overlooking a crystal clear heated swimming pool" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIftWYPE9P6k03xM2rQDSsKZUw_LB-72xkGLePmlkxl1dkGa6VgpVSTdY0_zSKCfy5G-4ta3LKuzMlvzxbYFbFRoT53FRYgUP0m6crC1sZb9BkYgB93C8LhqMHyLzsBCZ_im1I1ZADjHe0F7_O1CdAe3WDPE7O3G-q3xluQ1FJEeb5OFrlOfl3eLpHJ2YXdY3vgiIrSBom3-hoTXTlLos76P9fPmjiRSgWC0q8MK7osbzobgl1UslFFpYvqPV7jUaXGBEYyGc_15_W"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent"></div>
+</div>
+<div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-lg shadow-xl border border-slate-100 flex items-center gap-4">
+<div class="w-12 h-12 bg-solar-yellow/20 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-solar-yellow" data-icon="sunny">sunny</span>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-primary">Economia Mensal</p>
+<p class="font-h3 text-h3 text-primary">Até 80%</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Decorative blueprint element -->
+<div class="absolute top-0 right-0 w-1/3 h-full blueprint-line opacity-20 -z-10"></div>
+</header>
+<!-- Solutions Bento Grid -->
+<section class="py-20 px-8 bg-surface-container-low">
+<div class="max-w-[1280px] mx-auto">
+<div class="text-center mb-16">
+<h2 class="font-h2 text-h2 text-primary mb-4">Nossas Soluções Térmicas Premium</h2>
+<div class="w-20 h-1 bg-solar-yellow mx-auto"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[600px]">
+<!-- Aquecimento Solar -->
+<div class="md:col-span-8 bg-white p-8 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between group overflow-hidden relative">
+<div class="z-10">
+<span class="material-symbols-outlined text-4xl text-solar-yellow mb-4" data-icon="solar_power" data-weight="fill" style="font-variation-settings: 'FILL' 1;">solar_power</span>
+<h3 class="font-h3 text-h3 text-primary mb-4">Aquecimento Solar Residencial</h3>
+<p class="text-on-surface-variant max-w-md">Painéis de alto desempenho que se integram à arquitetura da sua casa, mantendo a temperatura ideal com custo zero de energia renovável.</p>
+<ul class="mt-6 space-y-2">
+<li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-blue-500 text-lg" data-icon="check_circle">check_circle</span> Instalação discreta de alta performance</li>
+<li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-blue-500 text-lg" data-icon="check_circle">check_circle</span> Placas com tecnologia de absorção máxima</li>
+</ul>
+</div>
+<img alt="Modern house with integrated solar water heating panels on roof" class="absolute right-0 bottom-0 w-1/2 h-full object-cover opacity-10 group-hover:opacity-20 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDD8-fBA63KCaHi84ROk6o66k_zC8URunDtgMxBnQ46Ov3rxkk4RKEIq1noihAr8Mtbeth7-1Z853heKnaM9TgPNUw0jjsy_hLNbLN4Osgb8A0EzfOImQUTwgllw_FLC-7IpF-QeKwBfUWPcV6MN16QkxefSoDy6XFoi00sw2qTcDltHcC79r4T0vabZAX_bm8446Y4WQy6R1oJqoJQ6vds7cDH9rb5_iHHtRQ7dctv5eGcgQ7ws3pAAPDCK5SviWYqB8td4qVveDLX"/>
+</div>
+<!-- Trocador de Calor -->
+<div class="md:col-span-4 bg-primary p-8 rounded-xl shadow-lg flex flex-col justify-between text-white relative overflow-hidden">
+<div class="z-10">
+<span class="material-symbols-outlined text-4xl text-secondary-fixed-dim mb-4" data-icon="heat_pump">heat_pump</span>
+<h3 class="font-h3 text-h3 mb-4">Trocadores de Calor</h3>
+<p class="text-on-primary-container text-sm">Design compacto e silencioso para condomínios. Garantia de água aquecida 365 dias por ano, independente do clima.</p>
+</div>
+<div class="mt-4 z-10">
+<button class="text-secondary-fixed-dim font-button text-button flex items-center gap-2 hover:translate-x-2 transition-transform">
+                            Ficha Técnica <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<img alt="Sleek modern heat pump unit installed in a luxury garden setting" class="absolute inset-0 w-full h-full object-cover opacity-20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0Af6xMrO-SGhvGvxgd9xwI5-GasmHQ9g0EqzWi4nE_leGqi6csNLpUjv50dDPYff9LIrsKIL6LTrAmUKaavC5cSJw7O7sa_eC_xt3NoZJvkdqnRHHCbKaZGWYXcEWDkV7jUXvTiohDcxh_nrFxYYJNzqToVE_B6zdIVwfeEE8L_Lmu9YHHZT1dUoI2tpvOPU9RGP04wSS1-l06P-t-tPG6T9QkUpBJbAHjHjqdx8acQpNHJNbVVfpxQcM8rnMjXpjbWb4gCRmle5s"/>
+</div>
+<!-- Boiler -->
+<div class="md:col-span-4 bg-white p-8 rounded-xl border border-slate-200 shadow-sm flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-4xl text-primary mb-4" data-icon="water_heater">water_heater</span>
+<h3 class="font-h3 text-h3 text-primary mb-2">Boilers de Alta Pressão</h3>
+<p class="text-on-surface-variant text-sm">Reservatórios térmicos premium em aço inox para banhos confortáveis em toda a residência.</p>
+</div>
+<!-- Limpeza de Placas -->
+<div class="md:col-span-8 bg-surface-container-high p-8 rounded-xl flex items-center gap-8 group">
+<div class="flex-1">
+<h3 class="font-h3 text-h3 text-primary mb-2">Manutenção Preventiva Especializada</h3>
+<p class="text-on-surface-variant text-sm">Preserve seu investimento com limpeza técnica e revisões periódicas que garantem 100% da eficiência projetada.</p>
+</div>
+<div class="w-32 h-32 rounded-full border-4 border-white overflow-hidden shrink-0 shadow-lg">
+<img alt="Worker maintaining a solar thermal system on a modern rooftop" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtjXHHBwY2NWW7cJbRx5n5P6An5JyDr1oxRXNRtVY7FaVREgnXgWcSzXIHkn9WstS_hzNcBn--O-DdZE-HFK-IiVwQhpqZecDWbNA_6gBan5lSvU77GRi_TzUULnFmE09ejfNioQ2ekcRGVyutbHH-oM2pNBXD6GFqJNWqD4J0tcuOfZyxpLQCpQ-qN5396KjzgnRhUTxYYI3BqawotiSDSTAnZAqE_DoA8HpXohNfCfm_jRiMGNXLsMKaE1O6f9SmqtYbwBtWfJGG"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Technical Specs Section -->
+<section class="py-20 px-8">
+<div class="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20">
+<div>
+<h2 class="font-h2 text-h2 text-primary mb-8">Excelência Técnica para o seu Patrimônio</h2>
+<div class="space-y-8">
+<div class="flex gap-4">
+<div class="w-10 h-10 bg-primary-container rounded flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-white" data-icon="architecture">architecture</span>
+</div>
+<div>
+<h4 class="font-button text-primary mb-1">Dimensionamento Customizado</h4>
+<p class="text-on-surface-variant text-sm">Projetos exclusivos para cada residência, otimizando o número de placas e a potência dos trocadores.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-10 h-10 bg-primary-container rounded flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-white" data-icon="energy_savings_leaf">energy_savings_leaf</span>
+</div>
+<div>
+<h4 class="font-button text-primary mb-1">Tecnologia Sustentável</h4>
+<p class="text-on-surface-variant text-sm">Equipamentos certificados que reduzem drasticamente a pegada de carbono da sua casa ou condomínio.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-10 h-10 bg-primary-container rounded flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-white" data-icon="verified_user">verified_user</span>
+</div>
+<div>
+<h4 class="font-button text-primary mb-1">Garantia Evolution</h4>
+<p class="text-on-surface-variant text-sm">Acompanhamento técnico vitalício e instalação executada por engenheiros especialistas.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white border border-slate-200 p-1 rounded-xl shadow-xl">
+<div class="bg-slate-50 p-6 rounded-t-lg border-b border-slate-200">
+<h4 class="font-label-caps text-label-caps text-primary">Status do Sistema • Monitoramento Remoto</h4>
+</div>
+<div class="p-8 space-y-6">
+<div class="flex justify-between items-center">
+<span class="text-sm font-medium">Temperatura da Água (Piscina)</span>
+<span class="text-2xl font-bold text-blue-600">31.0°C</span>
+</div>
+<div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+<div class="bg-blue-500 h-full w-[85%]"></div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container p-4 rounded border border-slate-100">
+<span class="text-[10px] uppercase font-bold text-slate-500">Bomba Solar</span>
+<div class="flex items-center gap-2 mt-1">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+<span class="text-sm font-bold">Ativa</span>
+</div>
+</div>
+<div class="bg-surface-container p-4 rounded border border-slate-100">
+<span class="text-[10px] uppercase font-bold text-slate-500">Eficiência</span>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-sm font-bold">98.5%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Installation Steps -->
+<section class="py-20 px-8 bg-primary">
+<div class="max-w-[1280px] mx-auto text-white">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 relative">
+<!-- Step 1 -->
+<div class="relative z-10">
+<div class="text-4xl font-extrabold text-secondary-fixed-dim/30 mb-4">01</div>
+<h4 class="font-h3 text-h3 mb-2">Avaliação de Luxo</h4>
+<p class="text-on-primary-container text-sm">Visita técnica para entender a arquitetura e necessidades térmicas da residência.</p>
+</div>
+<!-- Step 2 -->
+<div class="relative z-10">
+<div class="text-4xl font-extrabold text-secondary-fixed-dim/30 mb-4">02</div>
+<h4 class="font-h3 text-h3 mb-2">Projeto Especializado</h4>
+<p class="text-on-primary-container text-sm">Desenvolvimento do projeto executivo com foco em estética e performance.</p>
+</div>
+<!-- Step 3 -->
+<div class="relative z-10">
+<div class="text-4xl font-extrabold text-secondary-fixed-dim/30 mb-4">03</div>
+<h4 class="font-h3 text-h3 mb-2">Instalação Clean</h4>
+<p class="text-on-primary-container text-sm">Execução por equipe técnica uniformizada, com rigorosa limpeza e organização.</p>
+</div>
+<!-- Step 4 -->
+<div class="relative z-10">
+<div class="text-4xl font-extrabold text-secondary-fixed-dim/30 mb-4">04</div>
+<h4 class="font-h3 text-h3 mb-2">Monitoramento</h4>
+<p class="text-on-primary-container text-sm">Entrega do sistema com treinamento e suporte digital via aplicativo.</p>
+</div>
+<!-- Connector line (desktop) -->
+<div class="hidden md:block absolute top-8 left-0 w-full h-[1px] bg-white/10 -z-0"></div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-8 py-20 max-w-[1280px] mx-auto w-full">
+<div class="space-y-6">
+<span class="text-lg font-bold text-blue-900 dark:text-white">Piscinas Evolution</span>
+<p class="text-slate-500 dark:text-slate-400 font-['Work_Sans'] text-sm leading-relaxed">
+                    Referência em engenharia térmica e construção de piscinas de alto padrão para clientes exigentes.
+                </p>
+</div>
+<div>
+<h4 class="font-bold text-blue-900 dark:text-white mb-6">Navegação</h4>
+<ul class="space-y-4">
+<li><a class="text-slate-500 dark:text-slate-400 text-sm hover:underline decoration-yellow-400 underline-offset-4" href="#">Home</a></li>
+<li><a class="font-semibold text-blue-900 dark:text-blue-400 text-sm hover:underline decoration-yellow-400 underline-offset-4" href="#">Aquecimento</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 text-sm hover:underline decoration-yellow-400 underline-offset-4" href="#">Galeria</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-blue-900 dark:text-white mb-6">Serviços</h4>
+<ul class="space-y-4">
+<li><a class="text-slate-500 dark:text-slate-400 text-sm hover:underline decoration-yellow-400 underline-offset-4" href="#">Manutenção</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 text-sm hover:underline decoration-yellow-400 underline-offset-4" href="#">Casa de Máquinas</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 text-sm hover:underline decoration-yellow-400 underline-offset-4" href="#">Piscinas &amp; Lazer</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-blue-900 dark:text-white mb-6">Contato</h4>
+<p class="text-slate-500 dark:text-slate-400 text-sm mb-4">Brasília, DF</p>
+<a class="text-blue-900 dark:text-blue-400 font-bold text-sm" href="tel:+556191441294">+55 61 9144-1294</a>
+</div>
+</div>
+<div class="px-8 py-10 border-t border-slate-200 dark:border-slate-800 max-w-[1280px] mx-auto w-full flex flex-col md:flex-row justify-between items-center gap-4">
+<span class="text-slate-500 dark:text-slate-400 text-xs">© 2024 Piscinas Evolution — Aquecimento, Spa &amp; Soluções Térmicas</span>
+<div class="flex gap-6">
+<span class="material-symbols-outlined text-slate-400 cursor-pointer hover:text-blue-900" data-icon="facebook">social_leaderboard</span>
+<span class="material-symbols-outlined text-slate-400 cursor-pointer hover:text-blue-900" data-icon="photo_camera">photo_camera</span>
+</div>
+</div>
+</footer>
+<!-- Floating WhatsApp CTA -->
+<div class="fixed bottom-8 right-8 z-[100] flex flex-col items-end gap-4">
+<!-- Online Chat Widget Preview -->
+<div class="bg-white rounded-2xl shadow-2xl p-4 border border-slate-100 glass-morphism w-64 mb-2 translate-y-2 opacity-0 hover:opacity-100 transition-all duration-300 pointer-events-none md:pointer-events-auto">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center overflow-hidden">
+<img alt="Consultant" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaq98Ey8KOdgqUdhhEAuKGFts_DNyc3ukv8iJ4NvhY8NgOdza_RCRTVOHFHtaIhcbluv25rG88tLRdPfQ-Z-k7JaDPTKCxb0UzEBm1nFFb7uGSoSHrzcX_Vz5luITVCaHT6RDYuuNd0HDwaCesYdnN7NRhCRiJbV7HwdJ2fXxTkiEZd5jgkwJ1xZqEeMBhUj3m4Z-gekLsSJ22fgjQDEfBuhZnLV8g6HhYfIE3ciFR4iZ0OShVnjWdESpxsy8gm4gtRLUw1FXlJEMb"/>
+</div>
+<div>
+<p class="text-xs font-bold text-primary">Atendimento Online</p>
+<p class="text-[10px] text-green-500 flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span> Online agora</p>
+</div>
+</div>
+<p class="text-xs text-on-surface-variant">Olá! Como posso ajudar no seu projeto térmico hoje?</p>
+</div>
+<div class="flex gap-3">
+<!-- Online Chat Toggle -->
+<button class="bg-primary text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-all group border-2 border-white">
+<span class="material-symbols-outlined text-2xl group-hover:rotate-12 transition-transform" data-icon="chat">chat</span>
+</button>
+<!-- WhatsApp Button -->
+<a class="flex items-center gap-3 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-all animate-pulse-soft border-2 border-white" href="https://wa.me/556191441294" target="_blank">
+<div class="w-8 h-8 bg-white rounded-full flex items-center justify-center">
+<img alt="WhatsApp" class="w-5 h-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzPY5QGW2eZJLG7r_lyLhjiLXRnq062PdwN7J4Gn39-bYDsJ2aX0SkPeFFmIJ5OzLRJGLsRkt0SFQr5VOUUnnWPUpx3TqyiaKVS5MNhlW5lgi7MixyGLC5_TtOv-XyF07IRMveBXiWPO29Qm7j_-QhAwr6UZrOzsk1n5ddqz7ph4dgbpp26BzQ5qRTzKBz25RVLZSn6LvNcNj4j9a5nl7SpijMty2KSztN_uRTHcQ6JXYAcRjWFMb2Kc1mCklBlhSr36_TdxeB7HTX"/>
+</div>
+<span class="font-bold text-sm hidden md:block pr-2">Falar com Especialista</span>
+</a>
+</div>
+</div>
+</body></html>

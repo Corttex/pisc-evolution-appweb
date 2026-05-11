@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Piscinas Evolution — Aquecimento, Spa &amp; Soluções Térmicas</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#302100",
+                        "surface-container-high": "#eae7e7",
+                        "on-surface-variant": "#42474e",
+                        "on-tertiary-container": "#ce9b00",
+                        "on-tertiary-fixed": "#251a00",
+                        "secondary-fixed-dim": "#80cfff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#396285",
+                        "inverse-on-surface": "#f3f0f0",
+                        "surface-container": "#f0eded",
+                        "on-secondary-fixed": "#001e2d",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#7fa7cd",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#fcf9f8",
+                        "surface": "#fcf9f8",
+                        "on-primary-fixed": "#001d32",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#f9bd14",
+                        "on-surface": "#1b1c1c",
+                        "on-secondary-container": "#00597b",
+                        "on-error-container": "#93000a",
+                        "secondary-container": "#80cfff",
+                        "on-tertiary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#ffdf9d",
+                        "secondary-fixed": "#c5e7ff",
+                        "inverse-primary": "#a3cbf2",
+                        "outline-variant": "#c2c7ce",
+                        "on-primary-fixed-variant": "#1f4a6c",
+                        "primary": "#00263f",
+                        "primary-fixed-dim": "#a3cbf2",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed-variant": "#004c6a",
+                        "surface-container-highest": "#e4e2e1",
+                        "primary-fixed": "#cee5ff",
+                        "inverse-surface": "#303030",
+                        "secondary": "#00658c",
+                        "background": "#fcf9f8",
+                        "surface-variant": "#e4e2e1",
+                        "outline": "#72777e",
+                        "primary-container": "#0b3c5d",
+                        "on-background": "#1b1c1c",
+                        "surface-container-low": "#f6f3f2",
+                        "on-tertiary-fixed-variant": "#5b4300",
+                        "surface-dim": "#dcd9d9",
+                        "tertiary-container": "#4a3600"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "margin-desktop": "48px",
+                        "gutter": "24px",
+                        "unit": "8px",
+                        "section-gap": "80px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "h2": ["Work Sans"],
+                        "h3": ["Work Sans"],
+                        "label-caps": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "h1": ["Work Sans"],
+                        "body-md": ["Manrope"],
+                        "button": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "h2": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "h1": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "button": ["14px", {"lineHeight": "1.0", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .pool-shadow {
+            box-shadow: 0 10px 30px -10px rgba(11, 60, 93, 0.08);
+        }
+        @keyframes bounce-subtle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        .animate-bounce-subtle {
+            animation: bounce-subtle 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary-container selection:text-white">
+<!-- TopNavBar -->
+<header class="bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200/50 dark:border-slate-800/50 shadow-sm shadow-blue-900/5 docked full-width top-0 z-50 sticky">
+<nav class="flex justify-between items-center px-8 py-4 max-w-[1280px] mx-auto w-full">
+<div class="text-xl font-bold tracking-tighter text-blue-900 dark:text-white">
+                Piscinas Evolution
+            </div>
+<div class="hidden md:flex items-center gap-8 font-['Work_Sans'] text-sm font-medium tracking-tight">
+<a class="text-blue-900 dark:text-blue-400 border-b-2 border-blue-900 dark:border-blue-400 pb-1" href="#">Home</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-300 transition-colors duration-200" href="#">Aquecimento</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-300 transition-colors duration-200" href="#">Piscinas &amp; Lazer</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-300 transition-colors duration-200" href="#">Casa de Máquinas</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-300 transition-colors duration-200" href="#">Manutenção</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-300 transition-colors duration-200" href="#">Galeria</a>
+</div>
+<button class="bg-primary-container text-white px-5 py-2.5 rounded-lg text-button transition-transform active:scale-95 duration-150 shadow-lg shadow-primary-container/20">
+                Solicitar Orçamento
+            </button>
+</nav>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative h-[870px] flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover" data-alt="Luxurious high-end modern swimming pool with crystal clear water at sunset, infinity edge overlooking a lush garden with professional architectural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoTbfsO603e7UxkKmwqcUtb7HTAZV2R70iMFs2cyyvAvqVPuP-3FcW9JGxFy6GA2zCCmahtKEWnwPosI_S01Gs7-_hwVfnPoayTl3dxHiRdWl2TeohTIU4N96M4f4wFPMbXWJEXfk_m8ZpyNR-0Y6RrCuoVnw0WizOlOgLMwOthjH_Ew54p9vVOYEgmi5wNZIeoVBrXjJQLklQsBU7Z6MG4o_SR9Nf9tw38pPB8pzyN5z6o24UGxgKN4CtmkDec5cMpmmjrEJRriHW"/>
+<div class="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/40 to-transparent"></div>
+</div>
+<div class="relative z-10 max-w-[1280px] mx-auto px-8 w-full">
+<div class="max-w-2xl text-white">
+<span class="font-label-caps text-on-tertiary-container mb-4 block tracking-widest">ENGENHARIA E CONFORTO TÉRMICO</span>
+<h1 class="font-h1 text-h1 mb-6 text-white drop-shadow-md">Especialistas em Aquecimento de Piscinas e Conforto Térmico em Brasília</h1>
+<p class="font-body-lg text-body-lg mb-10 text-white/90">Projetos, instalação e manutenção completa para piscinas, spa e sistemas térmicos de alta performance.</p>
+<div class="flex flex-wrap gap-4">
+<button class="bg-tertiary-container text-white flex items-center gap-2 px-8 py-4 rounded-xl font-button text-lg hover:bg-tertiary transition-all">
+<span class="material-symbols-outlined">chat</span>
+                            Solicitar Orçamento no WhatsApp
+                        </button>
+<button class="bg-white/10 backdrop-blur-md border border-white/30 text-white px-8 py-4 rounded-xl font-button text-lg hover:bg-white/20 transition-all">
+                            Ver Galeria
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Services Grid -->
+<section class="py-section-gap px-8 max-w-[1280px] mx-auto">
+<div class="text-center mb-16">
+<span class="font-label-caps text-secondary mb-2 block uppercase">O que fazemos</span>
+<h2 class="font-h2 text-h2 text-primary">Soluções Completas em Engenharia Aquática</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Card 1 -->
+<div class="bg-white p-8 rounded-lg pool-shadow border-t-4 border-secondary group hover:-translate-y-2 transition-all">
+<span class="material-symbols-outlined text-secondary text-4xl mb-6">solar_power</span>
+<h3 class="font-h3 text-h3 text-primary mb-4">Aquecimento Solar</h3>
+<p class="text-on-surface-variant font-body-md mb-6">Placas coletoras de alta eficiência para aproveitar a energia solar de Brasília o ano todo.</p>
+<a class="text-secondary font-button flex items-center gap-2 group-hover:gap-3 transition-all" href="#">Saiba mais <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+</div>
+<!-- Card 2 -->
+<div class="bg-white p-8 rounded-lg pool-shadow border-t-4 border-secondary group hover:-translate-y-2 transition-all">
+<span class="material-symbols-outlined text-secondary text-4xl mb-6">heat_pump</span>
+<h3 class="font-h3 text-h3 text-primary mb-4">Trocador de Calor</h3>
+<p class="text-on-surface-variant font-body-md mb-6">Sistemas elétricos inteligentes que garantem a temperatura ideal independente do clima.</p>
+<a class="text-secondary font-button flex items-center gap-2 group-hover:gap-3 transition-all" href="#">Saiba mais <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+</div>
+<!-- Card 3 -->
+<div class="bg-white p-8 rounded-lg pool-shadow border-t-4 border-secondary group hover:-translate-y-2 transition-all">
+<span class="material-symbols-outlined text-secondary text-4xl mb-6">hot_tub</span>
+<h3 class="font-h3 text-h3 text-primary mb-4">Spa, Sauna e Banheiras</h3>
+<p class="text-on-surface-variant font-body-md mb-6">Ambientes de relaxamento com jatos de hidroterapia e controle preciso de temperatura.</p>
+<a class="text-secondary font-button flex items-center gap-2 group-hover:gap-3 transition-all" href="#">Saiba mais <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+</div>
+<!-- Card 4 (Premium Highlight) -->
+<div class="bg-primary-container text-white p-8 rounded-lg shadow-2xl md:col-span-2 group relative overflow-hidden">
+<div class="absolute right-[-10%] bottom-[-10%] opacity-10">
+<span class="material-symbols-outlined text-[200px]" data-weight="fill">settings_suggest</span>
+</div>
+<div class="relative z-10 grid md:grid-cols-2 gap-8 items-center">
+<div>
+<span class="bg-tertiary-container text-on-tertiary-container px-3 py-1 rounded-full text-xs font-bold mb-4 inline-block uppercase tracking-wider">Serviço Premium</span>
+<h3 class="font-h3 text-h3 text-white mb-4">Casa de Máquinas</h3>
+<p class="text-white/80 font-body-md mb-6">Projetamos e executamos casas de máquinas organizadas, seguras e com equipamentos de última geração. Automação completa para sua piscina residencial.</p>
+<button class="bg-white text-primary px-6 py-3 rounded-lg font-button hover:bg-secondary-container transition-colors">Solicitar Projeto Técnico</button>
+</div>
+<div class="rounded-lg overflow-hidden h-48 border border-white/10 shadow-lg bg-white/5">
+<img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" data-alt="Modern high-end residential pool pump and filtration system in a clean organized mechanical room" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCz_u4j-GYS3LkdHoyzYSD9spEdlHeEbxVH7MtT-CgtQDQtp28NgcfdrKOWxdcOy6hpqwoDitzT4HEjiViFwW1amq-WUCgU4wB3PfZTLXW9wGTZpJ0oR2-8ZZ6rILD_KB0CZr7Fvu_Fra1YsKQrRf1jDyQc9WImd_JOHaGB-B4fcmQFPUYQ-oWQ4MDkOuZ6vgpm-jLMjR_CZZE9GjjBG6KBHu8SD1jBfUATP9sihv9h8UkEP3uudd6jojJ_lRPWezKmDkagov3r6RKR"/>
+</div>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="bg-white p-8 rounded-lg pool-shadow border-t-4 border-secondary group hover:-translate-y-2 transition-all">
+<span class="material-symbols-outlined text-secondary text-4xl mb-6">engineering</span>
+<h3 class="font-h3 text-h3 text-primary mb-4">Manutenção Especializada</h3>
+<p class="text-on-surface-variant font-body-md mb-6">Check-up completo de bombas silenciosas, filtros e tratamento químico para total tranquilidade.</p>
+<a class="text-secondary font-button flex items-center gap-2 group-hover:gap-3 transition-all" href="#">Saiba mais <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+</div>
+</div>
+</section>
+<!-- Before & After Section -->
+<section class="bg-surface-container py-section-gap overflow-hidden">
+<div class="max-w-[1280px] mx-auto px-8">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+<div class="max-w-xl">
+<span class="font-label-caps text-secondary mb-2 block uppercase">Transformação Real</span>
+<h2 class="font-h2 text-h2 text-primary">Engenharia que valoriza seu imóvel</h2>
+</div>
+<div class="flex gap-4">
+<div class="flex items-center gap-2 text-on-surface-variant font-button">
+<span class="w-12 h-0.5 bg-secondary"></span> Galeria de Projetos
+                        </div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<div class="space-y-4">
+<div class="relative rounded-xl overflow-hidden aspect-video shadow-2xl">
+<img class="w-full h-full object-cover" data-alt="Before image of a neglected, empty concrete swimming pool area under construction with construction debris" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDI1Lkv92jpkOuxDJV4vL8x_YasblaQFi2noixugPOwl__0tAFrFS7ZVxk9fM6LAkw-d_mCdLPDdckeO4GbsZ_HcoVbxrVgRaWC830FyPca--k0sTtIVCuDYufCmID8u_IlE7kNCvjcjssQsJwROh2YY-qCVOSh8YyDRI8seEwThZyDt2rtnFFR7ZrEihRkx-_f2q7UJ54iFLsv0M4gp4AEM-Ru3vWolcJNFpdDgIy-o6i6PUP4jgL47bl83gTYZHml2YgyLBw_eMKo"/>
+<div class="absolute top-4 left-4 bg-black/50 backdrop-blur-md text-white px-3 py-1 rounded font-label-caps">ANTES</div>
+</div>
+</div>
+<div class="space-y-4">
+<div class="relative rounded-xl overflow-hidden aspect-video shadow-2xl">
+<img class="w-full h-full object-cover" data-alt="After image of the same swimming pool area transformed into a luxurious oasis with clean blue water, limestone deck, and accent lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpjf_FR3d1fV6Fgg8J_JQfqfoAhiUIOlCxwS9iIYm7UUrGs1jLTY4fTxGCaCmiqHk2jQuXXOzeQtyKuSPMarHpFp09VUvbbqQerxuzQaroHViWubLf4PnQlph8rLJCfbmHBvDajSdPq0sT5X2JsJ_mMI4GmlVd3pnQ8-p5kpjbGUD_uGa1wDO5Q3isrnpe-s4l-Skjr_EgxSX4jfAs4YuQip8p5OsPWZ0RUdIYNkjEGs2QksnEFWfhVDQMmCICBH0GI2OpFj9k7p9s"/>
+<div class="absolute top-4 left-4 bg-secondary text-white px-3 py-1 rounded font-label-caps">DEPOIS</div>
+</div>
+</div>
+</div>
+<div class="mt-12 flex justify-center">
+<div class="bg-white px-8 py-4 rounded-full shadow-md flex gap-8 items-center border border-outline-variant">
+<div class="flex flex-col items-center">
+<span class="text-primary font-bold text-xl">150+</span>
+<span class="text-[10px] text-on-surface-variant font-label-caps uppercase">Projetos Entregues</span>
+</div>
+<div class="w-px h-8 bg-outline-variant"></div>
+<div class="flex flex-col items-center">
+<span class="text-primary font-bold text-xl">100%</span>
+<span class="text-[10px] text-on-surface-variant font-label-caps uppercase">Certificados</span>
+</div>
+<div class="w-px h-8 bg-outline-variant"></div>
+<div class="flex flex-col items-center">
+<span class="text-primary font-bold text-xl">12 Anos</span>
+<span class="text-[10px] text-on-surface-variant font-label-caps uppercase">De Experiência</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Differentials Section -->
+<section class="py-section-gap px-8 max-w-[1280px] mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+<div class="order-2 lg:order-1 grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="flex flex-col gap-3">
+<div class="w-12 h-12 bg-secondary-fixed flex items-center justify-center rounded-lg text-secondary">
+<span class="material-symbols-outlined">verified</span>
+</div>
+<h4 class="font-h3 text-body-lg font-bold text-primary">Atendimento Técnico Especializado</h4>
+<p class="text-on-surface-variant text-sm">Engenheiros e técnicos capacitados para diagnosticar e resolver.</p>
+</div>
+<div class="flex flex-col gap-3">
+<div class="w-12 h-12 bg-secondary-fixed flex items-center justify-center rounded-lg text-secondary">
+<span class="material-symbols-outlined">architecture</span>
+</div>
+<h4 class="font-h3 text-body-lg font-bold text-primary">Projetos Personalizados</h4>
+<p class="text-on-surface-variant text-sm">Soluções sob medida para o seu espaço residencial.</p>
+</div>
+<div class="flex flex-col gap-3">
+<div class="w-12 h-12 bg-secondary-fixed flex items-center justify-center rounded-lg text-secondary">
+<span class="material-symbols-outlined">assignment_turned_in</span>
+</div>
+<h4 class="font-h3 text-body-lg font-bold text-primary">Equipamentos de Alto Padrão</h4>
+<p class="text-on-surface-variant text-sm">Bombas silenciosas e automação de última geração.</p>
+</div>
+<div class="flex flex-col gap-3">
+<div class="w-12 h-12 bg-secondary-fixed flex items-center justify-center rounded-lg text-secondary">
+<span class="material-symbols-outlined">group</span>
+</div>
+<h4 class="font-h3 text-body-lg font-bold text-primary">Equipe Própria</h4>
+<p class="text-on-surface-variant text-sm">Sem terceirizações. Controle total de qualidade e prazos.</p>
+</div>
+<div class="flex flex-col gap-3 md:col-span-2">
+<div class="w-12 h-12 bg-secondary-fixed flex items-center justify-center rounded-lg text-secondary">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+<h4 class="font-h3 text-body-lg font-bold text-primary">Atendimento Brasília e Entorno</h4>
+<p class="text-on-surface-variant text-sm">Logística ágil para todo o DF e cidades satélites.</p>
+</div>
+</div>
+<div class="order-1 lg:order-2">
+<span class="font-label-caps text-secondary mb-2 block uppercase">Diferenciais Evolution</span>
+<h2 class="font-h2 text-h1 text-primary mb-6 leading-tight">Por que confiar o seu lazer à nossa engenharia?</h2>
+<p class="text-on-surface-variant font-body-lg mb-8">Unimos a precisão técnica da engenharia hidráulica e térmica com a sofisticação que o seu projeto residencial exige. Na Piscinas Evolution, o foco é a durabilidade e o máximo conforto.</p>
+<div class="bg-surface p-6 rounded-lg border-l-4 border-tertiary-fixed-dim">
+<p class="italic text-on-surface">"Nossa missão é garantir que você desfrute da sua piscina em qualquer estação do ano, com economia e segurança."</p>
+<p class="font-bold mt-2 text-primary">— Eng. Responsável</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Testimonials -->
+<section class="bg-primary py-section-gap text-white">
+<div class="max-w-[1280px] mx-auto px-8">
+<div class="text-center mb-16">
+<h2 class="font-h2 text-h2 mb-4">O que dizem nossos clientes</h2>
+<div class="flex justify-center gap-1 text-tertiary-fixed-dim">
+<span class="material-symbols-outlined" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-weight="fill">star</span>
+</div>
+<p class="mt-2 text-white/60 font-label-caps">Avaliação 4.9 no Google Reviews</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="bg-white/5 backdrop-blur-sm p-8 rounded-lg border border-white/10">
+<p class="font-body-md mb-6 italic text-white/90">"O sistema de aquecimento solar ficou perfeito. Mesmo no inverno, a água está em uma temperatura excelente. Atendimento muito profissional em Brasília."</p>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-secondary rounded-full flex items-center justify-center font-bold">RC</div>
+<div>
+<p class="font-bold text-sm">Ricardo Camargo</p>
+<p class="text-xs text-white/50">Lago Sul, DF</p>
+</div>
+</div>
+</div>
+<div class="bg-white/5 backdrop-blur-sm p-8 rounded-lg border border-white/10">
+<p class="font-body-md mb-6 italic text-white/90">"A reforma da nossa casa de máquinas foi impressionante. Tudo agora está organizado e automatizado. Facilitou demais a manutenção semanal."</p>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-secondary rounded-full flex items-center justify-center font-bold">ML</div>
+<div>
+<p class="font-bold text-sm">Mariana Lins</p>
+<p class="text-xs text-white/50">Park Way, DF</p>
+</div>
+</div>
+</div>
+<div class="bg-white/5 backdrop-blur-sm p-8 rounded-lg border border-white/10">
+<p class="font-body-md mb-6 italic text-white/90">"Instalamos o trocador de calor e o Spa. A equipe foi muito rápida e limpa. Recomendo fortemente para quem busca qualidade técnica."</p>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-secondary rounded-full flex items-center justify-center font-bold">AS</div>
+<div>
+<p class="font-bold text-sm">André Soares</p>
+<p class="text-xs text-white/50">Sobradinho, DF</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="py-section-gap px-8">
+<div class="max-w-[1280px] mx-auto bg-tertiary-container rounded-3xl overflow-hidden shadow-2xl relative">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-20" data-alt="Modern solar panels on a residential rooftop overlooking a pool" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBS5E46at3gWeRlznhFxGVTLhFMvex_eI0mSV0I1xPnhrbBj6x_thurcnx-Qh9iqVNY9ZNJTC3__8JILr84aEa47IM-a9ECbAB_obN9flJGYvn-rqmZpvdBw2vqxEOR-L7PQTWOhly-U3tNO_72QKp0Q06TS4yy7VPhtlkPPa7JGPT-l0wG6DaE3hGu3wnh-stQLc-MLvkFB88FnAcrv1IVswnH6nYDK9D2ILAElESC4Znw1CksT5KHiv_q28o0dZ22CJksGRmlYWWY"/>
+</div>
+<div class="relative z-10 px-8 py-20 text-center flex flex-col items-center">
+<h2 class="font-h1 text-h1 text-white mb-6">Pronto para transformar sua piscina?</h2>
+<p class="font-body-lg text-white/90 mb-10 max-w-2xl">Fale agora com um especialista e solicite seu orçamento sem compromisso. Atendimento técnico especializado em todo o Distrito Federal.</p>
+<a class="bg-white text-tertiary px-10 py-5 rounded-full font-button text-xl flex items-center gap-3 hover:scale-105 transition-transform shadow-xl" href="#">
+<span class="material-symbols-outlined text-green-600">chat</span>
+                        Fale agora com um especialista
+                    </a>
+</div>
+</div>
+</section>
+</main>
+<!-- WhatsApp Floating Button -->
+<a class="fixed bottom-6 right-6 z-[100] bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-all duration-300 animate-bounce-subtle flex items-center justify-center group" href="#">
+<svg class="w-8 h-8" fill="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg>
+<span class="absolute right-full mr-3 bg-white text-on-surface px-4 py-2 rounded-lg text-sm font-semibold shadow-xl opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">Fale Conosco</span>
+</a>
+<!-- Mini Chat Widget -->
+<div class="fixed bottom-6 left-6 z-[100]">
+<button class="bg-primary text-white px-5 py-3 rounded-full shadow-lg flex items-center gap-3 hover:bg-primary-container transition-colors border border-white/20">
+<span class="material-symbols-outlined text-xl">chat_bubble</span>
+<span class="text-sm font-semibold">Suporte Online</span>
+<span class="flex h-2 w-2 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+</span>
+</button>
+</div>
+<!-- Footer -->
+<footer class="bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-8 py-20 max-w-[1280px] mx-auto w-full">
+<div class="col-span-1 md:col-span-1">
+<div class="text-lg font-bold text-blue-900 dark:text-white mb-6">
+                    Piscinas Evolution
+                </div>
+<p class="font-['Work_Sans'] text-sm leading-relaxed text-slate-500 dark:text-slate-400">
+                    Líder em soluções de aquecimento e engenharia para piscinas residenciais de alto padrão em Brasília.
+                </p>
+</div>
+<div>
+<h4 class="font-bold text-blue-900 dark:text-white mb-6 text-sm uppercase tracking-wider">Links Rápidos</h4>
+<ul class="space-y-4 font-['Work_Sans'] text-sm">
+<li><a class="text-slate-500 hover:underline decoration-yellow-400 underline-offset-4 transition-all" href="#">Home</a></li>
+<li><a class="text-slate-500 hover:underline decoration-yellow-400 underline-offset-4 transition-all" href="#">Aquecimento</a></li>
+<li><a class="text-slate-500 hover:underline decoration-yellow-400 underline-offset-4 transition-all" href="#">Piscinas &amp; Lazer</a></li>
+<li><a class="text-slate-500 hover:underline decoration-yellow-400 underline-offset-4 transition-all" href="#">Galeria</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-blue-900 dark:text-white mb-6 text-sm uppercase tracking-wider">Serviços</h4>
+<ul class="space-y-4 font-['Work_Sans'] text-sm">
+<li><a class="text-slate-500 hover:underline decoration-yellow-400 underline-offset-4 transition-all" href="#">Casa de Máquinas</a></li>
+<li><a class="text-slate-500 hover:underline decoration-yellow-400 underline-offset-4 transition-all" href="#">Manutenção Técnica</a></li>
+<li><a class="text-slate-500 hover:underline decoration-yellow-400 underline-offset-4 transition-all" href="#">Trocador de Calor</a></li>
+<li><a class="text-slate-500 hover:underline decoration-yellow-400 underline-offset-4 transition-all" href="#">Sistemas Solares</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-blue-900 dark:text-white mb-6 text-sm uppercase tracking-wider">Contato</h4>
+<p class="font-['Work_Sans'] text-sm leading-relaxed text-blue-900 dark:text-blue-400 font-semibold mb-4">
+                    +55 61 9144-1294
+                </p>
+<p class="font-['Work_Sans'] text-sm leading-relaxed text-slate-500">
+                    Brasília — Distrito Federal<br/>
+                    Atendimento de Segunda a Sábado
+                </p>
+</div>
+</div>
+<div class="border-t border-slate-200 dark:border-slate-800 py-8 text-center px-8">
+<p class="font-['Work_Sans'] text-sm text-slate-400">
+                Piscinas Evolution — Aquecimento, Spa &amp; Soluções Térmicas © 2024. Todos os direitos reservados.
+            </p>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Piscinas Evolution | Agenda de Serviços</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700;800;900&amp;family=Manrope:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #e4e2e1; border-radius: 10px; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-fixed": "#251a00",
+                      "on-tertiary": "#ffffff",
+                      "on-secondary": "#ffffff",
+                      "surface-container-low": "#f6f3f2",
+                      "surface": "#fcf9f8",
+                      "primary-fixed": "#cee5ff",
+                      "inverse-on-surface": "#f3f0f0",
+                      "secondary-fixed-dim": "#80cfff",
+                      "on-secondary-fixed-variant": "#004c6a",
+                      "surface-container": "#f0eded",
+                      "on-tertiary-fixed-variant": "#5b4300",
+                      "on-surface": "#1b1c1c",
+                      "surface-variant": "#e4e2e1",
+                      "error-container": "#ffdad6",
+                      "secondary-fixed": "#c5e7ff",
+                      "on-background": "#1b1c1c",
+                      "surface-container-highest": "#e4e2e1",
+                      "on-primary-container": "#7fa7cd",
+                      "on-primary-fixed-variant": "#1f4a6c",
+                      "inverse-primary": "#a3cbf2",
+                      "secondary": "#00658c",
+                      "tertiary": "#302100",
+                      "surface-dim": "#dcd9d9",
+                      "on-primary-fixed": "#001d32",
+                      "tertiary-container": "#4a3600",
+                      "surface-container-lowest": "#ffffff",
+                      "on-error": "#ffffff",
+                      "inverse-surface": "#303030",
+                      "surface-tint": "#396285",
+                      "outline-variant": "#c2c7ce",
+                      "error": "#ba1a1a",
+                      "background": "#fcf9f8",
+                      "outline": "#72777e",
+                      "surface-container-high": "#eae7e7",
+                      "secondary-container": "#80cfff",
+                      "on-secondary-container": "#00597b",
+                      "on-surface-variant": "#42474e",
+                      "primary": "#00263f",
+                      "on-error-container": "#93000a",
+                      "primary-container": "#0b3c5d",
+                      "surface-bright": "#fcf9f8",
+                      "on-primary": "#ffffff",
+                      "tertiary-fixed-dim": "#f9bd14",
+                      "primary-fixed-dim": "#a3cbf2",
+                      "on-secondary-fixed": "#001e2d",
+                      "tertiary-fixed": "#ffdf9d",
+                      "on-tertiary-container": "#ce9b00"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "section-gap": "80px",
+                      "margin-desktop": "48px",
+                      "container-max": "1280px",
+                      "gutter": "24px",
+                      "margin-mobile": "16px",
+                      "unit": "8px"
+              },
+              "fontFamily": {
+                      "body-md": ["Manrope"],
+                      "h3": ["Work Sans"],
+                      "body-lg": ["Manrope"],
+                      "h2": ["Work Sans"],
+                      "button": ["Manrope"],
+                      "label-caps": ["Manrope"],
+                      "h1": ["Work Sans"]
+              },
+              "fontSize": {
+                      "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "h2": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "button": ["14px", {"lineHeight": "1.0", "fontWeight": "600"}],
+                      "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                      "h1": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased">
+<!-- Top Navigation -->
+<header class="bg-white/90 dark:bg-slate-900/90 backdrop-blur-md text-sky-900 dark:text-sky-400 font-['Work_Sans'] tracking-tight docked full-width top-0 z-40 border-b border-gray-100 dark:border-gray-800 shadow-[0_4px_20px_-5px_rgba(11,60,93,0.08)] flex justify-between items-center w-full px-6 py-3 fixed">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold tracking-tighter text-sky-900 dark:text-white">Piscinas Evolution</span>
+<nav class="hidden md:flex gap-6">
+<a class="text-gray-500 hover:bg-gray-50 transition-colors px-3 py-1 rounded" href="#">Dashboard</a>
+<a class="text-sky-900 font-semibold px-3 py-1 rounded" href="#">Maintenance Log</a>
+<a class="text-gray-500 hover:bg-gray-50 transition-colors px-3 py-1 rounded" href="#">Project Blueprint</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-gray-50 transition-colors rounded-full active:scale-95 duration-200">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 hover:bg-gray-50 transition-colors rounded-full active:scale-95 duration-200">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="h-8 w-8 rounded-full overflow-hidden border-2 border-primary-container">
+<img alt="Administrator Profile" data-alt="Professional headshot of a senior administrator in a sharp navy suit with neutral studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkz8Oa9nPaT_UTS542Ny439iCTTDhebUkugfr2UzZ2jLZRoxMRIT85FXS2VrwWm8oiZyGDllsIAAuF9KKB8S_ccBsXZ15msBVqVt1xppVnQt5_kkfxQ1OXXVSm9VU5pNGpyM7e_dEdBIoF7C8JNPNFFwqfYwjnmFxHJDacYjCZD9JMlLUNnwTtd51b8vhkN4d9vy346nU1alXp2rK4ZDK5CxDuPdL6RrMa3jcuQ9YjLz6ythxEWuPRFpctaAyuffmVhLs6bPlBSLTN"/>
+</div>
+</div>
+</header>
+<!-- Side Navigation -->
+<aside class="fixed left-0 top-0 flex flex-col h-full z-50 bg-white dark:bg-slate-900 h-screen w-64 border-r border-gray-100 dark:border-gray-800 transition-all duration-300 ease-in-out">
+<div class="p-6 border-b border-gray-50">
+<h2 class="text-lg font-black text-sky-900 dark:text-white">Piscinas Evolution</h2>
+<p class="text-xs text-gray-400 uppercase tracking-widest font-semibold mt-1">Precision Engineering</p>
+</div>
+<div class="flex-1 py-6 overflow-y-auto divide-y divide-gray-50">
+<div class="space-y-1 px-3 pb-6">
+<a class="flex items-center gap-3 px-3 py-3 text-gray-500 hover:text-sky-800 hover:bg-gray-50 transition-all text-sm uppercase tracking-widest font-semibold" href="#">
+<span class="material-symbols-outlined">dashboard</span> Dashboard
+                </a>
+<a class="flex items-center gap-3 px-3 py-3 text-gray-500 hover:text-sky-800 hover:bg-gray-50 transition-all text-sm uppercase tracking-widest font-semibold" href="#">
+<span class="material-symbols-outlined">architecture</span> Project Blueprint
+                </a>
+<a class="flex items-center gap-3 px-3 py-3 text-gray-500 hover:text-sky-800 hover:bg-gray-50 transition-all text-sm uppercase tracking-widest font-semibold" href="#">
+<span class="material-symbols-outlined">pool</span> Equipment Status
+                </a>
+<a class="flex items-center gap-3 px-3 py-3 bg-sky-50 text-sky-900 border-r-4 border-sky-900 text-sm uppercase tracking-widest font-semibold" href="#">
+<span class="material-symbols-outlined">build</span> Maintenance Log
+                </a>
+<a class="flex items-center gap-3 px-3 py-3 text-gray-500 hover:text-sky-800 hover:bg-gray-50 transition-all text-sm uppercase tracking-widest font-semibold" href="#">
+<span class="material-symbols-outlined">inventory_2</span> Inventory
+                </a>
+<a class="flex items-center gap-3 px-3 py-3 text-gray-500 hover:text-sky-800 hover:bg-gray-50 transition-all text-sm uppercase tracking-widest font-semibold" href="#">
+<span class="material-symbols-outlined">settings</span> Admin Settings
+                </a>
+</div>
+<div class="px-6 py-6">
+<button class="w-full bg-primary py-3 rounded-lg text-white font-button uppercase tracking-widest shadow-lg active:scale-95 transition-all">
+                    New Construction
+                </button>
+</div>
+</div>
+<div class="p-6 border-t border-gray-50 mt-auto">
+<a class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-sky-800 transition-all text-sm" href="#">
+<span class="material-symbols-outlined">contact_support</span> Support
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-error transition-all text-sm" href="#">
+<span class="material-symbols-outlined">logout</span> Log Out
+            </a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-20 p-8 min-h-screen">
+<div class="max-w-container-max mx-auto">
+<!-- Header & Filter Row -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12">
+<div>
+<span class="font-label-caps text-secondary uppercase">Operational Calendar</span>
+<h1 class="font-h1 text-primary mt-2">Agenda de Serviços</h1>
+<p class="text-on-surface-variant font-body-md mt-1">Management of technical visits and installations</p>
+</div>
+<div class="flex items-center gap-3 bg-white p-1 rounded-full shadow-sm border border-gray-100">
+<button class="px-6 py-2 rounded-full bg-primary text-white font-button">WEEKLY</button>
+<button class="px-6 py-2 rounded-full text-gray-500 font-button hover:bg-gray-50">MONTHLY</button>
+<button class="px-6 py-2 rounded-full text-gray-500 font-button hover:bg-gray-50">TIMELINE</button>
+</div>
+</div>
+<!-- Dashboard Stats -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter mb-12">
+<div class="bg-white p-6 rounded-xl border border-gray-100 shadow-[0_4px_20px_-5px_rgba(11,60,93,0.08)]">
+<p class="font-label-caps text-gray-400 mb-2">SCHEDULED VISITS</p>
+<div class="flex items-end gap-2">
+<span class="text-h2 text-primary">24</span>
+<span class="text-emerald-500 font-semibold mb-2 text-sm">+3 new</span>
+</div>
+</div>
+<div class="bg-white p-6 rounded-xl border border-gray-100 shadow-[0_4px_20px_-5px_rgba(11,60,93,0.08)]">
+<p class="font-label-caps text-gray-400 mb-2">IN PROGRESS</p>
+<div class="flex items-end gap-2">
+<span class="text-h2 text-primary">08</span>
+<span class="text-tertiary-fixed-dim font-semibold mb-2 text-sm">Active</span>
+</div>
+</div>
+<div class="bg-white p-6 rounded-xl border border-gray-100 shadow-[0_4px_20px_-5px_rgba(11,60,93,0.08)]">
+<p class="font-label-caps text-gray-400 mb-2">RESOURCES DEP.</p>
+<div class="flex items-end gap-2">
+<span class="text-h2 text-primary">92%</span>
+<span class="text-gray-400 mb-2 text-sm">Optimum</span>
+</div>
+</div>
+<div class="bg-white p-6 rounded-xl border border-gray-100 shadow-[0_4px_20px_-5px_rgba(11,60,93,0.08)]">
+<p class="font-label-caps text-gray-400 mb-2">VIP SERVICES</p>
+<div class="flex items-end gap-2">
+<span class="text-h2 text-primary">05</span>
+<span class="text-sky-500 font-semibold mb-2 text-sm">High Priority</span>
+</div>
+</div>
+</div>
+<!-- Calendar Grid -->
+<div class="bg-white rounded-xl border border-gray-100 shadow-[0_4px_20px_-5px_rgba(11,60,93,0.08)] overflow-hidden">
+<!-- Days Header -->
+<div class="grid grid-cols-7 border-b border-gray-100 bg-gray-50/50">
+<div class="p-4 text-center border-r border-gray-100">
+<span class="font-label-caps text-gray-400 block mb-1">MON</span>
+<span class="text-h3 text-primary">12</span>
+</div>
+<div class="p-4 text-center border-r border-gray-100">
+<span class="font-label-caps text-gray-400 block mb-1">TUE</span>
+<span class="text-h3 text-primary">13</span>
+</div>
+<div class="p-4 text-center border-r border-gray-100 bg-sky-50/30">
+<span class="font-label-caps text-sky-900 block mb-1">WED</span>
+<span class="text-h3 text-sky-900">14</span>
+</div>
+<div class="p-4 text-center border-r border-gray-100">
+<span class="font-label-caps text-gray-400 block mb-1">THU</span>
+<span class="text-h3 text-primary">15</span>
+</div>
+<div class="p-4 text-center border-r border-gray-100">
+<span class="font-label-caps text-gray-400 block mb-1">FRI</span>
+<span class="text-h3 text-primary">16</span>
+</div>
+<div class="p-4 text-center border-r border-gray-100">
+<span class="font-label-caps text-gray-400 block mb-1">SAT</span>
+<span class="text-h3 text-primary">17</span>
+</div>
+<div class="p-4 text-center">
+<span class="font-label-caps text-gray-400 block mb-1">SUN</span>
+<span class="text-h3 text-primary">18</span>
+</div>
+</div>
+<!-- Calendar Content Slots -->
+<div class="grid grid-cols-7 min-h-[600px] divide-x divide-gray-100">
+<!-- Monday -->
+<div class="p-3 space-y-4">
+<div class="bg-surface-container-low p-3 rounded border-l-4 border-primary">
+<span class="font-label-caps text-[10px] text-primary">09:00 AM</span>
+<h4 class="font-bold text-xs mt-1">Pump Replacement</h4>
+<p class="text-[11px] text-gray-500">Condo Alpha - Pinheiros</p>
+</div>
+</div>
+<!-- Tuesday -->
+<div class="p-3 space-y-4">
+<div class="bg-surface-container-low p-3 rounded border-l-4 border-tertiary-fixed-dim">
+<span class="font-label-caps text-[10px] text-tertiary-container">10:30 AM</span>
+<h4 class="font-bold text-xs mt-1">Solar Heating Check</h4>
+<p class="text-[11px] text-gray-500">Ricardo M. - Jardins</p>
+</div>
+</div>
+<!-- Wednesday (Active Day) -->
+<div class="p-3 space-y-4 bg-sky-50/20">
+<!-- VIP CARD -->
+<div class="bg-white p-4 rounded-xl shadow-md border-t-4 border-tertiary-fixed-dim ring-1 ring-black/5 relative overflow-hidden">
+<div class="absolute top-2 right-2 flex items-center bg-tertiary-fixed text-on-tertiary-fixed px-2 py-0.5 rounded-full text-[9px] font-bold">
+                                VIP GOLD
+                            </div>
+<span class="font-label-caps text-[10px] text-secondary">14:00 PM - IN PROGRESS</span>
+<h4 class="font-h3 text-sm mt-2 text-primary">Juliana Paes</h4>
+<div class="flex items-center gap-1 text-[11px] text-gray-500 mt-1">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+                                Itaim Bibi, SP
+                            </div>
+<div class="mt-4 pt-4 border-t border-gray-50">
+<p class="font-label-caps text-[9px] text-gray-400 mb-2">RESOURCES ALLOCATED</p>
+<div class="flex -space-x-2">
+<img alt="Tech 1" class="h-6 w-6 rounded-full ring-2 ring-white" data-alt="Technical engineer portrait with safety helmet in a construction setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-AfILDgqg8kCCLZbhl6SErAqPC-apPg3zH7kvS-pHCapdy5TX6luRKho6_qA_4naWyKdW6lAZFTtXqBpN0zAZxdL2wSpoPbXcUTgtgfnJ5yp_y6s_BGkyrguvJgDqIhhirlX7Hih1iOzdbHJCPxY3Q6ERD7wQSCZX4ZVfCwc1QM3-W5LDnYwt_gq6gxfzi2RCoLkJG8f_ay48JCyAoCuhfH7Ji1oxR5jLBK2d7cHJeLW35Fvk9wh3uYcDHtxkN9pTEPjB1QtE-vsd"/>
+<img alt="Tech 2" class="h-6 w-6 rounded-full ring-2 ring-white" data-alt="Female technician smiling confidently with solar panel blueprints in the background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABkob8PolxB5baKNjkSDvmp23ofdVR5fMN0eA9OSM1dM8JuKu2k84BN9Ep0prZ22Ig0046eLbhN2JvFj1_vcbX8xsEQioFeFxbQSMgUT8DrmAT15h7yVaJr6GSj2sE_s7kF48yTnMqvnLlUH3azj7Exlfhhy4kUWjuhDEGUKMM0owfzp0LSVDt8-yQEmE_alHwp2WBIgWaQBWURYabOCE6cQbUTDmnzYC2DwWCnQi_ZLKi4YJiT_KaUCMvtZDTiDCKS5FK07KRjKwk"/>
+<div class="h-6 w-6 rounded-full bg-gray-100 flex items-center justify-center text-[10px] font-bold ring-2 ring-white">+1</div>
+</div>
+</div>
+<div class="mt-4">
+<div class="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full" style="width: 65%;"></div>
+</div>
+<span class="text-[10px] text-gray-400 mt-1 block">Full Installation: 65% Complete</span>
+</div>
+</div>
+<div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm opacity-70">
+<span class="font-label-caps text-[10px] text-emerald-600">16:30 PM - APPROVED</span>
+<h4 class="font-bold text-xs mt-1">Chlorinator Check</h4>
+<p class="text-[11px] text-gray-500">Marcos S. - Vila Nova</p>
+</div>
+</div>
+<!-- Thursday -->
+<div class="p-3 space-y-4">
+<div class="bg-surface-container-low p-3 rounded border-l-4 border-secondary">
+<span class="font-label-caps text-[10px] text-secondary">08:00 AM</span>
+<h4 class="font-bold text-xs mt-1">New Pool Lining</h4>
+<p class="text-[11px] text-gray-500">Club Med - Lake View</p>
+</div>
+</div>
+<!-- Friday -->
+<div class="p-3 space-y-4">
+<div class="bg-surface-container-low p-3 rounded border-l-4 border-error">
+<span class="font-label-caps text-[10px] text-error">11:00 AM - PENDING</span>
+<h4 class="font-bold text-xs mt-1">Emergency Leak</h4>
+<p class="text-[11px] text-gray-500">Avenue Residences</p>
+</div>
+</div>
+<!-- Saturday -->
+<div class="p-3 bg-gray-50/30">
+<div class="text-center py-10">
+<span class="material-symbols-outlined text-gray-300">event_busy</span>
+<p class="text-[10px] text-gray-400 mt-2">No visits scheduled</p>
+</div>
+</div>
+<!-- Sunday -->
+<div class="p-3 bg-gray-50/30"></div>
+</div>
+</div>
+<!-- Map View Section -->
+<div class="mt-section-gap grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<div class="lg:col-span-2 bg-white rounded-xl border border-gray-100 shadow-[0_4px_20px_-5px_rgba(11,60,93,0.08)] overflow-hidden h-[400px] relative">
+<div class="absolute top-4 left-4 z-10 bg-white/90 backdrop-blur-md px-4 py-2 rounded-lg border border-gray-100 shadow-sm">
+<h5 class="font-label-caps text-primary">LIVE TRACKING</h5>
+<p class="text-xs text-gray-500">3 Teams active in São Paulo</p>
+</div>
+<div class="w-full h-full bg-slate-200 flex items-center justify-center relative">
+<!-- Simulated Map Background -->
+<div class="absolute inset-0 opacity-40" style="background-image: radial-gradient(#00263f 0.5px, transparent 0.5px); background-size: 24px 24px;"></div>
+<span class="material-symbols-outlined text-primary opacity-20 scale-[10]">map</span>
+<!-- Fleet Markers -->
+<div class="absolute top-1/4 left-1/3 p-2 bg-primary text-white rounded-full shadow-xl">
+<span class="material-symbols-outlined text-sm">local_shipping</span>
+</div>
+<div class="absolute top-1/2 right-1/4 p-2 bg-tertiary-fixed-dim text-on-tertiary-fixed rounded-full shadow-xl">
+<span class="material-symbols-outlined text-sm">engineering</span>
+</div>
+</div>
+</div>
+<div class="bg-primary-container text-white p-8 rounded-xl flex flex-col justify-between">
+<div>
+<span class="font-label-caps text-secondary-fixed uppercase tracking-widest">Resource Health</span>
+<h3 class="font-h3 mt-4">Technical Efficiency</h3>
+<p class="text-on-primary-container text-sm mt-4 leading-relaxed">
+                            Team Bravo is currently operating at 110% capacity. Recommend re-routing non-urgent visits in Moema to Team Charlie to maintain VIP service levels.
+                        </p>
+</div>
+<div class="mt-8 space-y-4">
+<div>
+<div class="flex justify-between text-xs mb-2">
+<span>Team Alpha</span>
+<span>85%</span>
+</div>
+<div class="w-full bg-white/10 h-1.5 rounded-full">
+<div class="bg-secondary-fixed h-full rounded-full" style="width: 85%;"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs mb-2">
+<span>Team Bravo</span>
+<span>98%</span>
+</div>
+<div class="w-full bg-white/10 h-1.5 rounded-full">
+<div class="bg-tertiary-fixed-dim h-full rounded-full" style="width: 98%;"></div>
+</div>
+</div>
+</div>
+<button class="w-full mt-8 bg-white text-primary py-3 rounded-lg font-button uppercase active:scale-95 transition-all">
+                        Optimization Report
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Contextual FAB -->
+<button class="fixed bottom-8 right-8 h-16 w-16 rounded-full bg-primary text-white shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+</body></html>

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed": "#ffdf9d",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "tertiary-container": "#4a3600",
+                    "on-tertiary-container": "#ce9b00",
+                    "inverse-on-surface": "#f3f0f0",
+                    "surface-dim": "#dcd9d9",
+                    "inverse-surface": "#303030",
+                    "tertiary-fixed-dim": "#f9bd14",
+                    "surface-container": "#f0eded",
+                    "on-secondary-fixed-variant": "#004c6a",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface": "#fcf9f8",
+                    "primary-container": "#0b3c5d",
+                    "surface-variant": "#e4e2e1",
+                    "secondary-fixed": "#c5e7ff",
+                    "outline-variant": "#c2c7ce",
+                    "primary-fixed": "#cee5ff",
+                    "primary-fixed-dim": "#a3cbf2",
+                    "inverse-primary": "#a3cbf2",
+                    "surface-container-high": "#eae7e7",
+                    "error-container": "#ffdad6",
+                    "error": "#ba1a1a",
+                    "secondary": "#00658c",
+                    "on-surface-variant": "#42474e",
+                    "secondary-container": "#80cfff",
+                    "on-primary-fixed": "#001d32",
+                    "surface-container-low": "#f6f3f2",
+                    "on-tertiary-fixed-variant": "#5b4300",
+                    "on-error": "#ffffff",
+                    "surface-container-highest": "#e4e2e1",
+                    "on-background": "#1b1c1c",
+                    "on-surface": "#1b1c1c",
+                    "on-primary-fixed-variant": "#1f4a6c",
+                    "outline": "#72777e",
+                    "surface-tint": "#396285",
+                    "surface-bright": "#fcf9f8",
+                    "on-secondary-fixed": "#001e2d",
+                    "on-primary": "#ffffff",
+                    "on-secondary-container": "#00597b",
+                    "background": "#fcf9f8",
+                    "on-primary-container": "#7fa7cd",
+                    "primary": "#00263f",
+                    "secondary-fixed-dim": "#80cfff",
+                    "on-tertiary-fixed": "#251a00",
+                    "tertiary": "#302100"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "container-max": "1280px",
+                    "section-gap": "80px",
+                    "margin-mobile": "16px",
+                    "gutter": "24px",
+                    "margin-desktop": "48px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "h2": ["Work Sans"],
+                    "h3": ["Work Sans"],
+                    "label-caps": ["Manrope"],
+                    "h1": ["Work Sans"],
+                    "button": ["Manrope"],
+                    "body-lg": ["Manrope"],
+                    "body-md": ["Manrope"]
+            },
+            "fontSize": {
+                    "h2": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                    "h1": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "button": ["14px", {"lineHeight": "1.0", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .bg-glass {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen">
+<div class="flex min-h-screen">
+<!-- Sidebar Navigation -->
+<aside class="w-64 bg-primary text-white flex flex-col fixed inset-y-0 left-0 z-50">
+<div class="p-8">
+<span class="text-xl font-h1 font-bold uppercase tracking-widest text-white">Piscinas Evolution</span>
+<p class="text-[10px] font-label-caps text-on-primary-container mt-1 opacity-70">Painel Administrativo</p>
+</div>
+<nav class="flex-1 px-4 space-y-2 overflow-y-auto">
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary-container rounded-lg font-button" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                    Dashboard
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-white/70 hover:bg-primary-container/30 hover:text-white transition-all rounded-lg font-button" href="#">
+<span class="material-symbols-outlined" data-icon="edit_note">edit_note</span>
+                    Gerenciar Conteúdo
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-white/70 hover:bg-primary-container/30 hover:text-white transition-all rounded-lg font-button" href="#">
+<span class="material-symbols-outlined" data-icon="forum">forum</span>
+                    Central de Mensagens
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-white/70 hover:bg-primary-container/30 hover:text-white transition-all rounded-lg font-button" href="#">
+<span class="material-symbols-outlined" data-icon="engineering">engineering</span>
+                    Projetos Engenharia
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-white/70 hover:bg-primary-container/30 hover:text-white transition-all rounded-lg font-button" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                    Configurações
+                </a>
+</nav>
+<div class="p-4 border-t border-white/10">
+<div class="flex items-center gap-3 px-4 py-3">
+<div class="w-8 h-8 bg-secondary rounded-full flex items-center justify-center font-bold text-xs">AD</div>
+<div>
+<p class="text-sm font-semibold">Admin Evolution</p>
+<p class="text-[10px] opacity-50 uppercase tracking-tighter">Sair do Sistema</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 ml-64 p-8 max-w-[1280px]">
+<!-- Header Section -->
+<header class="flex justify-between items-end mb-10">
+<div>
+<h1 class="font-h2 text-h2 text-primary">Visão Geral</h1>
+<p class="text-on-surface-variant font-body-md">Bem-vindo de volta ao centro de comando da Piscinas Evolution.</p>
+</div>
+<div class="flex gap-4">
+<button class="flex items-center gap-2 px-4 py-2 border border-outline-variant rounded-lg font-button hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined text-lg" data-icon="download">download</span>
+                        Exportar Relatório
+                    </button>
+<button class="flex items-center gap-2 px-6 py-2 bg-primary text-white rounded-lg font-button hover:opacity-90 active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined text-lg" data-icon="add">add</span>
+                        Novo Projeto
+                    </button>
+</div>
+</header>
+<!-- Stats Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+<div class="p-6 bg-white rounded-xl shadow-[0_4px_20px_rgba(11,60,93,0.08)] border border-slate-50">
+<div class="flex justify-between items-start mb-4">
+<span class="p-2 bg-primary-fixed rounded-lg text-primary">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</span>
+<span class="text-xs font-label-caps text-green-600">+12%</span>
+</div>
+<p class="text-on-surface-variant text-sm font-label-caps">Visitas Totais</p>
+<p class="text-3xl font-h2 text-primary mt-1">12,840</p>
+</div>
+<div class="p-6 bg-white rounded-xl shadow-[0_4px_20px_rgba(11,60,93,0.08)] border border-slate-50">
+<div class="flex justify-between items-start mb-4">
+<span class="p-2 bg-secondary-fixed rounded-lg text-secondary">
+<span class="material-symbols-outlined" data-icon="request_quote">request_quote</span>
+</span>
+<span class="text-xs font-label-caps text-green-600">+5%</span>
+</div>
+<p class="text-on-surface-variant text-sm font-label-caps">Orçamentos Recebidos</p>
+<p class="text-3xl font-h2 text-primary mt-1">142</p>
+</div>
+<div class="p-6 bg-white rounded-xl shadow-[0_4px_20px_rgba(11,60,93,0.08)] border border-slate-50">
+<div class="flex justify-between items-start mb-4">
+<span class="p-2 bg-tertiary-fixed rounded-lg text-tertiary">
+<span class="material-symbols-outlined" data-icon="sunny">sunny</span>
+</span>
+<span class="text-xs font-label-caps text-blue-600">Alta</span>
+</div>
+<p class="text-on-surface-variant text-sm font-label-caps">Interesse Solar</p>
+<p class="text-3xl font-h2 text-primary mt-1">84%</p>
+</div>
+<div class="p-6 bg-primary text-white rounded-xl shadow-xl">
+<div class="flex justify-between items-start mb-4">
+<span class="p-2 bg-white/20 rounded-lg">
+<span class="material-symbols-outlined" data-icon="chat">chat</span>
+</span>
+</div>
+<p class="text-white/70 text-sm font-label-caps">Mensagens Pendentes</p>
+<p class="text-3xl font-h2 mt-1">28</p>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Message Center Preview -->
+<section class="lg:col-span-2 space-y-6">
+<div class="bg-white rounded-xl shadow-[0_4px_20px_rgba(11,60,93,0.08)] overflow-hidden">
+<div class="px-6 py-4 border-b border-outline-variant flex justify-between items-center">
+<h3 class="font-h3 text-h3 text-primary">Contatos Recentes</h3>
+<button class="text-secondary text-sm font-button hover:underline decoration-secondary/30">Ver Tudo</button>
+</div>
+<div class="divide-y divide-slate-100">
+<!-- Contact Row 1 -->
+<div class="px-6 py-4 flex items-center gap-4 hover:bg-surface-container-low transition-all cursor-pointer">
+<div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-primary font-bold">RM</div>
+<div class="flex-1">
+<p class="font-semibold text-primary">Ricardo Mendes</p>
+<p class="text-xs text-on-surface-variant truncate w-64">Interesse em projeto de Spa e Aquecimento Solar para condomínio...</p>
+</div>
+<div class="text-right">
+<p class="text-xs font-label-caps text-on-surface-variant">14:20</p>
+<span class="inline-block px-2 py-0.5 bg-green-100 text-green-700 text-[10px] font-bold rounded-full">WHATSAPP</span>
+</div>
+</div>
+<!-- Contact Row 2 -->
+<div class="px-6 py-4 flex items-center gap-4 hover:bg-surface-container-low transition-all cursor-pointer">
+<div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-primary font-bold">AS</div>
+<div class="flex-1">
+<p class="font-semibold text-primary">Ana Silvia</p>
+<p class="text-xs text-on-surface-variant truncate w-64">Gostaria de agendar uma manutenção técnica preventiva.</p>
+</div>
+<div class="text-right">
+<p class="text-xs font-label-caps text-on-surface-variant">Ontem</p>
+<span class="inline-block px-2 py-0.5 bg-blue-100 text-blue-700 text-[10px] font-bold rounded-full">SITE CHAT</span>
+</div>
+</div>
+<!-- Contact Row 3 -->
+<div class="px-6 py-4 flex items-center gap-4 hover:bg-surface-container-low transition-all cursor-pointer">
+<div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-primary font-bold">FC</div>
+<div class="flex-1">
+<p class="font-semibold text-primary">Fernando Costa</p>
+<p class="text-xs text-on-surface-variant truncate w-64">Solicitação de orçamento: Engenharia Aquática Premium.</p>
+</div>
+<div class="text-right">
+<p class="text-xs font-label-caps text-on-surface-variant">Ontem</p>
+<span class="inline-block px-2 py-0.5 bg-primary-fixed text-primary text-[10px] font-bold rounded-full">E-MAIL</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Content Management Mini List -->
+<div class="bg-white rounded-xl shadow-[0_4px_20px_rgba(11,60,93,0.08)] overflow-hidden">
+<div class="px-6 py-4 border-b border-outline-variant">
+<h3 class="font-h3 text-h3 text-primary">Gerenciar Páginas</h3>
+</div>
+<div class="p-6 grid grid-cols-2 gap-4">
+<div class="group p-4 border border-outline-variant rounded-lg hover:border-primary transition-all cursor-pointer flex items-center gap-4">
+<div class="w-12 h-12 bg-slate-50 rounded-md overflow-hidden">
+<img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="high-end luxury swimming pool with clear blue water and modern architectural design" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtH2Jlrv8xt-kICZbrhdAs0gmBubGVzb_wHDFIW_S1gqdSGlrO2F9ioe8k4sLrk_KiqiQJ5kM-I_UB9nqYZhglTir6mi8oVYaF2chwxaEnNBQp-Fs4d6g9-hy2tXSK6uBUXl-_e1EnoZbG5mXlzkndMuJ5W6TCQBnpK8wXonYDzuDfh-pMS5Innm8G4j7HJgNQAGIqb9mOvGJqMohoKYl3ZNmYSt7txhee9Nv9LsFG379yfXjJmQOm1IkH1THIkbTINcaVQqA4o8Ux"/>
+</div>
+<div class="flex-1">
+<p class="font-bold text-primary">Home Page</p>
+<p class="text-xs text-on-surface-variant italic">Última edição há 2 dias</p>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary" data-icon="chevron_right">chevron_right</span>
+</div>
+<div class="group p-4 border border-outline-variant rounded-lg hover:border-primary transition-all cursor-pointer flex items-center gap-4">
+<div class="w-12 h-12 bg-slate-50 rounded-md overflow-hidden">
+<img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="solar heating system panels on a modern tiled roof with bright sunlight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCW-wvwLxVAnd2OPsCItaqRiokwU_Q6iIfHaqXNkvUJSjOZqhVNG1kDROBoc_2TGblGoVPCbywsM8y9vJhpVKx1XuKgmcN-FISbWz9aM4Ho_8ZyxcvXsCKy3QNjCjIvaPN_IZeEduXyibJWEliEpUoU6trGIX_vGrADCuy6KLMwuEUj4dP0rGAr0xU-5_sYlTEm4JIRYgNu9ng7FT0ci1MZOU0WUv_s-vyFK3lwHiW4bL1cyk1-AiThR1ggvZamlcOYWPZ3jkQ-8-uf"/>
+</div>
+<div class="flex-1">
+<p class="font-bold text-primary">Aquecimento</p>
+<p class="text-xs text-on-surface-variant italic">Última edição há 5 dias</p>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Sidebar Content (Settings & Quick Actions) -->
+<aside class="space-y-6">
+<div class="bg-white p-6 rounded-xl shadow-[0_4px_20px_rgba(11,60,93,0.08)]">
+<h3 class="font-h3 text-h3 text-primary mb-6">Status do Site</h3>
+<div class="space-y-4">
+<div class="flex justify-between items-center text-sm">
+<span class="text-on-surface-variant">Certificado SSL</span>
+<span class="px-2 py-0.5 bg-green-100 text-green-700 text-[10px] font-bold rounded uppercase">Ativo</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-on-surface-variant">Hospedagem</span>
+<span class="px-2 py-0.5 bg-green-100 text-green-700 text-[10px] font-bold rounded uppercase">Online</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-on-surface-variant">Tempo de Carregamento</span>
+<span class="font-bold text-primary">1.2s</span>
+</div>
+</div>
+<div class="mt-8">
+<p class="text-xs font-label-caps text-on-surface-variant mb-4">CAPACIDADE DO SERVIDOR</p>
+<div class="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-1/3 rounded-full"></div>
+</div>
+<p class="text-[10px] text-right mt-1 text-on-surface-variant">32% utilizado</p>
+</div>
+</div>
+<div class="bg-slate-900 p-6 rounded-xl text-white">
+<h3 class="font-h3 text-lg mb-4">Atalhos Administrativos</h3>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex flex-col items-center justify-center p-4 bg-white/10 rounded-lg hover:bg-white/20 transition-all">
+<span class="material-symbols-outlined mb-2" data-icon="image">image</span>
+<span class="text-[10px] font-label-caps">Galeria</span>
+</button>
+<button class="flex flex-col items-center justify-center p-4 bg-white/10 rounded-lg hover:bg-white/20 transition-all">
+<span class="material-symbols-outlined mb-2" data-icon="description">description</span>
+<span class="text-[10px] font-label-caps">Docs</span>
+</button>
+<button class="flex flex-col items-center justify-center p-4 bg-white/10 rounded-lg hover:bg-white/20 transition-all">
+<span class="material-symbols-outlined mb-2" data-icon="history">history</span>
+<span class="text-[10px] font-label-caps">Logs</span>
+</button>
+<button class="flex flex-col items-center justify-center p-4 bg-white/10 rounded-lg hover:bg-white/20 transition-all">
+<span class="material-symbols-outlined mb-2" data-icon="support_agent">support_agent</span>
+<span class="text-[10px] font-label-caps">Ajuda</span>
+</button>
+</div>
+</div>
+<!-- Newsletter Preview -->
+<div class="bg-primary-container p-6 rounded-xl text-on-primary-container relative overflow-hidden">
+<div class="relative z-10">
+<h4 class="font-bold text-white mb-2">Engenharia em Dia</h4>
+<p class="text-sm opacity-80 mb-4">Você tem 12 novos cadastros na newsletter técnica.</p>
+<button class="text-xs font-bold underline decoration-white/30 text-white">Ver lista completa</button>
+</div>
+<span class="material-symbols-outlined absolute -bottom-4 -right-4 text-8xl opacity-10" data-icon="water_drop">water_drop</span>
+</div>
+</aside>
+</div>
+<!-- Footer Area inside Main -->
+<footer class="mt-20 pt-8 border-t border-slate-200 text-on-surface-variant flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-label-caps">
+<span>© 2024 Piscinas Evolution. Excelência em Engenharia Aquática.</span>
+<div class="flex gap-6">
+<a class="hover:text-primary transition-colors" href="#">Termos de Uso</a>
+<a class="hover:text-primary transition-colors" href="#">Suporte Evolution</a>
+<a class="hover:text-primary transition-colors" href="#">Versão 2.4.0</a>
+</div>
+</footer>
+</main>
+</div>
+</body></html>

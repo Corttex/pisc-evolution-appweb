@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Marketing Dashboard | Piscinas Evolution</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700;900&amp;family=Manrope:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: #fcf9f8;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#251a00",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#f6f3f2",
+                        "surface": "#fcf9f8",
+                        "primary-fixed": "#cee5ff",
+                        "inverse-on-surface": "#f3f0f0",
+                        "secondary-fixed-dim": "#80cfff",
+                        "on-secondary-fixed-variant": "#004c6a",
+                        "surface-container": "#f0eded",
+                        "on-tertiary-fixed-variant": "#5b4300",
+                        "on-surface": "#1b1c1c",
+                        "surface-variant": "#e4e2e1",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#c5e7ff",
+                        "on-background": "#1b1c1c",
+                        "surface-container-highest": "#e4e2e1",
+                        "on-primary-container": "#7fa7cd",
+                        "on-primary-fixed-variant": "#1f4a6c",
+                        "inverse-primary": "#a3cbf2",
+                        "secondary": "#00658c",
+                        "tertiary": "#302100",
+                        "surface-dim": "#dcd9d9",
+                        "on-primary-fixed": "#001d32",
+                        "tertiary-container": "#4a3600",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#303030",
+                        "surface-tint": "#396285",
+                        "outline-variant": "#c2c7ce",
+                        "error": "#ba1a1a",
+                        "background": "#fcf9f8",
+                        "outline": "#72777e",
+                        "surface-container-high": "#eae7e7",
+                        "secondary-container": "#80cfff",
+                        "on-secondary-container": "#00597b",
+                        "on-surface-variant": "#42474e",
+                        "primary": "#00263f",
+                        "on-error-container": "#93000a",
+                        "primary-container": "#0b3c5d",
+                        "surface-bright": "#fcf9f8",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#f9bd14",
+                        "primary-fixed-dim": "#a3cbf2",
+                        "on-secondary-fixed": "#001e2d",
+                        "tertiary-fixed": "#ffdf9d",
+                        "on-tertiary-container": "#ce9b00"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "section-gap": "80px",
+                        "margin-desktop": "48px",
+                        "container-max": "1280px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Manrope"],
+                        "h3": ["Work Sans"],
+                        "body-lg": ["Manrope"],
+                        "h2": ["Work Sans"],
+                        "button": ["Manrope"],
+                        "label-caps": ["Manrope"],
+                        "h1": ["Work Sans"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "h2": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "button": ["14px", {"lineHeight": "1.0", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                        "h1": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 flex flex-col h-full z-50 bg-white dark:bg-slate-900 h-screen w-64 border-r border-gray-100 dark:border-gray-800 transition-all duration-300 ease-in-out">
+<div class="px-6 py-8">
+<h1 class="text-lg font-black text-sky-900 dark:text-white uppercase tracking-tighter">Piscinas Evolution</h1>
+<p class="text-[10px] font-label-caps text-gray-400 mt-1 uppercase">Precision Engineering</p>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 bg-sky-50 dark:bg-sky-900/20 text-sky-900 dark:text-sky-300 border-r-4 border-sky-900 dark:border-sky-400 font-['Work_Sans'] text-sm uppercase tracking-widest font-semibold" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-500 dark:text-gray-400 hover:text-sky-800 dark:hover:text-sky-200 font-['Work_Sans'] text-sm uppercase tracking-widest font-semibold transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="architecture">architecture</span>
+                Project Blueprint
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-500 dark:text-gray-400 hover:text-sky-800 dark:hover:text-sky-200 font-['Work_Sans'] text-sm uppercase tracking-widest font-semibold transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="pool">pool</span>
+                Equipment Status
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-500 dark:text-gray-400 hover:text-sky-800 dark:hover:text-sky-200 font-['Work_Sans'] text-sm uppercase tracking-widest font-semibold transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="build">build</span>
+                Maintenance Log
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-500 dark:text-gray-400 hover:text-sky-800 dark:hover:text-sky-200 font-['Work_Sans'] text-sm uppercase tracking-widest font-semibold transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+                Inventory
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-500 dark:text-gray-400 hover:text-sky-800 dark:hover:text-sky-200 font-['Work_Sans'] text-sm uppercase tracking-widest font-semibold transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                Admin Settings
+            </a>
+</nav>
+<div class="p-4 border-t border-gray-50 dark:border-gray-800 space-y-2">
+<button class="w-full py-3 bg-primary text-white font-button text-sm flex items-center justify-center gap-2 hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+                New Construction
+            </button>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 text-xs font-semibold hover:bg-gray-50 transition-colors uppercase tracking-widest" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="contact_support">contact_support</span>
+                Support
+            </a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 text-xs font-semibold hover:bg-gray-50 transition-colors uppercase tracking-widest" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="logout">logout</span>
+                Log Out
+            </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-40 flex justify-between items-center w-full px-8 py-4 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-[0_4px_20px_-5px_rgba(11,60,93,0.08)]">
+<div class="flex items-center gap-6">
+<h2 class="text-xl font-bold tracking-tighter text-sky-900 font-h3">Marketing &amp; Analytics</h2>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-gray-400 text-sm" data-icon="search">search</span>
+<input class="pl-10 pr-4 py-2 bg-gray-50 border-none rounded-none text-sm focus:ring-2 focus:ring-primary w-64" placeholder="Search analytics..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-gray-50 rounded-full transition-colors relative">
+<span class="material-symbols-outlined text-gray-600" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-2 hover:bg-gray-50 rounded-full transition-colors">
+<span class="material-symbols-outlined text-gray-600" data-icon="help_outline">help_outline</span>
+</button>
+<div class="flex items-center gap-3 ml-2 pl-4 border-l border-gray-100">
+<div class="text-right">
+<p class="text-xs font-bold text-sky-900">Admin User</p>
+<p class="text-[10px] text-gray-400">Marketing Lead</p>
+</div>
+<img alt="Administrator Profile" class="w-10 h-10 rounded-full object-cover border-2 border-primary-fixed" data-alt="Professional headshot of a marketing executive in a modern bright office setting with soft natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjDaMQkYiHsWIME1qt19Ul0hQInW2QOnZW4DsAMe5lxQ3UnZDYGgWt7LPlViBj7FgIiP-pUk4JHOCS4YfusJqfMT6cMkz8Iq73weXHjuXrW0ztaIx2dhkO-x6J4Wp8T9QQje4Yh7E639iyNyJNO3byLZeL0AOj30Si54Suk_7PSz_nywjrGUTPiPH0i1IP7PAhqaAaOVrI6I-sSzoC4InqpIOH1Sw1dMxbZvfpIRpqIR2s9yYZdm_Ms9wKX9Q3K7Ri5m6m8Pq3YJDh"/>
+</div>
+</div>
+</header>
+<div class="p-8 max-w-[1280px] mx-auto space-y-10">
+<!-- Real-time Stats Grid -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="bg-white p-6 shadow-[0_4px_20px_-5px_rgba(11,60,93,0.08)] border-l-4 border-primary">
+<p class="text-label-caps text-gray-500 mb-2">GLOBAL REACH</p>
+<div class="flex items-end justify-between">
+<h3 class="text-h2 font-h2 text-primary">124.8k</h3>
+<span class="text-success text-sm font-bold text-green-600 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="trending_up">trending_up</span> 12%
+                        </span>
+</div>
+<p class="text-[10px] text-gray-400 mt-2 uppercase tracking-widest">Leads Acquired</p>
+</div>
+<div class="bg-white p-6 shadow-[0_4px_20px_-5px_rgba(11,60,93,0.08)] border-l-4 border-secondary">
+<p class="text-label-caps text-gray-500 mb-2">CAMPAIGN ROI</p>
+<div class="flex items-end justify-between">
+<h3 class="text-h2 font-h2 text-primary">4.8x</h3>
+<span class="text-success text-sm font-bold text-green-600 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="trending_up">trending_up</span> 0.5x
+                        </span>
+</div>
+<p class="text-[10px] text-gray-400 mt-2 uppercase tracking-widest">Return on Ad Spend</p>
+</div>
+<div class="bg-white p-6 shadow-[0_4px_20px_-5px_rgba(11,60,93,0.08)] border-l-4 border-tertiary-fixed-dim">
+<p class="text-label-caps text-gray-500 mb-2">NEW LEADS TODAY</p>
+<div class="flex items-center gap-2 mt-4">
+<div class="flex -space-x-3">
+<img alt="Lead 1" class="w-10 h-10 rounded-full border-2 border-white object-cover" data-alt="Portrait of a smiling young woman with bright outdoor lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCsZ_LkiEM9GSZkFO4_xgn_c1OcQ2BiNHbqsG6lGtvoMD8eSR38C1l-bvNlsNZyLWrN3wcl3CMmATXKeZPo5jkSX7fHV8AXsLqgotknCpfyjRNn1qbrTo9-ZiCkLw1B4P9dLoyFo6GWPHu6JoxpiSqr-gyoWm0fJk4vD1WIhCewHQq2oCLiVCWlZgWiY8_wb0M2tQ9VSNjvs7540pyHCkp5rE9V45SBqlr8nHSLBdO1eaceJE5kpZvE0pWbLx86LHrOWDoX9xymgmz"/>
+<img alt="Lead 2" class="w-10 h-10 rounded-full border-2 border-white object-cover" data-alt="Man with beard smiling in studio portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuAnvFysWBjrq8N3JqAWxH2Fl6ba61ezauA5qS600pnf1SoMnOV5g8I8iqR47BbgIOwB42vcexsifeWJ402iAFCrcEgU3HFLv2hzs4VAAlL6Ztk9EdAs1H_bodwI3i57Nqq1VUb61Qp15jMYlL9SRbXMsSrtCaTEmHZQ5j7x8Z3bd0MJS6QRsfxpimbEnHKKjTqG8G99PBBoo8Izl7BzB0MUp8hmP-gZQDbG3ClNPhYYxjMDdI9R6pvH9wjrRwnqiQpEj8KiQ9OURj"/>
+<img alt="Lead 3" class="w-10 h-10 rounded-full border-2 border-white object-cover" data-alt="Close up of a friendly professional man's face" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgSOELD_6VwTzrw6X64xBObjbODgD84nr1xnJoyvKBqb1U7RSc-rJsdbA35mPaneeTeP3GxY3ynsGXJScu4VZyav206QADXhZ7MfGGJWCEpfRi6C3hdyXrCRQkUTv91PTnk7NkMN29CbyrjmKoqGAdtbP1azyEtROSR_e1BKv0frH7XqhiR_s42nEu30_Eg-UJVXjyyV1bL5IPHMyv-pRbVdA-6b5JDDryRYDh7cH3DPe2pUtEx_VjVwiQKSvIo6Egj2iH06szWKZ3"/>
+<div class="w-10 h-10 rounded-full border-2 border-white bg-primary text-white flex items-center justify-center text-xs font-bold font-button">+18</div>
+</div>
+</div>
+<p class="text-[10px] text-gray-400 mt-4 uppercase tracking-widest">Growth Velocity High</p>
+</div>
+<div class="bg-primary p-6 shadow-[0_4px_20px_-5px_rgba(11,60,93,0.08)]">
+<p class="text-label-caps text-blue-200 mb-2">ACTIVE CAMPAIGNS</p>
+<h3 class="text-h2 font-h2 text-white">12</h3>
+<div class="mt-4 flex items-center gap-2">
+<div class="flex-1 h-1.5 bg-white/20 overflow-hidden">
+<div class="h-full bg-secondary-container" style="width: 75%;"></div>
+</div>
+<span class="text-xs text-white font-bold">75%</span>
+</div>
+<p class="text-[10px] text-blue-300 mt-2 uppercase tracking-widest text-right">Target reached</p>
+</div>
+</div>
+<!-- Conversion Funnel & Channel Breakdown -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Conversion Funnel: Bento Card -->
+<div class="lg:col-span-8 bg-white p-8 shadow-[0_4px_20px_-5px_rgba(11,60,93,0.08)]">
+<div class="flex justify-between items-start mb-8">
+<div>
+<h4 class="text-h3 font-h3 text-sky-900">Conversion Funnel</h4>
+<p class="text-body-md text-gray-500">Pipeline efficiency and drop-off analysis</p>
+</div>
+<button class="text-label-caps text-secondary flex items-center gap-1 border border-secondary px-3 py-1.5 hover:bg-secondary hover:text-white transition-all">
+                            VIEW FULL REPORT
+                        </button>
+</div>
+<div class="space-y-6">
+<!-- Funnel Steps -->
+<div class="relative">
+<div class="flex justify-between items-center mb-2">
+<span class="text-label-caps text-gray-400">IMPRESSIONS</span>
+<span class="text-body-md font-bold text-primary">2.4M</span>
+</div>
+<div class="w-full h-12 bg-gray-50 flex overflow-hidden">
+<div class="h-full bg-primary/10 w-full flex items-center px-4">
+<div class="h-1 bg-primary w-full opacity-30"></div>
+</div>
+</div>
+</div>
+<div class="relative ml-8">
+<div class="flex justify-between items-center mb-2">
+<span class="text-label-caps text-gray-400">CLICKS</span>
+<span class="text-body-md font-bold text-primary">482.1k</span>
+</div>
+<div class="w-full h-12 bg-gray-50 flex overflow-hidden">
+<div class="h-full bg-primary/20 w-[60%] flex items-center px-4">
+<div class="h-1 bg-primary w-full opacity-50"></div>
+</div>
+</div>
+<div class="absolute -left-6 top-6 text-xs font-bold text-secondary">20%</div>
+</div>
+<div class="relative ml-16">
+<div class="flex justify-between items-center mb-2">
+<span class="text-label-caps text-gray-400">LEADS</span>
+<span class="text-body-md font-bold text-primary">124.8k</span>
+</div>
+<div class="w-full h-12 bg-gray-50 flex overflow-hidden">
+<div class="h-full bg-primary/40 w-[40%] flex items-center px-4">
+<div class="h-1 bg-primary w-full opacity-70"></div>
+</div>
+</div>
+<div class="absolute -left-6 top-6 text-xs font-bold text-secondary">25%</div>
+</div>
+<div class="relative ml-24">
+<div class="flex justify-between items-center mb-2">
+<span class="text-label-caps text-gray-400">SALES</span>
+<span class="text-body-md font-bold text-primary">8.4k</span>
+</div>
+<div class="w-full h-12 bg-primary flex items-center px-4 overflow-hidden">
+<div class="h-1 bg-secondary-container w-[15%]"></div>
+</div>
+<div class="absolute -left-6 top-6 text-xs font-bold text-secondary">6.7%</div>
+</div>
+</div>
+</div>
+<!-- Channel Breakdown -->
+<div class="lg:col-span-4 bg-primary text-white p-8 flex flex-col justify-between">
+<div>
+<h4 class="text-h3 font-h3 text-white mb-6">Channel Performance</h4>
+<div class="space-y-8">
+<div>
+<div class="flex justify-between text-xs font-bold mb-2 tracking-widest uppercase">
+<span>Instagram</span>
+<span>45%</span>
+</div>
+<div class="h-1 bg-white/10 w-full overflow-hidden">
+<div class="h-full bg-secondary-container w-[45%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs font-bold mb-2 tracking-widest uppercase">
+<span>Google Ads</span>
+<span>32%</span>
+</div>
+<div class="h-1 bg-white/10 w-full overflow-hidden">
+<div class="h-full bg-secondary-container w-[32%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs font-bold mb-2 tracking-widest uppercase">
+<span>Facebook</span>
+<span>23%</span>
+</div>
+<div class="h-1 bg-white/10 w-full overflow-hidden">
+<div class="h-full bg-secondary-container w-[23%]"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-12 pt-8 border-t border-white/10">
+<div class="bg-white/5 p-4 flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary-container text-4xl" data-icon="rocket_launch">rocket_launch</span>
+<div>
+<p class="text-xs font-bold uppercase tracking-widest">Growth Recommendation</p>
+<p class="text-xs text-blue-200 mt-1">Increase Instagram spend by 15% for optimal conversion yield.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Posts Engagement Carousel Section -->
+<section class="space-y-6">
+<div class="flex justify-between items-center">
+<h4 class="text-h3 font-h3 text-sky-900">Recent Engagement</h4>
+<div class="flex gap-2">
+<button class="w-10 h-10 flex items-center justify-center border border-gray-200 hover:bg-gray-50 transition-colors">
+<span class="material-symbols-outlined text-gray-600" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center border border-gray-200 hover:bg-gray-50 transition-colors">
+<span class="material-symbols-outlined text-gray-600" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter overflow-hidden">
+<!-- Post Card 1 -->
+<div class="bg-white shadow-[0_4px_20px_-5px_rgba(11,60,93,0.08)] flex flex-col group cursor-pointer">
+<div class="relative h-48 overflow-hidden">
+<img alt="Pool Project A" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Luxury infinity pool at sunset overlooking the ocean with architectural lighting and clean modern lines" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfJiWiqqLLpUw_htSJblmxAz5DEkXdT1mtbnEWjNkCtG2vWn9L7sxBmutIaWsET7j1hBsCk9XawnHJg5FH6ZQmg9f06-QnjfVOO_r5KsGJz6R7tMuOlYCI6IleUbt0pB2uUu6zYbfxOPCbhKDMWltGjLyB4QU4ANRfR2Jewr-eenCMG4UQ1fY1IDrW92Yl6Rjx2iJrYgP0BtIqxZbOEnBLbls7RiJU5hI2Bg8ISjAo0-_-Pl_dOLjJ-OO_NSPdPJxPjELtPKokuzqU"/>
+<div class="absolute top-4 left-4 bg-white/90 px-3 py-1 text-[10px] font-bold tracking-widest uppercase">Instagram</div>
+</div>
+<div class="p-6">
+<h5 class="font-bold text-sky-900 mb-2">Modern Infinity Design Series</h5>
+<div class="flex justify-between items-center mt-4 pt-4 border-t border-gray-50">
+<div class="flex gap-4">
+<span class="flex items-center gap-1 text-xs text-gray-500">
+<span class="material-symbols-outlined text-sm" data-icon="favorite">favorite</span> 1.2k
+                                    </span>
+<span class="flex items-center gap-1 text-xs text-gray-500">
+<span class="material-symbols-outlined text-sm" data-icon="chat_bubble">chat_bubble</span> 42
+                                    </span>
+</div>
+<span class="text-[10px] font-bold text-secondary uppercase">2h ago</span>
+</div>
+</div>
+</div>
+<!-- Post Card 2 -->
+<div class="bg-white shadow-[0_4px_20px_-5px_rgba(11,60,93,0.08)] flex flex-col group cursor-pointer">
+<div class="relative h-48 overflow-hidden">
+<img alt="Technical Post" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Detailed technical blueprint of a pool filtration system showing complex engineering and plumbing layout" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNwjDnV_NMS4LwpHhVAcLUjTGUw-bqlenUX6u1ZcavC2ClnVGg69_rQYjUzUtMp5rfFbsM4fAlYq6k9g7YalktqBq80SMQA_ihlbB8zWZarhzLP_LTnA-RiYO0e58PwUMEFPpoU184C9oZCHTMWQDbTFajvMHxTTZNQh0Lkfj6ZioPOOtpdX_4poOjhI_dYSN632DJEBjgUZWtVF2iHsLJfeS0JrpDz4nvh1JWH5McOpZJfTfGx-pj2cEjok6GzCSzV67LJHn5llro"/>
+<div class="absolute top-4 left-4 bg-white/90 px-3 py-1 text-[10px] font-bold tracking-widest uppercase">Facebook</div>
+</div>
+<div class="p-6">
+<h5 class="font-bold text-sky-900 mb-2">Engineering Excellence: Filtration</h5>
+<div class="flex justify-between items-center mt-4 pt-4 border-t border-gray-50">
+<div class="flex gap-4">
+<span class="flex items-center gap-1 text-xs text-gray-500">
+<span class="material-symbols-outlined text-sm" data-icon="favorite">favorite</span> 840
+                                    </span>
+<span class="flex items-center gap-1 text-xs text-gray-500">
+<span class="material-symbols-outlined text-sm" data-icon="chat_bubble">chat_bubble</span> 18
+                                    </span>
+</div>
+<span class="text-[10px] font-bold text-secondary uppercase">5h ago</span>
+</div>
+</div>
+</div>
+<!-- Post Card 3 -->
+<div class="bg-white shadow-[0_4px_20px_-5px_rgba(11,60,93,0.08)] flex flex-col group cursor-pointer">
+<div class="relative h-48 overflow-hidden">
+<img alt="Lifestyle Post" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A tranquil outdoor pool area surrounded by lush tropical palm trees with dappled sunlight on the water" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPgMhw1ZSdnydeAjV5gW4UwWENT3F0Poqf9A87m1D6wmc7pyaqvyKwHOdxm5Xs3AX0mxG99x-Z4SIGu66Ov6WBIoK5C_sFv2vBPixSIZOf_rvo5y5-ySsS5hDGmjz9ZsCki_2EXyO9nIhnPXnzlj8ziEAC-ia9FdMzBCoMB95TECC1iCaRBpNnem-z-H1JboirFH2TKoI3YsEQudCdnpd6vaqzoNjM0qjF-8tmWVIvFynREZE3whyEZRwKWoyZ9L7QwQorz_prL9Kz"/>
+<div class="absolute top-4 left-4 bg-white/90 px-3 py-1 text-[10px] font-bold tracking-widest uppercase">Google Display</div>
+</div>
+<div class="p-6">
+<h5 class="font-bold text-sky-900 mb-2">Summer Lifestyle 2024 Collection</h5>
+<div class="flex justify-between items-center mt-4 pt-4 border-t border-gray-50">
+<div class="flex gap-4">
+<span class="flex items-center gap-1 text-xs text-gray-500">
+<span class="material-symbols-outlined text-sm" data-icon="visibility">visibility</span> 45k
+                                    </span>
+<span class="flex items-center gap-1 text-xs text-gray-500">
+<span class="material-symbols-outlined text-sm" data-icon="ads_click">ads_click</span> 2.1k
+                                    </span>
+</div>
+<span class="text-[10px] font-bold text-secondary uppercase">Yesterday</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bottom Data Table for Transactions/Leads -->
+<section class="bg-white shadow-[0_4px_20px_-5px_rgba(11,60,93,0.08)] overflow-hidden">
+<div class="px-8 py-6 border-b border-gray-100 flex justify-between items-center">
+<h4 class="text-h3 font-h3 text-sky-900">Conversion Log</h4>
+<div class="flex gap-4">
+<select class="border-gray-200 text-xs font-bold uppercase tracking-widest px-4 py-2 focus:ring-primary focus:border-primary">
+<option>All Channels</option>
+<option>Instagram</option>
+<option>Facebook</option>
+</select>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-gray-50">
+<tr>
+<th class="px-8 py-4 text-label-caps text-gray-500">LEAD SOURCE</th>
+<th class="px-8 py-4 text-label-caps text-gray-500">DATE</th>
+<th class="px-8 py-4 text-label-caps text-gray-500">STATUS</th>
+<th class="px-8 py-4 text-label-caps text-gray-500 text-right">CONVERSION VALUE</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-50 font-body-md text-sm text-primary">
+<tr class="hover:bg-gray-50/50 transition-colors">
+<td class="px-8 py-4 flex items-center gap-3">
+<div class="w-8 h-8 bg-sky-100 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-lg" data-icon="alternate_email">alternate_email</span>
+</div>
+<span>Instagram Organic</span>
+</td>
+<td class="px-8 py-4 text-gray-500">Oct 24, 2023 - 14:20</td>
+<td class="px-8 py-4">
+<span class="px-2 py-1 bg-green-50 text-green-700 text-[10px] font-bold uppercase tracking-widest border border-green-100">Qualified</span>
+</td>
+<td class="px-8 py-4 text-right font-bold">$12,400.00</td>
+</tr>
+<tr class="hover:bg-gray-50/50 transition-colors">
+<td class="px-8 py-4 flex items-center gap-3">
+<div class="w-8 h-8 bg-blue-100 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-lg" data-icon="search">search</span>
+</div>
+<span>Google Search Ads</span>
+</td>
+<td class="px-8 py-4 text-gray-500">Oct 24, 2023 - 13:05</td>
+<td class="px-8 py-4">
+<span class="px-2 py-1 bg-amber-50 text-amber-700 text-[10px] font-bold uppercase tracking-widest border border-amber-100">Pending</span>
+</td>
+<td class="px-8 py-4 text-right font-bold">$8,250.00</td>
+</tr>
+<tr class="hover:bg-gray-50/50 transition-colors">
+<td class="px-8 py-4 flex items-center gap-3">
+<div class="w-8 h-8 bg-sky-100 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-lg" data-icon="groups">groups</span>
+</div>
+<span>Facebook Referral</span>
+</td>
+<td class="px-8 py-4 text-gray-500">Oct 24, 2023 - 11:45</td>
+<td class="px-8 py-4">
+<span class="px-2 py-1 bg-sky-50 text-sky-700 text-[10px] font-bold uppercase tracking-widest border border-sky-100">Contacted</span>
+</td>
+<td class="px-8 py-4 text-right font-bold">$24,900.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+</main>
+<!-- Contextual FAB (Dashboard only) -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-primary text-white rounded-none shadow-2xl flex items-center justify-center hover:bg-primary-container transition-all group active:scale-95 duration-200 z-50">
+<span class="material-symbols-outlined text-2xl group-hover:rotate-90 transition-transform" data-icon="add">add</span>
+</button>
+</body></html>

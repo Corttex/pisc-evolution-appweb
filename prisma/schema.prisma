@@ -1,0 +1,185 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum Role {
+  ADMIN
+  CLIENTE
+}
+
+model User {
+  id            String    @id @default(uuid())
+  name          String?
+  email         String?   @unique
+  password      String?   // Hashed
+  role          Role      @default(CLIENTE)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Relacionamento opcional com Cliente (se o usuário for um cliente)
+  clienteId     String?   @unique
+  cliente       Cliente?  @relation(fields: [clienteId], references: [id])
+}
+
+model Cliente {
+  id                  String    @id @default(uuid())
+  nome                String
+  email               String?
+  telefone            String
+  documento           String?   @unique // CPF ou CNPJ
+  endereco            String?
+  
+  // Novos campos para cadastro completo
+  tipoPiscina         String?   // Alvenaria, Vinil, Fibra, etc.
+  volumePiscina       Float?    // Em litros
+  frequenciaManutencao String?  // Semanal, Quinzenal, Mensal
+  diaPreferencial     String?   // Segunda, Terça, etc.
+  observacoes         String?   @db.Text
+  
+  user                User?     // Relacionamento com credenciais de acesso
+  
+  agendas             Agenda[]
+  equipamentos        Equipamento[]
+  medicoes            Medicao[]
+  tickets             Ticket[]
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+}
+
+model Medicao {
+  id              String   @id @default(uuid())
+  ph              Float
+  cloro           Float
+  alcalinidade    Float?
+  temperatura     Float?
+  observacoes     String?  @db.Text
+  clienteId       String
+  cliente         Cliente  @relation(fields: [clienteId], references: [id])
+  data            DateTime @default(now())
+  createdAt       DateTime @default(now())
+}
+
+model Equipamento {
+  id              String   @id @default(uuid())
+  nome            String   // Ex: Filtro de Areia, Bomba Jacuzzi
+  marca           String?
+  modelo          String?
+  dataInstalacao  DateTime?
+  status          String   @default("operacional") // operacional, defeito, manutencao
+  observacoes     String?  @db.Text
+  clienteId       String
+  cliente         Cliente  @relation(fields: [clienteId], references: [id])
+  manutencoes     Manutencao[]
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Manutencao {
+  id              String   @id @default(uuid())
+  dataRealizada   DateTime @default(now())
+  dataProxima     DateTime?
+  tipo            String   // preventiva, corretiva, troca de filtro, troca de areia
+  descricao       String?  @db.Text
+  tecnico         String?
+  custo           Float?
+  equipamentoId   String
+  equipamento     Equipamento @relation(fields: [equipamentoId], references: [id])
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Agenda {
+  id              String   @id @default(uuid())
+  data            DateTime
+  servico         String
+  status          String   @default("pendente") // pendente, confirmado, cancelado, concluido
+  pagamentoStatus String   @default("aguardando_sinal") // aguardando_sinal, pago, devolvido
+  clienteId       String
+  cliente         Cliente  @relation(fields: [clienteId], references: [id])
+  valorTotal      Float?
+  valorSinal      Float?
+  asaasId         String?  // ID da cobrança no Asaas
+  pixCopiaECola   String?  @db.Text
+  pixQrCode       String?  @db.Text
+  observacoes     String?  @db.Text
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Estoque {
+  id          String   @id @default(uuid())
+  item        String
+  categoria   String
+  quantidade  Float
+  unidade     String   @default("un") // un, kg, l, m
+  minimo      Float    @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Patrimonio {
+  id          String   @id @default(uuid())
+  nome        String
+  tipo        String   // veiculo, ferramenta, equipamento
+  identificacao String? // Placa, Serial
+  status      String   @default("ativo") // ativo, manutencao, baixado
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Ticket {
+  id          String         @id @default(uuid())
+  assunto     String
+  prioridade  String         @default("Media") // Baixa, Media, Alta
+  status      String         @default("Aberto") // Aberto, Em_Andamento, Resolvido
+  clienteId   String
+  cliente     Cliente        @relation(fields: [clienteId], references: [id])
+  mensagens   MensagemChat[]
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+}
+
+model MensagemChat {
+  id        String   @id @default(uuid())
+  texto     String
+  sender    String   // "Admin" ou "Cliente"
+  ticketId  String
+  ticket    Ticket   @relation(fields: [ticketId], references: [id])
+  createdAt DateTime @default(now())
+}
+
+model Configuracao {
+  id            String @id @default("global")
+  asaasKey      String? @db.Text
+  asaasEnv      String  @default("sandbox")
+  pixSinal      Float   @default(50.0)
+  
+  site_titulo      String @default("Piscinas Evolution")
+  site_headline    String @default("Cuidamos da sua piscina, você aproveita o verão.")
+  site_subheadline String @default("Tecnologia e engenharia para o seu lazer.")
+  site_whatsapp    String @default("5561999999999")
+  site_email       String @default("contato@piscinasevolution.com.br")
+
+  social_instagram String?
+  social_facebook  String?
+  
+  updatedAt     DateTime @updatedAt
+}
+
+model AdminProfile {
+  id        String  @id @default(uuid())
+  nome      String  @default("Admin Master")
+  email     String  @default("admin@evolution.com")
+  avatar    String?
+  asaasKey  String? @db.Text
+  pixKey    String?
+  pixTipo   String? @default("E-mail")
+  darkMode  Boolean @default(false)
+  createdAt DateTime @default(now())
+}

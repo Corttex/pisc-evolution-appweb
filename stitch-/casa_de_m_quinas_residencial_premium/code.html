@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-br"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#302100",
+                    "surface-container-high": "#eae7e7",
+                    "on-surface-variant": "#42474e",
+                    "on-tertiary-container": "#ce9b00",
+                    "on-tertiary-fixed": "#251a00",
+                    "secondary-fixed-dim": "#80cfff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-tint": "#396285",
+                    "inverse-on-surface": "#f3f0f0",
+                    "surface-container": "#f0eded",
+                    "on-secondary-fixed": "#001e2d",
+                    "on-secondary": "#ffffff",
+                    "on-primary-container": "#7fa7cd",
+                    "on-primary": "#ffffff",
+                    "surface-bright": "#fcf9f8",
+                    "surface": "#fcf9f8",
+                    "on-primary-fixed": "#001d32",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed-dim": "#f9bd14",
+                    "on-surface": "#1b1c1c",
+                    "on-secondary-container": "#00597b",
+                    "on-error-container": "#93000a",
+                    "secondary-container": "#80cfff",
+                    "on-tertiary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed": "#ffdf9d",
+                    "secondary-fixed": "#c5e7ff",
+                    "inverse-primary": "#a3cbf2",
+                    "outline-variant": "#c2c7ce",
+                    "on-primary-fixed-variant": "#1f4a6c",
+                    "primary": "#00263f",
+                    "primary-fixed-dim": "#a3cbf2",
+                    "on-error": "#ffffff",
+                    "on-secondary-fixed-variant": "#004c6a",
+                    "surface-container-highest": "#e4e2e1",
+                    "primary-fixed": "#cee5ff",
+                    "inverse-surface": "#303030",
+                    "secondary": "#00658c",
+                    "background": "#fcf9f8",
+                    "surface-variant": "#e4e2e1",
+                    "outline": "#72777e",
+                    "primary-container": "#0b3c5d",
+                    "on-background": "#1b1c1c",
+                    "surface-container-low": "#f6f3f2",
+                    "on-tertiary-fixed-variant": "#5b4300",
+                    "surface-dim": "#dcd9d9",
+                    "tertiary-container": "#4a3600"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "container-max": "1280px",
+                    "margin-desktop": "48px",
+                    "gutter": "24px",
+                    "unit": "8px",
+                    "section-gap": "80px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "h2": ["Work Sans"],
+                    "h3": ["Work Sans"],
+                    "label-caps": ["Manrope"],
+                    "body-lg": ["Manrope"],
+                    "h1": ["Work Sans"],
+                    "body-md": ["Manrope"],
+                    "button": ["Manrope"]
+            },
+            "fontSize": {
+                    "h2": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "h1": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "button": ["14px", {"lineHeight": "1.0", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md">
+<!-- Floating WhatsApp & Chat Widget -->
+<div class="fixed bottom-6 right-6 z-[100] flex flex-col gap-4 items-end">
+<!-- Chat Widget -->
+<div class="hidden w-80 bg-white rounded-2xl shadow-2xl border border-outline-variant overflow-hidden flex flex-col animate-in fade-in slide-in-from-bottom-4 duration-300" id="chat-widget">
+<div class="bg-primary p-4 text-white flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+<span class="font-semibold text-sm">Consultor Online</span>
+</div>
+<button class="material-symbols-outlined text-xl" onclick="document.getElementById('chat-widget').classList.add('hidden')">close</button>
+</div>
+<div class="h-64 p-4 bg-surface-container-low text-sm space-y-4 overflow-y-auto">
+<div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm max-w-[85%] border border-slate-100">
+                Olá! Como podemos ajudar no projeto da sua casa de máquinas hoje?
+            </div>
+</div>
+<div class="p-3 bg-white border-t border-outline-variant flex gap-2">
+<input class="flex-1 border-none focus:ring-0 text-sm py-1" placeholder="Digite sua mensagem..." type="text"/>
+<button class="material-symbols-outlined text-secondary">send</button>
+</div>
+</div>
+<button class="bg-white text-primary w-14 h-14 rounded-full shadow-lg hover:shadow-xl transition-all flex items-center justify-center border border-slate-200" onclick="document.getElementById('chat-widget').classList.toggle('hidden')">
+<span class="material-symbols-outlined text-3xl">chat</span>
+</button>
+<a class="bg-[#25D366] text-white w-14 h-14 rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all flex items-center justify-center" href="https://wa.me/556191441294">
+<svg class="w-8 h-8 fill-current" viewbox="0 0 24 24">
+<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path>
+</svg>
+</a>
+</div>
+<!-- TopNavBar -->
+<nav class="bg-white/90 dark:bg-slate-900/90 backdrop-blur-md text-blue-900 dark:text-blue-400 font-['Work_Sans'] text-sm font-medium tracking-tight docked full-width top-0 z-50 sticky border-b border-slate-200/50 dark:border-slate-800/50 shadow-sm shadow-blue-900/5">
+<div class="flex justify-between items-center px-8 py-4 max-w-[1280px] mx-auto w-full">
+<div class="text-xl font-bold tracking-tighter text-blue-900 dark:text-white">Piscinas Evolution</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-300 transition-colors duration-200" href="#">Home</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-300 transition-colors duration-200" href="#">Aquecimento</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-300 transition-colors duration-200" href="#">Piscinas &amp; Lazer</a>
+<a class="text-blue-900 dark:text-blue-400 border-b-2 border-blue-900 dark:border-blue-400 pb-1" href="#">Casa de Máquinas</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-300 transition-colors duration-200" href="#">Manutenção</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-300 transition-colors duration-200" href="#">Galeria</a>
+</div>
+<a class="bg-primary text-white px-6 py-2 rounded-lg font-button uppercase text-xs tracking-wider transition-all hover:bg-primary-container active:scale-95" href="https://wa.me/556191441294">Solicitar Orçamento</a>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="relative h-[700px] flex items-center overflow-hidden bg-primary-container">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-60" data-alt="Immaculate, compact residential pool mechanical room with high-tech automation and organized white piping" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhfT9YUSkVm7RYQewc8sMRPFJuvfhY9MBTs7yJjGmbozIcY4cqIaHlPnafeg0ggkTtAcv9v8Y-GpEgdyEGuzaTmpCC8bKMZVTz6IgiGR1_BxF4M5y0bETFTFpajnSs1_RI05tAEjbJ7z9iwkLVqSblc1Brvft4jcjAO8ayBrVjCOQK62OhnqyTMNMWEuEKnkTiysMygouaSRdmXtUXLi_5BOC8IksItOaRRZm7Mpomf54XQRURIH_wsplzLP3ymtXYFxqCBogKMmI9"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-r from-primary/80 to-transparent z-[5]"></div>
+<div class="max-w-[1280px] mx-auto px-8 relative z-10 w-full">
+<div class="max-w-2xl">
+<span class="font-label-caps text-secondary-container mb-4 block">LUXURY RESIDENTIAL</span>
+<h1 class="font-h1 text-white mb-6">A Engenharia Invisível que Define o Alto Padrão.</h1>
+<p class="font-body-lg text-white/90 mb-8">Especialistas em sistemas residenciais compactos e tecnológicos. Projetamos a inteligência por trás do seu lazer com perfeição estética e silêncio absoluto.</p>
+<div class="flex gap-4">
+<a class="bg-secondary-container text-on-secondary-container px-8 py-4 rounded font-button text-sm flex items-center gap-2 transition-all hover:brightness-110 shadow-lg" href="https://wa.me/556191441294">
+<span class="material-symbols-outlined" data-icon="chat">chat</span>
+                        PROJETO TÉCNICO RESIDENCIAL
+                    </a>
+</div>
+</div>
+</div>
+</section>
+<!-- Difference Section -->
+<section class="py-section-gap px-8 max-w-[1280px] mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter items-center">
+<div>
+<h2 class="font-h2 text-primary mb-6">Tecnologia que desaparece na arquitetura.</h2>
+<p class="font-body-md text-on-surface-variant mb-6">Em residências de luxo, espaço e estética são fundamentais. Transformamos casas de máquinas em centros de tecnologia compactos, limpos e totalmente automatizados, onde a engenharia é sentida na pureza da água, não vista no caos da tubulação.</p>
+<div class="space-y-4">
+<div class="flex items-start gap-4">
+<div class="bg-secondary-container/20 p-2 rounded">
+<span class="material-symbols-outlined text-secondary" data-icon="smart_home">smart_home</span>
+</div>
+<div>
+<h3 class="font-h3 text-primary text-lg mb-1">Design Compacto e Inteligente</h3>
+<p class="text-sm text-on-surface-variant">Otimização máxima de espaço para integração perfeita com o projeto arquitetônico.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="bg-secondary-container/20 p-2 rounded">
+<span class="material-symbols-outlined text-secondary" data-icon="verified">verified</span>
+</div>
+<div>
+<h3 class="font-h3 text-primary text-lg mb-1">Padrão Impecável</h3>
+<p class="text-sm text-on-surface-variant">Acabamento premium em cada conexão, com identificação a laser e layout intuitivo.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="rounded-xl overflow-hidden shadow-xl aspect-square">
+<img class="w-full h-full object-cover" data-alt="Modern high-tech pool controller with touchscreen interface in a clean white mechanical environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3uLCsj1_9YxrjsKowUdR5c-caOCpUgiB33GwHxddyc7ypJuT51MTdDixsFfOobiYyMGjblPltclPXaI7NDA1XLSIjtrKOmJJIeBrsUIXgHSiW6OKq3R8yxvdKKD60r6wsusKsjTtpACXMNj2I9zK2JYQTIgCpNRBy6ZW8pxqsOtFUiQh_jqSLZ5vN01MvSVv6vbHaE6_7ag-cImfHJ7Az4X34TlNcN4GwWcm0wgXFYQ_mhknUOX3ucTujO6EuT-87sjxmFF1VhhyP"/>
+</div>
+<div class="rounded-xl overflow-hidden shadow-xl aspect-[4/5] mt-8">
+<img class="w-full h-full object-cover" data-alt="Pristine white PVC piping and luxury pumps in a well-lit residential pool pump room" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSTA3qice3RwzNAPN4BmdeGhFHNiNaIJe6w5cAucr8jL5J3DgkyTUMhvd3_MS1xVuuE4kxcfTfUoJLQI-4O_s29TbsBBEg-mI901YLSIeEH8gbgCGGFaz7CZgb0EAVFdYrEhXzRX0917hNiwYGHRli_SpkBxdusc5G7z-XqEu1LR0nGoxH5Fk57KVXeKZCEL6kHGATDSKhlqFPGwbfGnTtfZvsja6WSAPYA8tJBQYlHhwNvc-btFuSpfU2QlSAY4n51LvUq5TzEvWs"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Services Bento Grid -->
+<section class="bg-surface-container py-section-gap">
+<div class="max-w-[1280px] mx-auto px-8">
+<div class="text-center mb-16">
+<span class="font-label-caps text-secondary">ENGENHARIA INVISÍVEL</span>
+<h2 class="font-h2 text-primary mt-2">Soluções de Elite para sua Casa</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-[240px]">
+<!-- Montagem Premium -->
+<div class="md:col-span-4 bg-white p-8 rounded-xl shadow-sm border border-outline-variant flex flex-col justify-between group hover:border-secondary transition-colors">
+<div>
+<span class="material-symbols-outlined text-4xl text-secondary mb-4" data-icon="star">star</span>
+<h3 class="font-h3 text-primary">Montagem Premium</h3>
+<p class="text-sm text-on-surface-variant mt-2">Instalações que parecem arte. Ordem, limpeza e eficiência máxima.</p>
+</div>
+<span class="font-label-caps text-xs text-outline group-hover:text-secondary">PROJETOS RESIDENCIAIS</span>
+</div>
+<!-- Smart Home Integration -->
+<div class="md:col-span-8 bg-primary-container p-8 rounded-xl relative overflow-hidden flex flex-col justify-end">
+<img class="absolute inset-0 w-full h-full object-cover opacity-40" data-alt="Smartphone controlling pool lights and temperature via app" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuzGFPbhFRs0OmXPEIOaqfVfs7s5zz2uNLcNmQ18r34gfJx4-IE3ln_yt53og8Wa1GfCVJvPI-xwBlvGgU_vzLAEgdg7DlCSFONpr3aXxMCSZ33bRZLUdt7r5yZWj9_Cp3DAgYWHuf6OCGIexjk4T93llAyepBlF4F6f_D4JDyKm3810KBG6qfGJCvZHZzrqQ2XrT0I4cgROG0acO1VKM_fMfRczC0J5ovEjHrXMMeUatFstcOthY0IQbFeolp1MfQOK04xk46r3Jx"/>
+<div class="relative z-10">
+<h3 class="font-h3 text-white">Integração Smart Home</h3>
+<p class="text-on-primary-container max-w-md">Sua piscina conectada à Alexa ou ao seu smartphone. Controle total de qualquer lugar.</p>
+<button class="mt-4 text-secondary-container font-button flex items-center gap-2">VER AUTOMAÇÃO <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span></button>
+</div>
+</div>
+<!-- Retrofit Tecnológico -->
+<div class="md:col-span-6 bg-white p-8 rounded-xl shadow-sm border border-outline-variant flex gap-6">
+<div class="w-1/3 rounded-lg overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Modern compact pool filter and pump setup in a small residential space" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDakwMcUbHA08ONC8K4qBWLhhQ61oov15GWYRo_03MvKWKHvncNuQGQQupEjG-wuNFQ0hF7S33fcPPg5yYdSS4UC_D3-O-hOQm7cjK1hzRqes_sostJBvsk9eUGmmZXF0uCwn9rmYTJ_2ry51R_HGN2tiIR5zO2pfIsldd6_Dd4RubF0XIqUh545FF_scbBSmyVpm4GKLEi8LMxaqVZioSWY545TtzW2AOTjgjjxQXvnh7p9rfups8rjG4FSSmx4Q4hJSbeTkBQWxxY"/>
+</div>
+<div class="flex-1">
+<h3 class="font-h3 text-primary">Retrofit Tecnológico</h3>
+<p class="text-sm text-on-surface-variant mt-2">Atualizamos sua casa de máquinas antiga para os padrões mais modernos de economia e praticidade.</p>
+<ul class="mt-4 space-y-1 text-xs font-label-caps text-secondary">
+<li>• OTIMIZAÇÃO DE ESPAÇO</li>
+<li>• SILÊNCIO OPERACIONAL</li>
+</ul>
+</div>
+</div>
+<!-- Sistemas Eco-Friendly -->
+<div class="md:col-span-3 bg-white p-8 rounded-xl shadow-sm border border-outline-variant text-center flex flex-col items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-secondary mb-4" data-icon="eco">eco</span>
+<h3 class="font-h3 text-primary text-lg">Tratamento Eco</h3>
+<p class="text-xs text-on-surface-variant mt-2">Ozônio e UV para água pura sem cheiro de cloro.</p>
+</div>
+<!-- Bombas de Velocidade Variável -->
+<div class="md:col-span-3 bg-tertiary-container p-8 rounded-xl flex flex-col justify-between">
+<h3 class="font-h3 text-on-tertiary-fixed">Bombas Inverter</h3>
+<p class="text-sm text-on-tertiary-fixed-variant">Até 80% de economia e ruído quase imperceptível.</p>
+<span class="material-symbols-outlined text-4xl text-on-tertiary-fixed-variant" data-icon="volume_off">volume_off</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Technical Specs CTA -->
+<section class="py-section-gap px-8">
+<div class="max-w-[1280px] mx-auto bg-surface-container-high rounded-2xl p-12 flex flex-col md:flex-row items-center justify-between gap-12">
+<div class="max-w-xl text-center md:text-left">
+<h2 class="font-h2 text-primary mb-4">Seu lar merece o melhor da engenharia.</h2>
+<p class="font-body-md text-on-surface-variant mb-6">Solicite um diagnóstico técnico. Transformamos a operação da sua piscina em uma experiência de conforto, sem preocupações com manutenção ou ruídos.</p>
+<a class="inline-flex items-center gap-4 bg-[#25D366] text-white px-8 py-4 rounded-xl font-button hover:shadow-xl hover:-translate-y-1 transition-all" href="https://wa.me/556191441294">
+<span class="material-symbols-outlined" data-icon="chat" data-weight="fill">chat</span>
+                    FALAR COM ESPECIALISTA AGORA
+                </a>
+</div>
+<div class="relative group">
+<div class="absolute -inset-4 bg-secondary/10 rounded-full blur-3xl group-hover:bg-secondary/20 transition-all"></div>
+<img class="relative z-10 w-80 h-80 object-cover rounded-2xl shadow-2xl" data-alt="High-end pool equipment installation, very clean and modern" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAo6DGLUcO7C6144dLK1lPKZQQ0w5H0Vjhh2YBQEzboNd8d6xrGf-iBJ42pKyLLCJnHylmc56xB8gX4pOkiky4Shw5-mQ1gT84rLUH1KJCM-ufilj4HXKJ2iLjL118f9DEqoJ92Oy9cagOaNJQ-Pfe5Y6ma6IWPq2v9B51gxvJnYFqhMg-l7_LG9EyRfdOM2XlxB5gXMQwUAfHTo0PByu6je3oEFC1byADeuADiEusesHnhvafYpJs-sb-v6h86zUWMsYQJ9y_tB_xy"/>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-slate-50 dark:bg-slate-950 text-blue-900 dark:text-blue-400 font-['Work_Sans'] text-sm leading-relaxed full-width border-t border-slate-200 dark:border-slate-800">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-8 py-20 max-w-[1280px] mx-auto w-full">
+<div class="md:col-span-1">
+<div class="text-lg font-bold text-blue-900 dark:text-white mb-6">Piscinas Evolution</div>
+<p class="text-slate-500 dark:text-slate-400">Excelência técnica e lazer de alto padrão em Brasília e região.</p>
+</div>
+<div>
+<h4 class="font-bold text-primary mb-6">Navegação</h4>
+<ul class="space-y-4">
+<li><a class="text-slate-500 dark:text-slate-400 hover:underline decoration-yellow-400 underline-offset-4" href="#">Home</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 hover:underline decoration-yellow-400 underline-offset-4" href="#">Aquecimento</a></li>
+<li><a class="font-semibold text-blue-900 dark:text-blue-400" href="#">Casa de Máquinas</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-primary mb-6">Serviços</h4>
+<ul class="space-y-4">
+<li><a class="text-slate-500 dark:text-slate-400 hover:underline decoration-yellow-400 underline-offset-4" href="#">Piscinas &amp; Lazer</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 hover:underline decoration-yellow-400 underline-offset-4" href="#">Manutenção</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 hover:underline decoration-yellow-400 underline-offset-4" href="#">Galeria</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-primary mb-6">Contato</h4>
+<a class="text-slate-500 dark:text-slate-400 hover:underline decoration-yellow-400 underline-offset-4 block mb-4" href="tel:+556191441294">+55 61 9144-1294</a>
+<p class="text-slate-500 dark:text-slate-400 text-xs">Atendimento em todo o Distrito Federal e Entorno.</p>
+</div>
+</div>
+<div class="max-w-[1280px] mx-auto px-8 pb-8 text-center text-xs text-slate-400 border-t border-slate-200 dark:border-slate-800 pt-8">
+            Piscinas Evolution — Aquecimento, Spa &amp; Soluções Térmicas © 2024
+        </div>
+</footer>
+</body></html>

@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700;800;900&amp;family=Manrope:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed": "#251a00",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "surface-container-low": "#f6f3f2",
+                    "surface": "#fcf9f8",
+                    "primary-fixed": "#cee5ff",
+                    "inverse-on-surface": "#f3f0f0",
+                    "secondary-fixed-dim": "#80cfff",
+                    "on-secondary-fixed-variant": "#004c6a",
+                    "surface-container": "#f0eded",
+                    "on-tertiary-fixed-variant": "#5b4300",
+                    "on-surface": "#1b1c1c",
+                    "surface-variant": "#e4e2e1",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed": "#c5e7ff",
+                    "on-background": "#1b1c1c",
+                    "surface-container-highest": "#e4e2e1",
+                    "on-primary-container": "#7fa7cd",
+                    "on-primary-fixed-variant": "#1f4a6c",
+                    "inverse-primary": "#a3cbf2",
+                    "secondary": "#00658c",
+                    "tertiary": "#302100",
+                    "surface-dim": "#dcd9d9",
+                    "on-primary-fixed": "#001d32",
+                    "tertiary-container": "#4a3600",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error": "#ffffff",
+                    "inverse-surface": "#303030",
+                    "surface-tint": "#396285",
+                    "outline-variant": "#c2c7ce",
+                    "error": "#ba1a1a",
+                    "background": "#fcf9f8",
+                    "outline": "#72777e",
+                    "surface-container-high": "#eae7e7",
+                    "secondary-container": "#80cfff",
+                    "on-secondary-container": "#00597b",
+                    "on-surface-variant": "#42474e",
+                    "primary": "#00263f",
+                    "on-error-container": "#93000a",
+                    "primary-container": "#0b3c5d",
+                    "surface-bright": "#fcf9f8",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed-dim": "#f9bd14",
+                    "primary-fixed-dim": "#a3cbf2",
+                    "on-secondary-fixed": "#001e2d",
+                    "tertiary-fixed": "#ffdf9d",
+                    "on-tertiary-container": "#ce9b00"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "section-gap": "80px",
+                    "margin-desktop": "48px",
+                    "container-max": "1280px",
+                    "gutter": "24px",
+                    "margin-mobile": "16px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "body-md": ["Manrope"],
+                    "h3": ["Work Sans"],
+                    "body-lg": ["Manrope"],
+                    "h2": ["Work Sans"],
+                    "button": ["Manrope"],
+                    "label-caps": ["Manrope"],
+                    "h1": ["Work Sans"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "h2": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "button": ["14px", {"lineHeight": "1.0", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                    "h1": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #fcf9f8;
+            color: #1b1c1c;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+    </style>
+</head>
+<body class="font-body-md overflow-x-hidden">
+<!-- SideNavBar (Execution from JSON) -->
+<aside class="fixed left-0 top-0 flex flex-col h-full z-50 bg-white dark:bg-slate-900 h-screen w-64 border-r border-gray-100 dark:border-gray-800 transition-all duration-300 ease-in-out">
+<div class="px-6 py-8 flex flex-col items-center border-b border-gray-50 dark:border-gray-800">
+<div class="w-12 h-12 bg-primary-container rounded-lg flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">pool</span>
+</div>
+<h1 class="text-lg font-black text-sky-900 dark:text-white uppercase tracking-tighter">Piscinas Evolution</h1>
+<p class="text-[10px] font-label-caps text-gray-400 mt-1">Precision Engineering</p>
+</div>
+<nav class="flex-1 py-6 overflow-y-auto divide-y divide-gray-50 dark:divide-gray-800">
+<div class="px-4 space-y-1 mb-6">
+<a class="flex items-center px-4 py-3 rounded-lg text-gray-500 dark:text-gray-400 hover:text-sky-800 dark:hover:text-sky-200 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-all duration-300" href="#">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+<span class="font-label-caps">Dashboard</span>
+</a>
+<a class="flex items-center px-4 py-3 rounded-lg text-gray-500 dark:text-gray-400 hover:text-sky-800 dark:hover:text-sky-200 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-all duration-300" href="#">
+<span class="material-symbols-outlined mr-3">architecture</span>
+<span class="font-label-caps">Project Blueprint</span>
+</a>
+<a class="flex items-center px-4 py-3 rounded-lg text-gray-500 dark:text-gray-400 hover:text-sky-800 dark:hover:text-sky-200 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-all duration-300" href="#">
+<span class="material-symbols-outlined mr-3">pool</span>
+<span class="font-label-caps">Equipment Status</span>
+</a>
+<a class="flex items-center px-4 py-3 rounded-lg text-gray-500 dark:text-gray-400 hover:text-sky-800 dark:hover:text-sky-200 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-all duration-300" href="#">
+<span class="material-symbols-outlined mr-3">build</span>
+<span class="font-label-caps">Maintenance Log</span>
+</a>
+<!-- Active Tab: Inventory -->
+<a class="flex items-center px-4 py-3 rounded-lg bg-sky-50 dark:bg-sky-900/20 text-sky-900 dark:text-sky-300 border-r-4 border-sky-900 dark:border-sky-400 transition-all duration-300" href="#">
+<span class="material-symbols-outlined mr-3" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+<span class="font-label-caps">Inventory</span>
+</a>
+<a class="flex items-center px-4 py-3 rounded-lg text-gray-500 dark:text-gray-400 hover:text-sky-800 dark:hover:text-sky-200 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-all duration-300" href="#">
+<span class="material-symbols-outlined mr-3">settings</span>
+<span class="font-label-caps">Admin Settings</span>
+</a>
+</div>
+<div class="px-4 pt-6 space-y-1">
+<a class="flex items-center px-4 py-3 rounded-lg text-gray-500 dark:text-gray-400 hover:text-sky-800 dark:hover:text-sky-200 transition-all" href="#">
+<span class="material-symbols-outlined mr-3">contact_support</span>
+<span class="font-label-caps">Support</span>
+</a>
+<a class="flex items-center px-4 py-3 rounded-lg text-gray-500 dark:text-gray-400 hover:text-sky-800 dark:hover:text-sky-200 transition-all" href="#">
+<span class="material-symbols-outlined mr-3">logout</span>
+<span class="font-label-caps">Log Out</span>
+</a>
+</div>
+</nav>
+<div class="p-6">
+<button class="w-full py-4 bg-primary text-white font-button text-xs uppercase tracking-widest rounded shadow-sm hover:bg-primary-container transition-colors">
+                New Construction
+            </button>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="ml-64 min-h-screen">
+<!-- TopAppBar (Execution from JSON) -->
+<header class="sticky top-0 z-40 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md flex justify-between items-center w-full px-8 py-4 border-b border-gray-100 dark:border-gray-800 shadow-[0_4px_20px_-5px_rgba(11,60,93,0.08)]">
+<div class="flex items-center gap-6">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">search</span>
+<input class="pl-10 pr-4 py-2 bg-gray-50 border-none rounded-full w-64 text-sm focus:ring-2 focus:ring-sky-900 transition-all" placeholder="Search assets..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-gray-500 hover:bg-gray-50 p-2 rounded-full transition-colors active:scale-95 duration-200">notifications</button>
+<button class="material-symbols-outlined text-gray-500 hover:bg-gray-50 p-2 rounded-full transition-colors active:scale-95 duration-200">help_outline</button>
+</div>
+<div class="flex items-center gap-3 pl-6 border-l border-gray-100">
+<div class="text-right">
+<p class="text-xs font-bold text-sky-900">Admin User</p>
+<p class="text-[10px] text-gray-400 uppercase tracking-tighter">Administrator</p>
+</div>
+<img alt="Administrator Profile" class="w-10 h-10 rounded-full object-cover border-2 border-sky-50 shadow-sm" data-alt="portrait of a professional administrator in a modern office environment with soft natural lighting and technical background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8G-dndvs4Luo7Qz_UVLWFBIoAbA1w-imd0Bv41tda_nG6-3HMXkPxkH4CZcZneq00fHOMxfxKyq3jwzgtkxL9RHo52TKrtMh0J4FubWt7pg53Zt7kLHhOx4wwtDd3Vg5HtbnqOyAifDWHh4fpbbXuXn_LR4Il9bGxeU7BSYCPS-_L7vt-Qm0Iz33sTygAk274I_LeZTkD270illi3I25-CRyfoHP-ei0aclDqAerwnNHpFw67zEIkEP_WZOEbREpyOVPisjLAnrYd"/>
+</div>
+</div>
+</header>
+<!-- Content Section -->
+<div class="px-10 py-10 max-w-[1280px] mx-auto">
+<!-- Header & Fast Actions -->
+<div class="flex justify-between items-end mb-12">
+<div>
+<h2 class="font-h1 text-h2 text-sky-900 mb-2">Inventory &amp; Assets</h2>
+<p class="text-gray-500 font-body-md">Precision management of chemical supplies and industrial equipment.</p>
+</div>
+<div class="flex gap-4">
+<button class="flex items-center gap-2 px-6 py-3 border-2 border-primary text-primary font-button rounded hover:bg-sky-50 transition-all">
+<span class="material-symbols-outlined text-lg">add_shopping_cart</span>
+                        NEW PURCHASE ORDER
+                    </button>
+<button class="flex items-center gap-2 px-6 py-3 bg-primary text-white font-button rounded hover:bg-primary-container shadow-md transition-all">
+<span class="material-symbols-outlined text-lg">calendar_today</span>
+                        SCHEDULE MAINTENANCE
+                    </button>
+</div>
+</div>
+<!-- Bento Dashboard Grid -->
+<div class="bento-grid mb-section-gap">
+<!-- Asset Health Card -->
+<div class="col-span-4 bg-white p-8 rounded shadow-[0_4px_20px_-5px_rgba(11,60,93,0.08)] border border-gray-50 relative overflow-hidden">
+<div class="flex justify-between items-start mb-6">
+<h3 class="font-label-caps text-gray-400">GLOBAL ASSET HEALTH</h3>
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">health_and_safety</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-5xl font-black text-sky-900 tracking-tighter">98.4%</span>
+<span class="text-green-600 text-xs font-bold">+1.2% ↑</span>
+</div>
+<div class="mt-8 h-2 bg-gray-100 rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[98.4%] rounded-full"></div>
+</div>
+<p class="mt-4 text-[10px] text-gray-400 uppercase tracking-widest font-bold">Excellent Operational Status</p>
+<!-- Background Accent -->
+<div class="absolute -right-8 -bottom-8 w-32 h-32 bg-sky-50 rounded-full blur-3xl opacity-50"></div>
+</div>
+<!-- Inventory Alert Card -->
+<div class="col-span-4 bg-white p-8 rounded shadow-[0_4px_20px_-5px_rgba(11,60,93,0.08)] border border-gray-50">
+<div class="flex justify-between items-start mb-6">
+<h3 class="font-label-caps text-gray-400">CRITICAL ALERTS</h3>
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-5xl font-black text-sky-900 tracking-tighter">04</span>
+<span class="text-gray-400 text-xs font-semibold">items pending restock</span>
+</div>
+<div class="mt-6 flex gap-2">
+<div class="w-8 h-8 rounded bg-error-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-error-container text-sm">science</span>
+</div>
+<div class="w-8 h-8 rounded bg-error-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-error-container text-sm">cleaning_services</span>
+</div>
+<div class="w-8 h-8 rounded bg-gray-100 flex items-center justify-center text-xs font-bold text-gray-400">
+                            +2
+                        </div>
+</div>
+</div>
+<!-- Total Value Card -->
+<div class="col-span-4 bg-primary p-8 rounded shadow-lg text-white">
+<div class="flex justify-between items-start mb-6">
+<h3 class="font-label-caps text-sky-300 opacity-80">ESTIMATED ASSET VALUE</h3>
+<span class="material-symbols-outlined text-sky-400" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-4xl font-black tracking-tighter">R$ 1.24M</span>
+</div>
+<p class="mt-4 text-xs font-medium text-sky-200/60">Fixed Assets + Circulating Stock</p>
+<div class="mt-10 flex justify-between items-center text-[10px] uppercase font-bold tracking-widest border-t border-white/10 pt-4">
+<span>Report Generated</span>
+<span>02 OCT 2023</span>
+</div>
+</div>
+<!-- Chemical Supplies - Main Inventory -->
+<div class="col-span-8 bg-white p-8 rounded shadow-[0_4px_20px_-5px_rgba(11,60,93,0.08)] border border-gray-50">
+<div class="flex justify-between items-center mb-10">
+<h3 class="font-h3 text-sky-900">Chemical Supplies</h3>
+<button class="text-xs font-label-caps text-secondary flex items-center gap-1 hover:underline">
+                            VIEW FULL LOG <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<div class="space-y-10">
+<!-- Item 1 -->
+<div class="grid grid-cols-12 gap-6 items-center">
+<div class="col-span-4 flex items-center gap-4">
+<div class="w-12 h-12 bg-gray-50 rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-sky-900">format_paint</span>
+</div>
+<div>
+<p class="font-bold text-sky-900 text-sm">Impermeabilizante XP-500</p>
+<p class="text-[10px] text-gray-400 uppercase font-label-caps">Construction Grade</p>
+</div>
+</div>
+<div class="col-span-5 px-4">
+<div class="flex justify-between items-center mb-2">
+<span class="text-[10px] font-bold text-gray-400">VOLUME LEVEL</span>
+<span class="text-[10px] font-bold text-sky-900">85%</span>
+</div>
+<div class="h-1.5 w-full bg-gray-100 rounded-full">
+<div class="h-full bg-secondary w-[85%] rounded-full"></div>
+</div>
+</div>
+<div class="col-span-3 text-right">
+<p class="text-sm font-black text-sky-900">1,250 Litros</p>
+<span class="inline-block mt-1 px-2 py-0.5 bg-green-50 text-green-700 text-[10px] font-bold rounded uppercase">In Stock</span>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="grid grid-cols-12 gap-6 items-center">
+<div class="col-span-4 flex items-center gap-4">
+<div class="w-12 h-12 bg-gray-50 rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-sky-900">water_drop</span>
+</div>
+<div>
+<p class="font-bold text-sky-900 text-sm">Detergente Industrial pH-9</p>
+<p class="text-[10px] text-gray-400 uppercase font-label-caps">Maintenance Unit</p>
+</div>
+</div>
+<div class="col-span-5 px-4">
+<div class="flex justify-between items-center mb-2">
+<span class="text-[10px] font-bold text-gray-400">VOLUME LEVEL</span>
+<span class="text-[10px] font-bold text-error">12%</span>
+</div>
+<div class="h-1.5 w-full bg-gray-100 rounded-full">
+<div class="h-full bg-error w-[12%] rounded-full"></div>
+</div>
+</div>
+<div class="col-span-3 text-right">
+<p class="text-sm font-black text-sky-900">45 Litros</p>
+<span class="inline-block mt-1 px-2 py-0.5 bg-error-container text-on-error-container text-[10px] font-bold rounded uppercase">Low Supply</span>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="grid grid-cols-12 gap-6 items-center">
+<div class="col-span-4 flex items-center gap-4">
+<div class="w-12 h-12 bg-gray-50 rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-sky-900">science</span>
+</div>
+<div>
+<p class="font-bold text-sky-900 text-sm">Solvente de Limpeza S-12</p>
+<p class="text-[10px] text-gray-400 uppercase font-label-caps">Laboratory Grade</p>
+</div>
+</div>
+<div class="col-span-5 px-4">
+<div class="flex justify-between items-center mb-2">
+<span class="text-[10px] font-bold text-gray-400">VOLUME LEVEL</span>
+<span class="text-[10px] font-bold text-sky-900">42%</span>
+</div>
+<div class="h-1.5 w-full bg-gray-100 rounded-full">
+<div class="h-full bg-secondary-container w-[42%] rounded-full"></div>
+</div>
+</div>
+<div class="col-span-3 text-right">
+<p class="text-sm font-black text-sky-900">320 Litros</p>
+<span class="inline-block mt-1 px-2 py-0.5 bg-yellow-50 text-yellow-700 text-[10px] font-bold rounded uppercase">Monitor</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Industrial Assets Sidebar -->
+<div class="col-span-4 space-y-6">
+<div class="bg-white p-6 rounded shadow-[0_4px_20px_-5px_rgba(11,60,93,0.08)] border border-gray-50">
+<h3 class="font-label-caps text-gray-400 mb-6 uppercase tracking-widest">Active Machinery</h3>
+<ul class="space-y-4">
+<li class="flex items-center justify-between p-3 rounded bg-gray-50">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-sky-900">mode_fan</span>
+<div>
+<p class="text-xs font-bold text-sky-900">Vaporizadora V-22</p>
+<p class="text-[9px] text-gray-400">S/N: 884-2993</p>
+</div>
+</div>
+<span class="flex items-center gap-1.5 px-2 py-1 bg-green-100 text-green-700 text-[9px] font-black rounded-full uppercase">
+<span class="w-1 h-1 bg-green-700 rounded-full"></span> Active
+                                </span>
+</li>
+<li class="flex items-center justify-between p-3 rounded bg-gray-50">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-sky-900">vacuum</span>
+<div>
+<p class="text-xs font-bold text-sky-900">Extratora Industrial X-5</p>
+<p class="text-[9px] text-gray-400">S/N: 772-1044</p>
+</div>
+</div>
+<span class="flex items-center gap-1.5 px-2 py-1 bg-green-100 text-green-700 text-[9px] font-black rounded-full uppercase">
+<span class="w-1 h-1 bg-green-700 rounded-full"></span> Active
+                                </span>
+</li>
+<li class="flex items-center justify-between p-3 rounded bg-gray-50">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-gray-400">build_circle</span>
+<div>
+<p class="text-xs font-bold text-sky-900">Bomba de Vácuo B-100</p>
+<p class="text-[9px] text-gray-400">S/N: 102-3392</p>
+</div>
+</div>
+<span class="flex items-center gap-1.5 px-2 py-1 bg-yellow-100 text-yellow-700 text-[9px] font-black rounded-full uppercase">
+<span class="w-1 h-1 bg-yellow-700 rounded-full"></span> Maintenance
+                                </span>
+</li>
+</ul>
+</div>
+<!-- Quick Support Contact -->
+<div class="bg-sky-50 p-6 rounded-lg relative overflow-hidden">
+<p class="text-sky-900 font-bold text-sm mb-1">Logistics Issue?</p>
+<p class="text-sky-700 text-[10px] leading-tight mb-4">Contact the supply chain department for priority restocking.</p>
+<button class="bg-sky-900 text-white text-[10px] px-4 py-2 rounded font-button uppercase">Contact Officer</button>
+<span class="material-symbols-outlined absolute -right-4 -bottom-4 text-sky-100 text-6xl rotate-12">local_shipping</span>
+</div>
+</div>
+</div>
+<!-- Asset History Section -->
+<div class="mb-section-gap">
+<div class="flex justify-between items-center mb-8">
+<h3 class="font-h3 text-sky-900">Recent Movements</h3>
+<div class="flex gap-2">
+<button class="p-2 border border-gray-200 rounded hover:bg-white transition-all"><span class="material-symbols-outlined text-sm">filter_list</span></button>
+<button class="p-2 border border-gray-200 rounded hover:bg-white transition-all"><span class="material-symbols-outlined text-sm">download</span></button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-gray-50 border-y border-gray-100">
+<tr>
+<th class="px-6 py-4 text-[10px] font-label-caps text-gray-400 tracking-widest uppercase">Asset Item</th>
+<th class="px-6 py-4 text-[10px] font-label-caps text-gray-400 tracking-widest uppercase">Transaction Type</th>
+<th class="px-6 py-4 text-[10px] font-label-caps text-gray-400 tracking-widest uppercase">Assigned To</th>
+<th class="px-6 py-4 text-[10px] font-label-caps text-gray-400 tracking-widest uppercase">Date</th>
+<th class="px-6 py-4 text-[10px] font-label-caps text-gray-400 tracking-widest uppercase">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-50">
+<tr class="hover:bg-gray-50/50 transition-colors">
+<td class="px-6 py-5">
+<p class="text-sm font-bold text-sky-900">Extratora Industrial X-5</p>
+<p class="text-[10px] text-gray-400">Equipment Checkout</p>
+</td>
+<td class="px-6 py-5">
+<span class="px-2 py-1 bg-sky-50 text-sky-700 text-[10px] font-bold rounded">PROJECT ASSIGNMENT</span>
+</td>
+<td class="px-6 py-5 flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-primary-container text-[8px] flex items-center justify-center text-white font-bold">RM</div>
+<span class="text-xs font-medium text-sky-900">Ricardo Mendes</span>
+</td>
+<td class="px-6 py-5 text-xs text-gray-500">Oct 02, 2023 - 08:45 AM</td>
+<td class="px-6 py-5">
+<span class="text-green-600 font-bold text-[10px] uppercase">Validated</span>
+</td>
+</tr>
+<tr class="hover:bg-gray-50/50 transition-colors">
+<td class="px-6 py-5">
+<p class="text-sm font-bold text-sky-900">Impermeabilizante XP-500</p>
+<p class="text-[10px] text-gray-400">Stock Deployment</p>
+</td>
+<td class="px-6 py-5">
+<span class="px-2 py-1 bg-orange-50 text-orange-700 text-[10px] font-bold rounded">CONSUMPTION</span>
+</td>
+<td class="px-6 py-5 flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-secondary-container text-[8px] flex items-center justify-center text-on-secondary-container font-bold">AL</div>
+<span class="text-xs font-medium text-sky-900">Ana Lúcia</span>
+</td>
+<td class="px-6 py-5 text-xs text-gray-500">Oct 01, 2023 - 04:20 PM</td>
+<td class="px-6 py-5">
+<span class="text-green-600 font-bold text-[10px] uppercase">Validated</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+<!-- FAB Suppression Rule Active: Not home or dashboard context primarily focused on task here -->
+</body></html>
