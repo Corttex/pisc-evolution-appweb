@@ -72,6 +72,9 @@ model Equipamento {
   modelo          String?
   dataInstalacao  DateTime?
   status          String   @default("operacional") // operacional, defeito, manutencao
+  proximaTroca    DateTime?
+  potencia        String?
+  numeroSerie     String?
   observacoes     String?  @db.Text
   clienteId       String
   cliente         Cliente  @relation(fields: [clienteId], references: [id])
@@ -124,13 +127,17 @@ model Estoque {
 }
 
 model Patrimonio {
-  id          String   @id @default(uuid())
-  nome        String
-  tipo        String   // veiculo, ferramenta, equipamento
-  identificacao String? // Placa, Serial
-  status      String   @default("ativo") // ativo, manutencao, baixado
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id             String   @id @default(uuid())
+  nome           String
+  tipo           String   // veiculo, ferramenta, equipamento
+  identificacao  String? // Placa, Serial
+  valor          Float?
+  dataAquisicao  DateTime?
+  localizacao    String?  // Almoxarifado, Veículo X, etc.
+  observacoes    String?  @db.Text
+  status         String   @default("ativo") // ativo, manutencao, baixado
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 }
 
 model Ticket {
@@ -159,6 +166,8 @@ model Configuracao {
   asaasKey      String? @db.Text
   asaasEnv      String  @default("sandbox")
   pixSinal      Float   @default(50.0)
+  pixChave      String?
+  pixBeneficiario String?
   
   site_titulo      String @default("Piscinas Evolution")
   site_headline    String @default("Cuidamos da sua piscina, você aproveita o verão.")
@@ -176,6 +185,9 @@ model AdminProfile {
   id        String  @id @default(uuid())
   nome      String  @default("Admin Master")
   email     String  @default("admin@evolution.com")
+  telefone  String?
+  cargo     String? @default("Administrador")
+  biografia String? @db.Text
   avatar    String?
   asaasKey  String? @db.Text
   pixKey    String?

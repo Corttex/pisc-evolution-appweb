@@ -156,11 +156,22 @@ export default function AgendamentoPage() {
                     <ClipboardList className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                     <select required name="servico" className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-secondary/20 appearance-none transition-all">
                       <option value="">Selecione o serviço</option>
-                      <option value="Manutenção Preventiva">Manutenção Preventiva</option>
-                      <option value="Reparo Aquecimento">Reparo de Aquecimento</option>
-                      <option value="Troca de Filtro/Areia">Troca de Filtro/Areia</option>
-                      <option value="Limpeza Profunda">Limpeza Profunda</option>
-                      <option value="Orçamento de Construção">Orçamento de Construção</option>
+                      <option value="Aquecimento Solar">Aquecimento Solar</option>
+                      <option value="Trocador de Calor">Trocador de Calor</option>
+                      <option value="Boiler">Boiler</option>
+                      <option value="Limpeza de Placas">Limpeza de Placas</option>
+                      <option value="Manutenção e Trocas">Manutenção e Trocas</option>
+                      <option value="Banheiras">Banheiras</option>
+                      <option value="Saunas">Saunas</option>
+                      <option value="Spas">Spas</option>
+                      <option value="Cascata">Cascata</option>
+                      <option value="Iluminação LED">Iluminação LED</option>
+                      <option value="Cerca de Proteção">Cerca de Proteção</option>
+                      <option value="Casa de Máquinas">Casa de Máquinas</option>
+                      <option value="Higienização">Higienização</option>
+                      <option value="Aquecimento de Piscina">Aquecimento de Piscina</option>
+                      <option value="Reforma Técnica">Reforma Técnica</option>
+                      <option value="Automação">Automação</option>
                     </select>
                   </div>
                 </div>

@@ -10,39 +10,116 @@ import Link from "next/link";
 
 const services = [
   {
-    title: "Aquecimento Inteligente",
-    description: "Sistemas híbridos (Solar + Trocador) que garantem banho quente 365 dias por ano com máxima economia.",
-    icon: Thermometer,
-    image: "/res_pool_2.png",
-    link: "/aquecimento"
-  },
-  {
-    title: "Engenharia de Piscinas",
-    description: "Construção e reforma de alto padrão com acabamentos exclusivos e soluções estruturais definitivas.",
-    icon: Waves,
-    image: "/res_pool_1.png",
-    link: "/piscinas"
-  },
-  {
-    title: "Manutenção de Elite",
-    description: "Check-up técnico completo e tratamento químico especializado para manter sua água cristalina.",
-    icon: Wrench,
-    image: "/maintenance_tech.png",
-    link: "/agendamento"
-  },
-  {
-    title: "Iluminação LED Design",
-    description: "Crie cenários incríveis e valorize sua piscina com sistemas de LED de alta performance e cores vibrantes.",
+    title: "Aquecimento Solar",
+    description: "Economia e sustentabilidade com água quente o ano todo através de coletores solares de alta performance.",
     icon: Sun,
-    image: "/luxury_pool_design_brasilia_1777262096773.png",
-    link: "/iluminacao"
+    image: "/service_solar_heating_1778496123555.png",
+    link: "/servicos/aquecimento-solar"
   },
   {
-    title: "Minha Piscina",
-    description: "Dashboard exclusivo: acompanhe a saúde da água e o status dos seus equipamentos em tempo real.",
-    icon: Activity,
-    image: "/pool_dashboard_ui_mockup_1777262116743.png",
-    link: "/minha-piscina"
+    title: "Trocador de Calor",
+    description: "Aquecimento rápido e eficiente para sua piscina ou spa, independente das condições climáticas.",
+    icon: Thermometer,
+    image: "/service_heat_exchanger_1778496140113.png",
+    link: "/servicos/trocador-de-calor"
+  },
+  {
+    title: "Boiler",
+    description: "Sistemas de reservatório térmico que garantem água quente para banho com máximo conforto e segurança.",
+    icon: Droplets,
+    image: "/service_boiler_1778496152027.png",
+    link: "/servicos/boiler"
+  },
+  {
+    title: "Limpeza de Placas",
+    description: "Serviço especializado de limpeza de placas solares para garantir o máximo rendimento do seu sistema.",
+    icon: Settings,
+    image: "/service_panel_cleaning_1778496165716.png",
+    link: "/servicos/limpeza-placas"
+  },
+  {
+    title: "Manutenção e Trocas",
+    description: "Manutenção preventiva e corretiva com substituição de peças originais e garantia de qualidade.",
+    icon: Wrench,
+    image: "/service_maintenance_replacement_1778496185283.png",
+    link: "/servicos/manutencao"
+  },
+  {
+    title: "Banheiras",
+    description: "Instalação e manutenção de banheiras de hidromassagem com acabamento impecável e sofisticação.",
+    icon: Waves,
+    image: "/service_bathtub_1778496201534.png",
+    link: "/servicos/banheira"
+  },
+  {
+    title: "Saunas",
+    description: "Projetos completos de saunas secas e úmidas para momentos de pura tranquilidade e bem-estar.",
+    icon: Thermometer,
+    image: "/service_sauna_1778496215122.png",
+    link: "/servicos/spa-sauna"
+  },
+  {
+    title: "Spas",
+    description: "Spas residenciais de luxo com sistemas avançados de hidromassagem e controle térmico.",
+    icon: Waves,
+    image: "/service_spa_1778496232497.png",
+    link: "/servicos/spa-sauna"
+  },
+  {
+    title: "Cascata",
+    description: "Design e instalação de cascatas em aço inox ou alvenaria, agregando beleza e movimento à sua piscina.",
+    icon: Waves,
+    image: "/service_waterfall_1778496252259.png",
+    link: "/servicos/cascata"
+  },
+  {
+    title: "Iluminação LED",
+    description: "Projetos luminotécnicos subaquáticos que transformam sua piscina em um cenário espetacular à noite.",
+    icon: Sun,
+    image: "/service_lighting_led_1778496269987.png",
+    link: "/servicos/iluminacao"
+  },
+  {
+    title: "Cerca de Proteção",
+    description: "Segurança essencial para crianças e pets com cercas removíveis de alta resistência e discrição.",
+    icon: Settings,
+    image: "/service_safety_fence_1778496283580.png",
+    link: "/servicos/cerca-protecao"
+  },
+  {
+    title: "Casa de Máquinas",
+    description: "Montagem técnica e organização completa de sistemas hidráulicos e elétricos com padrão Evolution.",
+    icon: Settings,
+    image: "/service_machine_room_assembly_1778496296904.png",
+    link: "/servicos/casa-de-maquinas"
+  },
+  {
+    title: "Higienização",
+    description: "Tratamento profundo e higienização de sistemas para garantir água pura e livre de contaminantes.",
+    icon: Droplets,
+    image: "/service_system_sanitization_1778496318090.png",
+    link: "/servicos/higienizacao"
+  },
+  {
+    title: "Aquecimento de Piscina",
+    description: "Soluções sob medida para manter sua piscina na temperatura ideal durante todas as estações.",
+    icon: Thermometer,
+    image: "/service_pool_heating_gen_1778496330203.png",
+    link: "/servicos/aquecimento"
+  },
+  {
+    title: "Reforma Técnica",
+    description: "Modernização completa de casas de máquinas e sistemas antigos para maior eficiência energética.",
+    icon: Settings,
+    image: "/service_machine_room_renovation_1778496346069.png",
+    link: "/servicos/reforma-casa-maquinas"
+  },
+  {
+    title: "Automação",
+    description: "Controle inteligente de bombas, luzes e aquecimento diretamente pelo seu smartphone.",
+    icon: Settings,
+    image: "/service_system_automation_1778496360462.png",
+    link: "/servicos/automacao"
   }
 ];
 

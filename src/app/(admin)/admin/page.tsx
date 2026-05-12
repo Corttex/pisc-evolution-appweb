@@ -228,7 +228,7 @@ export default function AdminDashboard() {
                  </div>
                  <ArrowRight size={20} className="text-slate-500 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all" />
               </Link>
-              <Link href="/admin/perfil" className="w-full flex items-center justify-between p-5 bg-white/5 hover:bg-white/10 rounded-[1.5rem] border border-white/10 transition-all group">
+              <Link href="/admin/configuracoes" className="w-full flex items-center justify-between p-5 bg-white/5 hover:bg-white/10 rounded-[1.5rem] border border-white/10 transition-all group">
                  <div className="flex items-center gap-3">
                     <div className="p-2 bg-cyan-500/20 rounded-xl">
                        <Settings size={20} className="text-cyan-400" />

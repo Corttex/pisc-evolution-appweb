@@ -20,9 +20,9 @@ export default function PerfilPage() {
   const [formData, setFormData] = useState({
     nome: "",
     email: "",
-    asaasKey: "",
-    pixKey: "",
-    pixTipo: "E-mail",
+    telefone: "",
+    cargo: "",
+    biografia: "",
     darkMode: false,
     avatar: ""
   });
@@ -36,14 +36,13 @@ export default function PerfilPage() {
         setFormData({
           nome: profile.nome || "",
           email: profile.email || "",
-          asaasKey: profile.asaasKey || "",
-          pixKey: profile.pixKey || "",
-          pixTipo: profile.pixTipo || "E-mail",
+          telefone: (profile as any).telefone || "",
+          cargo: (profile as any).cargo || "Administrador",
+          biografia: (profile as any).biografia || "",
           darkMode: profile.darkMode || false,
           avatar: (profile as any).avatar || ""
         });
         
-        // Aplica o tema inicial
         if (profile.darkMode) {
           document.documentElement.classList.add('dark');
         } else {
@@ -60,7 +59,7 @@ export default function PerfilPage() {
     try {
       const res = await updateAdminProfile(formData);
       if (res.success) {
-        alert("Perfil e chaves de integração salvos com sucesso!");
+        alert("Perfil atualizado com sucesso!");
       } else {
         alert("Erro ao salvar: " + res.error);
       }
@@ -108,7 +107,7 @@ export default function PerfilPage() {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
            <h1 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">Meu Perfil</h1>
-           <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">Gerencie seus dados, aparência e chaves de integração.</p>
+           <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">Gerencie seus dados pessoais, cargo e aparência do sistema.</p>
         </div>
         <button 
           onClick={handleSave}
@@ -116,7 +115,7 @@ export default function PerfilPage() {
           className="w-full md:w-auto bg-primary text-white px-10 py-4 rounded-2xl font-black flex items-center justify-center gap-2 shadow-xl shadow-primary/30 hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-50"
         >
            {saving ? <Loader2 size={20} className="animate-spin" /> : <Save size={20} />}
-           {saving ? "Gravando..." : "Salvar Tudo"}
+           {saving ? "Gravando..." : "Salvar Perfil"}
         </button>
       </div>
 
@@ -137,11 +136,11 @@ export default function PerfilPage() {
                   </label>
                </div>
                <h3 className="font-black text-xl text-slate-900 dark:text-white">{formData.nome || "Administrador"}</h3>
-               <p className="text-[10px] text-slate-400 font-black uppercase tracking-[0.2em] mt-2">Admin Master</p>
+               <p className="text-[10px] text-slate-400 font-black uppercase tracking-[0.2em] mt-2">{formData.cargo || "Administrador Master"}</p>
             </div>
 
             <div className="bg-white dark:bg-slate-900 p-8 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 shadow-xl shadow-slate-200/40 dark:shadow-none">
-               <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-6">Preferências</h4>
+               <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-6">Aparência</h4>
                <div className="flex items-center justify-between p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800">
                   <div className="flex items-center gap-3">
                      <div className={`p-2 rounded-xl ${formData.darkMode ? "bg-primary/20 text-primary" : "bg-amber-100 text-amber-500"}`}>
@@ -165,11 +164,12 @@ export default function PerfilPage() {
                   <div className="p-2 bg-blue-50 dark:bg-blue-900/20 text-blue-500 rounded-xl">
                     <ShieldCheck size={22} />
                   </div>
-                  <h3 className="font-black text-xl text-slate-900 dark:text-white">Dados da Conta</h3>
+                  <h3 className="font-black text-xl text-slate-900 dark:text-white">Dados Profissionais</h3>
                </div>
+               
                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-3">
-                     <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">Nome de Exibição</label>
+                     <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">Nome Completo</label>
                      <input 
                         type="text" 
                         value={formData.nome}
@@ -178,7 +178,17 @@ export default function PerfilPage() {
                       />
                   </div>
                   <div className="space-y-3">
-                     <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">E-mail de Login</label>
+                     <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">Cargo / Função</label>
+                     <input 
+                        type="text" 
+                        value={formData.cargo}
+                        onChange={(e) => setFormData({...formData, cargo: e.target.value})}
+                        placeholder="Ex: Diretor Técnico"
+                        className="w-full px-6 py-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border-2 border-transparent focus:border-primary/20 outline-none transition-all text-slate-900 dark:text-white font-bold" 
+                      />
+                  </div>
+                  <div className="space-y-3">
+                     <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">E-mail Corporativo</label>
                      <input 
                         type="email" 
                         value={formData.email}
@@ -186,67 +196,70 @@ export default function PerfilPage() {
                         className="w-full px-6 py-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border-2 border-transparent focus:border-primary/20 outline-none transition-all text-slate-900 dark:text-white font-bold" 
                       />
                   </div>
+                  <div className="space-y-3">
+                     <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">Telefone / WhatsApp</label>
+                     <input 
+                        type="text" 
+                        value={formData.telefone}
+                        onChange={(e) => setFormData({...formData, telefone: e.target.value})}
+                        placeholder="(61) 99999-9999"
+                        className="w-full px-6 py-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border-2 border-transparent focus:border-primary/20 outline-none transition-all text-slate-900 dark:text-white font-bold" 
+                      />
+                  </div>
+               </div>
+
+               <div className="space-y-3">
+                  <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">Biografia / Observações</label>
+                  <textarea 
+                     rows={4}
+                     value={formData.biografia}
+                     onChange={(e) => setFormData({...formData, biografia: e.target.value})}
+                     placeholder="Breve descrição sobre sua atuação na Piscinas Evolution..."
+                     className="w-full px-6 py-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border-2 border-transparent focus:border-primary/20 outline-none transition-all text-slate-900 dark:text-white font-bold resize-none" 
+                  />
+               </div>
+            </div>
+            <div className="bg-white dark:bg-slate-900 p-10 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 shadow-xl shadow-slate-200/40 dark:shadow-none space-y-8">
+               <div className="flex items-center gap-3 pb-6 border-b border-slate-50 dark:border-slate-800">
+                  <div className="p-2 bg-amber-50 dark:bg-amber-900/20 text-amber-500 rounded-xl">
+                    <Zap size={22} />
+                  </div>
+                  <h3 className="font-black text-xl text-slate-900 dark:text-white">Preferências do Sistema</h3>
+               </div>
+               
+               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                     <div>
+                        <p className="text-xs font-black text-slate-900 dark:text-white uppercase tracking-tighter">Notificações WhatsApp</p>
+                        <p className="text-[10px] text-slate-400 font-bold">Avisos automáticos de agenda</p>
+                     </div>
+                     <div className="w-12 h-6 bg-primary rounded-full relative"><div className="absolute right-1 top-1 w-4 h-4 bg-white rounded-full"></div></div>
+                  </div>
+                  <div className="p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800 flex items-center justify-between opacity-50">
+                     <div>
+                        <p className="text-xs font-black text-slate-900 dark:text-white uppercase tracking-tighter">Relatórios Diários</p>
+                        <p className="text-[10px] text-slate-400 font-bold">Resumo por e-mail (Em breve)</p>
+                     </div>
+                     <div className="w-12 h-6 bg-slate-200 rounded-full relative"><div className="absolute left-1 top-1 w-4 h-4 bg-white rounded-full"></div></div>
+                  </div>
                </div>
             </div>
 
             <div className="bg-white dark:bg-slate-900 p-10 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 shadow-xl shadow-slate-200/40 dark:shadow-none space-y-8">
                <div className="flex items-center gap-3 pb-6 border-b border-slate-50 dark:border-slate-800">
-                  <div className="p-2 bg-primary/10 text-primary rounded-xl">
-                    <Zap size={22} />
+                  <div className="p-2 bg-rose-50 dark:bg-rose-900/20 text-rose-500 rounded-xl">
+                    <Lock size={22} />
                   </div>
-                  <h3 className="font-black text-xl text-slate-900 dark:text-white">Chaves de Integração</h3>
+                  <h3 className="font-black text-xl text-slate-900 dark:text-white">Segurança</h3>
                </div>
                
-               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="p-8 rounded-[2rem] bg-blue-50/30 dark:bg-blue-900/10 border border-blue-100/50 dark:border-blue-900/30 space-y-6">
-                     <div className="flex items-center gap-2">
-                        <CreditCard size={20} className="text-blue-500" />
-                        <h4 className="font-black text-blue-900 dark:text-blue-400 text-sm uppercase tracking-tighter">Asaas API</h4>
-                     </div>
-                     <div className="space-y-3">
-                        <label className="text-[10px] font-black text-blue-400 uppercase tracking-widest">API Key</label>
-                        <input 
-                          type="password" 
-                          value={formData.asaasKey}
-                          onChange={(e) => setFormData({...formData, asaasKey: e.target.value})}
-                          placeholder="••••••••••••••••"
-                          className="w-full px-5 py-4 rounded-xl bg-white dark:bg-slate-800 border border-blue-100 dark:border-blue-900/30 outline-none text-xs font-mono dark:text-white" 
-                        />
-                     </div>
-                  </div>
-
-                  <div className="p-8 rounded-[2rem] bg-emerald-50/30 dark:bg-emerald-900/10 border border-emerald-100/50 dark:border-emerald-900/30 space-y-6">
-                     <div className="flex items-center gap-2">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Logo%E2%80%94Pix.svg" alt="Pix" className="h-4 brightness-110" />
-                        <h4 className="font-black text-emerald-900 dark:text-emerald-400 text-sm uppercase tracking-tighter">PIX Banco Central</h4>
-                     </div>
-                     <div className="space-y-4">
-                        <div className="space-y-2">
-                           <label className="text-[10px] font-black text-emerald-400 uppercase tracking-widest">Chave PIX</label>
-                           <input 
-                              type="text" 
-                              value={formData.pixKey}
-                              onChange={(e) => setFormData({...formData, pixKey: e.target.value})}
-                              placeholder="Seu CPF, Email ou Chave" 
-                              className="w-full px-5 py-4 rounded-xl bg-white dark:bg-slate-800 border border-emerald-100 dark:border-emerald-900/30 outline-none text-xs font-bold dark:text-white" 
-                           />
-                        </div>
-                        <div className="space-y-2">
-                           <label className="text-[10px] font-black text-emerald-400 uppercase tracking-widest">Tipo</label>
-                           <select 
-                              value={formData.pixTipo}
-                              onChange={(e) => setFormData({...formData, pixTipo: e.target.value})}
-                              className="w-full px-5 py-4 rounded-xl bg-white dark:bg-slate-800 border border-emerald-100 dark:border-emerald-900/30 outline-none text-xs font-bold dark:text-white"
-                           >
-                              <option>E-mail</option>
-                              <option>CPF</option>
-                              <option>CNPJ</option>
-                              <option>Telefone</option>
-                              <option>Chave Aleatória</option>
-                           </select>
-                        </div>
-                     </div>
-                  </div>
+               <div className="flex flex-col md:flex-row gap-4">
+                  <button className="flex-grow px-6 py-4 rounded-2xl bg-slate-900 text-white font-bold text-xs uppercase tracking-widest hover:bg-slate-800 transition-all">
+                     Alterar Senha de Acesso
+                  </button>
+                  <button className="flex-grow px-6 py-4 rounded-2xl border-2 border-slate-100 dark:border-slate-800 text-slate-600 dark:text-slate-400 font-bold text-xs uppercase tracking-widest hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">
+                     Ativar 2FA (Segurança Dupla)
+                  </button>
                </div>
             </div>
          </div>

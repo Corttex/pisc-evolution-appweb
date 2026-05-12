@@ -103,14 +103,31 @@ export default function NovoAgendamentoPage() {
             <label className="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">Serviço</label>
             <div className="relative">
               <Wrench className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300" size={18} />
-              <input 
-                type="text"
+              <select 
                 required
                 value={formData.servico}
                 onChange={(e) => setFormData({...formData, servico: e.target.value})}
-                placeholder="Ex: Manutenção Mensal"
-                className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-slate-50 border border-transparent focus:bg-white focus:border-primary/20 outline-none transition-all text-sm"
-              />
+                className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-slate-50 border border-transparent focus:bg-white focus:border-primary/20 outline-none transition-all text-sm appearance-none"
+              >
+                <option value="">Selecione o serviço</option>
+                <option value="Aquecimento Solar">Aquecimento Solar</option>
+                <option value="Trocador de Calor">Trocador de Calor</option>
+                <option value="Boiler">Boiler</option>
+                <option value="Limpeza de Placas">Limpeza de Placas</option>
+                <option value="Manutenção e Trocas">Manutenção e Trocas</option>
+                <option value="Banheiras">Banheiras</option>
+                <option value="Saunas">Saunas</option>
+                <option value="Spas">Spas</option>
+                <option value="Cascata">Cascata</option>
+                <option value="Iluminação LED">Iluminação LED</option>
+                <option value="Cerca de Proteção">Cerca de Proteção</option>
+                <option value="Casa de Máquinas">Casa de Máquinas</option>
+                <option value="Higienização">Higienização</option>
+                <option value="Aquecimento de Piscina">Aquecimento de Piscina</option>
+                <option value="Reforma Técnica">Reforma Técnica</option>
+                <option value="Automação">Automação</option>
+                <option value="Outro">Outro (Especificar em obs)</option>
+              </select>
             </div>
           </div>
 

@@ -39,6 +39,9 @@ export async function getAdminProfile() {
           id: crypto.randomUUID(),
           nome: "Admin Evolution",
           email: "admin@evolution.com",
+          telefone: "",
+          cargo: "Administrador",
+          biografia: "",
           asaasKey: "",
           pixKey: "",
           pixTipo: "E-mail",
@@ -53,6 +56,9 @@ export async function getAdminProfile() {
       id: "mock-admin",
       nome: "Admin Evolution",
       email: "admin@evolution.com.br",
+      telefone: "",
+      cargo: "Administrador",
+      biografia: "",
       asaasKey: "",
       pixKey: "",
       pixTipo: "E-mail",
@@ -75,6 +81,9 @@ export async function updateAdminProfile(data: any) {
       update: {
         nome: cleanData.nome,
         email: cleanData.email,
+        telefone: cleanData.telefone,
+        cargo: cleanData.cargo,
+        biografia: cleanData.biografia,
         asaasKey: data.asaasKey,
         pixKey: data.pixKey,
         pixTipo: cleanData.pixTipo,
@@ -85,6 +94,9 @@ export async function updateAdminProfile(data: any) {
         id: profileId,
         nome: cleanData.nome,
         email: cleanData.email,
+        telefone: cleanData.telefone,
+        cargo: cleanData.cargo,
+        biografia: cleanData.biografia,
         asaasKey: data.asaasKey,
         pixKey: data.pixKey,
         pixTipo: cleanData.pixTipo,
@@ -263,7 +275,10 @@ export async function getClientes() {
     await checkAdmin();
     return await prisma.cliente.findMany({
       orderBy: { createdAt: 'desc' },
-      include: { agendas: { orderBy: { data: 'desc' }, take: 1 } }
+      include: { 
+        agendas: { orderBy: { data: 'desc' }, take: 1 },
+        equipamentos: true
+      }
     });
   } catch (error) {
     return [];
@@ -477,10 +492,122 @@ export async function deleteCliente(id: string) {
     await prisma.equipamento.deleteMany({ where: { clienteId: id } });
 
     await prisma.cliente.delete({ where: { id } });
-
     return { success: true };
   } catch (error: any) {
     console.error("Erro ao deletar cliente:", error);
+    return { success: false, error: error.message };
+  }
+}
+
+export async function createPatrimonio(data: any) {
+  try {
+    await checkAdmin();
+    const cleanData = sanitizeObject(data);
+    const patrimonio = await prisma.patrimonio.create({
+      data: {
+        nome: cleanData.nome,
+        tipo: cleanData.tipo,
+        identificacao: cleanData.identificacao || null,
+        status: cleanData.status || "ativo",
+        valor: cleanData.valor ? parseFloat(cleanData.valor.toString().replace(',', '.')) : null,
+        dataAquisicao: data.dataAquisicao ? new Date(data.dataAquisicao) : null,
+        localizacao: cleanData.localizacao || null,
+        observacoes: cleanData.observacoes || null
+      }
+    });
+    return { success: true, patrimonio };
+  } catch (error: any) {
+    return { success: false, error: error.message };
+  }
+}
+
+export async function updatePatrimonio(id: string, data: any) {
+  try {
+    await checkAdmin();
+    const cleanData = sanitizeObject(data);
+    const updated = await prisma.patrimonio.update({
+      where: { id },
+      data: {
+        nome: cleanData.nome,
+        tipo: cleanData.tipo,
+        identificacao: cleanData.identificacao || null,
+        status: cleanData.status,
+        valor: cleanData.valor ? parseFloat(cleanData.valor.toString().replace(',', '.')) : null,
+        dataAquisicao: data.dataAquisicao ? new Date(data.dataAquisicao) : null,
+        localizacao: cleanData.localizacao || null,
+        observacoes: cleanData.observacoes || null
+      }
+    });
+    return { success: true, patrimonio: updated };
+  } catch (error: any) {
+    return { success: false, error: error.message };
+  }
+}
+
+export async function deletePatrimonio(id: string) {
+  try {
+    await checkAdmin();
+    await prisma.patrimonio.delete({ where: { id } });
+    return { success: true };
+  } catch (error: any) {
+    return { success: false, error: error.message };
+  }
+}
+
+export async function updateEquipamento(id: string, data: any) {
+  try {
+    await checkAdmin();
+    const cleanData = sanitizeObject(data);
+    const updated = await prisma.equipamento.update({
+      where: { id },
+      data: {
+        nome: cleanData.nome,
+        marca: cleanData.marca,
+        modelo: cleanData.modelo,
+        status: cleanData.status,
+        potencia: cleanData.potencia,
+        numeroSerie: cleanData.numeroSerie,
+        observacoes: cleanData.observacoes,
+        dataInstalacao: data.dataInstalacao ? new Date(data.dataInstalacao) : null,
+        proximaTroca: data.proximaTroca ? new Date(data.proximaTroca) : null
+      }
+    });
+    return { success: true, equipamento: updated };
+  } catch (error: any) {
+    return { success: false, error: error.message };
+  }
+}
+
+export async function createEquipamento(data: any) {
+  try {
+    await checkAdmin();
+    const cleanData = sanitizeObject(data);
+    const equipamento = await prisma.equipamento.create({
+      data: {
+        nome: cleanData.nome,
+        marca: cleanData.marca,
+        modelo: cleanData.modelo,
+        status: cleanData.status || "operacional",
+        clienteId: data.clienteId,
+        potencia: cleanData.potencia,
+        numeroSerie: cleanData.numeroSerie,
+        observacoes: cleanData.observacoes,
+        dataInstalacao: data.dataInstalacao ? new Date(data.dataInstalacao) : null,
+        proximaTroca: data.proximaTroca ? new Date(data.proximaTroca) : null
+      }
+    });
+    return { success: true, equipamento };
+  } catch (error: any) {
+    return { success: false, error: error.message };
+  }
+}
+
+export async function deleteEquipamento(id: string) {
+  try {
+    await checkAdmin();
+    await prisma.equipamento.delete({ where: { id } });
+    return { success: true };
+  } catch (error: any) {
     return { success: false, error: error.message };
   }
 }

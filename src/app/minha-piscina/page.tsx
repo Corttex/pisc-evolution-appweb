@@ -76,17 +76,31 @@ export default function MinhaPiscinaPage() {
     );
   }
 
-  if (!session) {
+  if (!session || !session.cliente) {
     return (
       <div className="min-h-screen bg-[#020617] flex items-center justify-center p-8">
-        <div className="text-center space-y-6">
-          <div className="w-20 h-20 bg-red-500/10 rounded-full flex items-center justify-center mx-auto text-red-500">
-            <Shield size={40} />
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="max-w-md w-full bg-white/5 border border-white/10 rounded-[3rem] p-12 text-center space-y-8 backdrop-blur-3xl shadow-2xl"
+        >
+          <div className="w-24 h-24 bg-rose-500/10 rounded-[2rem] flex items-center justify-center mx-auto text-rose-500 shadow-inner">
+            <Activity size={48} />
           </div>
-          <h1 className="text-2xl font-black text-white">Sessão Expirada</h1>
-          <p className="text-slate-400">Por favor, realize o login novamente para acessar sua piscina.</p>
-          <a href="/login" className="inline-block px-8 py-4 bg-primary text-white rounded-2xl font-black uppercase tracking-widest hover:scale-105 transition-all">Ir para Login</a>
-        </div>
+          <div className="space-y-4">
+            <h1 className="text-3xl font-black text-white tracking-tighter">Sessão Expirada</h1>
+            <p className="text-slate-400 font-medium leading-relaxed">
+              Por favor, realize o login novamente para acessar sua piscina e o centro de controle inteligente.
+            </p>
+          </div>
+          <a 
+            href="/login" 
+            className="flex items-center justify-center gap-3 w-full py-5 bg-primary text-white rounded-2xl font-black uppercase tracking-[0.2em] text-xs hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-primary/20"
+          >
+            Realizar Login <ArrowRight size={18} />
+          </a>
+          <p className="text-[10px] text-slate-600 font-bold uppercase tracking-[0.3em]">Piscinas Evolution • Segurança de Dados</p>
+        </motion.div>
       </div>
     );
   }
@@ -375,12 +389,7 @@ export default function MinhaPiscinaPage() {
                </div>
 
                <div className="space-y-6">
-                  {[
-                    "Análise Laboratorial 24/7",
-                    "Prioridade Máxima de Atendimento",
-                    "Garantia Vitalícia em Peças",
-                    "Consultoria Direta com Engenharia"
-                  ].map((p, i) => (
+                  {["Análise Laboratorial 24/7", "Prioridade Máxima de Atendimento", "Garantia Vitalícia em Peças", "Consultoria Direta com Engenharia"].map((p, i) => (
                     <div key={i} className="flex items-center gap-4 group">
                        <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-emerald-500 group-hover:bg-emerald-500/10 transition-colors">
                           <CheckCircle2 size={16} />
@@ -473,7 +482,7 @@ export default function MinhaPiscinaPage() {
                   {isOpeningTicket ? (
                     <form onSubmit={handleOpenTicket} className="p-10 space-y-8 max-w-lg mx-auto w-full">
                       <h3 className="text-3xl font-black tracking-tighter">Como podemos ajudar?</h3>
-                      <div className="space-y-4">
+                      <div className="space-y-6">
                         <div className="space-y-2">
                           <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1">Assunto do Chamado</label>
                           <input 
@@ -488,19 +497,20 @@ export default function MinhaPiscinaPage() {
                           <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1">Descrição Detalhada</label>
                           <textarea 
                             required
+                            rows={5}
                             value={newTicket.mensagem}
                             onChange={e => setNewTicket({...newTicket, mensagem: e.target.value})}
                             placeholder="Descreva o que está acontecendo..."
-                            rows={5}
-                            className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 outline-none focus:ring-2 focus:ring-secondary/30 transition-all font-medium resize-none"
+                            className="w-full bg-white/5 border border-white/10 rounded-3xl px-6 py-4 outline-none focus:ring-2 focus:ring-secondary/30 transition-all font-medium resize-none"
                           />
                         </div>
                         <button 
                           type="submit"
                           disabled={sending}
-                          className="w-full h-16 bg-white text-slate-950 rounded-2xl font-black uppercase tracking-widest shadow-2xl shadow-white/5 hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-50"
+                          className="w-full py-5 bg-white text-slate-950 rounded-2xl font-black uppercase tracking-widest text-xs flex items-center justify-center gap-3 shadow-2xl hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-50"
                         >
-                          {sending ? "Enviando..." : "Abrir Chamado Agora"}
+                          {sending ? <Loader2 size={18} className="animate-spin" /> : <Sparkles size={18} />}
+                          Abrir Chamado Agora
                         </button>
                       </div>
                     </form>

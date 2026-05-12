@@ -391,9 +391,9 @@ export default function NovoClientePage() {
             <button 
               type="submit"
               disabled={loading}
-              className="w-full bg-secondary text-primary py-4 rounded-2xl font-black uppercase tracking-widest flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-95 transition-all shadow-lg shadow-secondary/20 disabled:opacity-50"
+              className="w-full bg-slate-900 text-white py-5 rounded-2xl font-black uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-slate-800 active:scale-95 transition-all shadow-xl shadow-slate-900/20 disabled:opacity-50"
             >
-              {loading ? <Loader2 className="animate-spin" /> : <Save size={20} />}
+              {loading ? <Loader2 className="animate-spin" /> : <CheckCircle2 size={22} className="text-emerald-400" />}
               Finalizar Cadastro
             </button>
           </motion.div>

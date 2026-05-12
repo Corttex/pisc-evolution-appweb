@@ -62,7 +62,9 @@ export async function updateConfig(data: any) {
     social_facebook: cleanData.social_facebook,
     asaasKey: cleanData.asaasKey,
     asaasEnv: cleanData.asaasEnv,
-    pixSinal: parseFloat(cleanData.pixSinal) || 50.0
+    pixSinal: parseFloat(cleanData.pixSinal) || 50.0,
+    pixChave: cleanData.pixChave,
+    pixBeneficiario: cleanData.pixBeneficiario
   };
 
   try {

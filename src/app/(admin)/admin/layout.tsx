@@ -23,7 +23,7 @@ const menuItems = [
   { icon: Calendar, label: "Agenda", href: "/admin/agenda" },
   { icon: Users, label: "Clientes", href: "/admin/clientes" },
   { icon: LifeBuoy, label: "Central de Chamados", href: "/admin/chamados" },
-  { icon: DollarSign, label: "Financeiro", href: "/admin/financeiro/config" },
+  { icon: DollarSign, label: "Financeiro", href: "/admin/financeiro" },
   { icon: Package, label: "Estoque", href: "/admin/estoque" },
   { icon: Building, label: "Patrimônio", href: "/admin/patrimonio" },
   { icon: Settings, label: "Configurações", href: "/admin/configuracoes" },
@@ -70,7 +70,7 @@ export default function AdminLayout({
                 href={item.href}
                 className={`flex items-center gap-4 p-4 rounded-2xl transition-all duration-300 group ${
                   isActive 
-                    ? "bg-cta text-white shadow-2xl shadow-cta/30" 
+                    ? "bg-cta text-primary shadow-2xl shadow-cta/30" 
                     : "text-white/40 hover:bg-white/5 hover:text-white"
                 }`}
               >

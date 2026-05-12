@@ -30,7 +30,9 @@ export default function ConfiguracoesPage() {
     social_facebook: "",
     asaasKey: "",
     asaasEnv: "sandbox",
-    pixSinal: 50
+    pixSinal: 50,
+    pixChave: "",
+    pixBeneficiario: ""
   });
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -50,7 +52,9 @@ export default function ConfiguracoesPage() {
           social_facebook: config.social_facebook || "",
           asaasKey: (config as any).asaasKey || "",
           asaasEnv: (config as any).asaasEnv || "sandbox",
-          pixSinal: (config as any).pixSinal || 50
+          pixSinal: (config as any).pixSinal || 50,
+          pixChave: (config as any).pixChave || "",
+          pixBeneficiario: (config as any).pixBeneficiario || ""
         });
       }
       setLoading(false);
@@ -246,6 +250,46 @@ export default function ConfiguracoesPage() {
                        <ShieldCheck className="text-blue-400 shrink-0" size={20} />
                        <p className="text-xs text-blue-100/60 leading-relaxed font-medium">
                          Suas chaves de API são criptografadas em repouso. O ambiente de **Sandbox** permite simular pagamentos sem custos reais.
+                       </p>
+                    </div>
+
+                    <div className="flex items-center gap-4 pb-6 border-b border-white/5 relative z-10 pt-4">
+                        <div className="p-3 bg-emerald-500 rounded-2xl shadow-lg shadow-emerald-500/40">
+                          <CreditCard size={24} />
+                        </div>
+                        <div>
+                          <h3 className="font-black text-xl">Pix Banco Central</h3>
+                          <p className="text-emerald-400/60 text-[10px] font-black uppercase tracking-widest">Configuração de Chave Direta</p>
+                        </div>
+                    </div>
+
+                    <div className="space-y-6 relative z-10">
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Chave PIX (CPF/CNPJ/E-mail/EVP)</label>
+                        <input 
+                          type="text" 
+                          value={formData.pixChave}
+                          onChange={(e) => setFormData({...formData, pixChave: e.target.value})}
+                          placeholder="Sua chave PIX"
+                          className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 outline-none focus:ring-2 focus:ring-emerald-500/30 transition-all font-bold text-sm" 
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Nome do Beneficiário</label>
+                        <input 
+                          type="text" 
+                          value={formData.pixBeneficiario}
+                          onChange={(e) => setFormData({...formData, pixBeneficiario: e.target.value})}
+                          placeholder="PISCINAS EVOLUTION LTDA"
+                          className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 outline-none focus:ring-2 focus:ring-emerald-500/30 transition-all font-bold text-sm" 
+                        />
+                      </div>
+                    </div>
+
+                    <div className="p-4 bg-emerald-500/5 rounded-2xl border border-emerald-500/10 flex items-start gap-4">
+                       <ShieldCheck className="text-emerald-400 shrink-0" size={20} />
+                       <p className="text-xs text-emerald-100/60 leading-relaxed font-medium">
+                         O Pix Banco Central utiliza a chave direta para geração de QRCodes dinâmicos com "Copia e Cola". O Webhook do Asaas é usado para confirmação automática.
                        </p>
                     </div>
                   </div>

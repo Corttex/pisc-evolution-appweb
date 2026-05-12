@@ -41,7 +41,7 @@ export async function loginCliente(cpf: string, senha: string) {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "strict",
-      maxAge: 60 * 60, // 1 hora (auto-expiração curta conforme solicitado)
+      maxAge: 60 * 60 * 24 * 30, // 30 dias para evitar expiração frequente
       path: "/",
     });
 
