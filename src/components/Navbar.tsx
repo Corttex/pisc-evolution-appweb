@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X, Droplet, Sun, Wind, Activity, Home, Lightbulb, Shield, Settings, Wrench, PaintBucket, Smartphone } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export const Navbar = ({ config }: { config: any }) => {
@@ -10,28 +10,32 @@ export const Navbar = ({ config }: { config: any }) => {
   const title = config?.site_titulo || "Piscinas Evolution";
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  // Split services to map icons (simulated) for the mega menu
+  const serviceItems = [
+    { name: "Aquecimento Solar", href: "/servicos/aquecimento-solar", icon: Sun },
+    { name: "Trocador de Calor", href: "/servicos/trocador-de-calor", icon: Activity },
+    { name: "Boiler", href: "/servicos/boiler", icon: Droplet },
+    { name: "Limpeza de Placas", href: "/servicos/limpeza-de-placas", icon: Wind },
+    { name: "Manutenção e Trocas", href: "/servicos/manutencao-e-trocas", icon: Wrench },
+    { name: "Banheiras", href: "/servicos/banheiras", icon: Droplet },
+    { name: "Saunas", href: "/servicos/saunas", icon: Wind },
+    { name: "Spas", href: "/servicos/spas", icon: Droplet },
+    { name: "Cascata", href: "/servicos/cascata", icon: Droplet },
+    { name: "Iluminação LED", href: "/servicos/iluminacao-led", icon: Lightbulb },
+    { name: "Cerca de Proteção", href: "/servicos/cerca-de-protecao", icon: Shield },
+    { name: "Casa de Máquinas", href: "/servicos/casa-de-maquinas", icon: Settings },
+    { name: "Higienização", href: "/servicos/higienizacao", icon: PaintBucket },
+    { name: "Aquecimento de Piscina", href: "/servicos/aquecimento-de-piscina", icon: Sun },
+    { name: "Reforma Técnica", href: "/servicos/reforma-tecnica", icon: Wrench },
+    { name: "Automação", href: "/servicos/automacao", icon: Smartphone }
+  ];
+
   const menuItems = [
     { name: "Início", href: "/" },
     { 
       name: "Serviços", 
-      submenu: [
-        { name: "Aquecimento Solar", href: "/servicos/aquecimento-solar" },
-        { name: "Trocador de Calor", href: "/servicos/trocador-de-calor" },
-        { name: "Boiler", href: "/servicos/boiler" },
-        { name: "Limpeza de Placas", href: "/servicos/limpeza-de-placas" },
-        { name: "Manutenção e Trocas", href: "/servicos/manutencao-e-trocas" },
-        { name: "Banheiras", href: "/servicos/banheiras" },
-        { name: "Saunas", href: "/servicos/saunas" },
-        { name: "Spas", href: "/servicos/spas" },
-        { name: "Cascata", href: "/servicos/cascata" },
-        { name: "Iluminação LED", href: "/servicos/iluminacao-led" },
-        { name: "Cerca de Proteção", href: "/servicos/cerca-de-protecao" },
-        { name: "Casa de Máquinas", href: "/servicos/casa-de-maquinas" },
-        { name: "Higienização", href: "/servicos/higienizacao" },
-        { name: "Aquecimento de Piscina", href: "/servicos/aquecimento-de-piscina" },
-        { name: "Reforma Técnica", href: "/servicos/reforma-tecnica" },
-        { name: "Automação", href: "/servicos/automacao" }
-      ]
+      isMega: true,
+      submenu: serviceItems
     },
     { 
       name: "Empresa", 
@@ -43,73 +47,107 @@ export const Navbar = ({ config }: { config: any }) => {
   ];
 
   return (
-    <header className="glass-premium z-50 sticky top-0 border-b border-slate-100/50">
-      <nav className="flex justify-between items-center px-8 py-3 max-w-[1400px] mx-auto w-full">
-        <Link href="/" className="hover:opacity-80 transition-all block dark:bg-white/90 dark:backdrop-blur-sm dark:p-2 dark:-m-2 dark:rounded-xl dark:shadow-sm">
+    <header className="fixed w-full z-50 top-0 transition-all duration-300 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl border-b border-slate-200/50 dark:border-slate-800/50 shadow-sm">
+      <nav className="flex justify-between items-center px-6 lg:px-8 py-4 max-w-[1400px] mx-auto w-full">
+        {/* Logo Modern Pill */}
+        <Link 
+          href="/" 
+          className="relative group flex items-center bg-white/90 dark:bg-slate-900/90 backdrop-blur-md px-4 py-2.5 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 hover:shadow-md transition-all duration-300"
+        >
           <img 
             src="/Logo/Logo Horizontal.svg" 
             alt={title} 
-            className="h-12 w-auto"
+            className="h-10 lg:h-12 w-auto transition-transform duration-300 group-hover:scale-[1.02]"
           />
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden lg:flex items-center gap-8 font-body text-sm font-medium tracking-tight">
+        <div className="hidden lg:flex items-center gap-2 font-body text-[15px] font-semibold tracking-tight">
           {menuItems.map((item, idx) => (
             <div key={idx} className="relative group">
               {item.submenu ? (
                 <>
-                  <button className="flex items-center gap-1 text-slate-500 hover:text-primary transition-colors py-4">
-                    {item.name} <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
+                  <button className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-primary dark:hover:text-white transition-all duration-300">
+                    {item.name} 
+                    <ChevronDown size={14} className="group-hover:rotate-180 transition-transform duration-300 opacity-50 group-hover:opacity-100" />
                   </button>
-                  <div className="absolute top-full left-0 w-64 bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl border border-slate-100 p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0">
-                    <div className="space-y-1">
-                      {item.submenu.map((sub, sIdx) => (
-                        <Link 
-                          key={sIdx} 
-                          href={sub.href}
-                          className="block px-4 py-2.5 text-slate-500 hover:text-primary hover:bg-slate-50 rounded-xl transition-all"
-                        >
-                          {sub.name}
-                        </Link>
-                      ))}
-                    </div>
+                  
+                  {/* Dropdown Container */}
+                  <div className={`absolute top-[120%] left-1/2 -translate-x-1/2 ${item.isMega ? 'w-[640px]' : 'w-64'} bg-white dark:bg-slate-900/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-slate-100 dark:border-slate-800 p-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-4 group-hover:translate-y-0 before:absolute before:-top-6 before:left-0 before:w-full before:h-6`}>
+                    
+                    {item.isMega ? (
+                      <div className="grid grid-cols-2 gap-2 p-2">
+                        {item.submenu.map((sub: any, sIdx) => {
+                          const Icon = sub.icon || Activity;
+                          return (
+                            <Link 
+                              key={sIdx} 
+                              href={sub.href}
+                              className="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all duration-200 group/link"
+                            >
+                              <div className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center group-hover/link:bg-primary/10 group-hover/link:text-primary transition-colors">
+                                <Icon size={16} />
+                              </div>
+                              <span className="font-medium text-sm">{sub.name}</span>
+                            </Link>
+                          )
+                        })}
+                      </div>
+                    ) : (
+                      <div className="space-y-1">
+                        {item.submenu.map((sub, sIdx) => (
+                          <Link 
+                            key={sIdx} 
+                            href={sub.href}
+                            className="block px-4 py-2.5 text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all duration-200 font-medium"
+                          >
+                            {sub.name}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </>
               ) : (
-                <Link className="text-slate-500 hover:text-primary transition-colors py-4" href={item.href}>
+                <Link 
+                  className="px-4 py-2.5 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-primary dark:hover:text-white transition-all duration-300" 
+                  href={item.href}
+                >
                   {item.name}
                 </Link>
               )}
             </div>
           ))}
           
+          <div className="w-px h-6 bg-slate-200 dark:bg-slate-700 mx-2" />
+
           <Link 
-            className="px-4 py-2 bg-secondary/10 text-secondary rounded-xl font-bold hover:bg-secondary hover:text-white transition-all duration-300 ml-4" 
+            className="px-5 py-2.5 bg-secondary/10 dark:bg-secondary/20 text-secondary dark:text-secondary-light rounded-xl font-bold hover:bg-secondary hover:text-white transition-all duration-300 ml-2" 
             href="/minha-piscina"
           >
-            Portal do Cliente
+            Portal
           </Link>
         </div>
 
-        <div className="flex items-center gap-4">
+        {/* Desktop Actions */}
+        <div className="flex items-center gap-3">
           <Link 
             href="/agendamento"
-            className="hidden xl:block bg-primary text-white px-6 py-2.5 rounded-2xl font-body font-bold transition-all hover:scale-105 active:scale-95 shadow-xl shadow-primary/20 text-xs uppercase tracking-wider"
+            className="hidden xl:block bg-primary text-white px-6 py-3 rounded-xl font-body font-bold transition-all duration-300 hover:shadow-xl hover:shadow-primary/20 hover:-translate-y-0.5 active:scale-95 text-[13px] uppercase tracking-wider"
           >
-            Fazer Agendamento
+            Agendar
           </Link>
           <Link 
             href={`https://wa.me/${whatsapp.replace(/\D/g, '')}`} 
             target="_blank"
-            className="hidden sm:flex bg-cta text-white px-6 py-2.5 rounded-2xl font-body font-bold transition-all hover:scale-105 active:scale-95 shadow-xl shadow-cta/20 items-center gap-2 text-xs uppercase tracking-wider"
+            className="hidden sm:flex bg-cta text-white px-6 py-3 rounded-xl font-body font-bold transition-all duration-300 hover:shadow-xl hover:shadow-cta/30 hover:-translate-y-0.5 active:scale-95 items-center gap-2 text-[13px] uppercase tracking-wider"
           >
             WhatsApp
           </Link>
           
           {/* Mobile Menu Toggle */}
           <button 
-            className="lg:hidden p-2 text-primary hover:bg-slate-100 rounded-xl transition-colors"
+            className="lg:hidden p-2 text-primary dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -121,23 +159,23 @@ export const Navbar = ({ config }: { config: any }) => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div 
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="lg:hidden absolute top-full left-0 w-full bg-white border-b border-slate-100 shadow-2xl p-8 space-y-6 z-50 overflow-y-auto max-h-[80vh]"
+            exit={{ opacity: 0, y: -10 }}
+            className="lg:hidden absolute top-full left-0 w-full bg-white dark:bg-slate-950 border-b border-slate-100 dark:border-slate-800 shadow-2xl p-6 space-y-6 z-50 overflow-y-auto max-h-[85vh]"
           >
             {menuItems.map((item, idx) => (
-              <div key={idx} className="space-y-4">
+              <div key={idx} className="space-y-3">
                 {item.submenu ? (
                   <>
-                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{item.name}</p>
-                    <div className="grid grid-cols-1 gap-4 pl-4 border-l-2 border-slate-100">
+                    <p className="text-[11px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">{item.name}</p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pl-2 border-l-2 border-slate-100 dark:border-slate-800">
                       {item.submenu.map((sub, sIdx) => (
                         <Link 
                           key={sIdx} 
                           href={sub.href}
                           onClick={() => setIsMobileMenuOpen(false)}
-                          className="text-primary font-bold text-lg"
+                          className="px-3 py-2 text-slate-700 dark:text-slate-300 font-semibold hover:text-primary dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-900 rounded-lg transition-colors"
                         >
                           {sub.name}
                         </Link>
@@ -148,25 +186,25 @@ export const Navbar = ({ config }: { config: any }) => {
                   <Link 
                     href={item.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block text-2xl font-bold text-primary"
+                    className="block text-xl font-bold text-slate-900 dark:text-white"
                   >
                     {item.name}
                   </Link>
                 )}
               </div>
             ))}
-            <div className="pt-8 flex flex-col gap-4">
+            <div className="pt-6 mt-6 border-t border-slate-100 dark:border-slate-800 flex flex-col gap-3">
               <Link 
                 href="/minha-piscina"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="w-full bg-secondary/10 text-secondary py-4 rounded-2xl font-bold text-center"
+                className="w-full bg-secondary/10 dark:bg-secondary/20 text-secondary py-3.5 rounded-xl font-bold text-center text-sm uppercase tracking-wide"
               >
                 Portal do Cliente
               </Link>
               <Link 
                 href="/agendamento"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="w-full bg-primary text-white py-4 rounded-2xl font-bold text-center"
+                className="w-full bg-primary text-white py-3.5 rounded-xl font-bold text-center text-sm uppercase tracking-wide"
               >
                 Agendamento Online
               </Link>
