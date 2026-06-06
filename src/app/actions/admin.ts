@@ -146,6 +146,7 @@ export async function updateAdminProfile(data: any) {
       }
     });
 
+    await prisma.systemLog.create({ data: { nivel: "INFO", acao: "Update Admin Profile", mensagem: "Perfil Administrativo atualizado", detalhes: cleanData.email } });
     return { success: true, profile: updated };
   } catch (error: any) {
     console.error("Erro ao atualizar perfil:", error);
@@ -261,6 +262,7 @@ export async function createCliente(data: any) {
       });
     }
 
+    await prisma.systemLog.create({ data: { nivel: "INFO", acao: "Create Cliente", mensagem: "Novo cliente criado", detalhes: `ID: ${cliente.id} - ${cliente.nome}` } });
     return { success: true, cliente };
   } catch (error: any) {
     console.error("ERRO CRÍTICO em createCliente:", error);
@@ -295,6 +297,7 @@ export async function updateAdminConfig(data: any) {
         ...cleanData
       }
     });
+    await prisma.systemLog.create({ data: { nivel: "INFO", acao: "Update Config", mensagem: "Configurações globais atualizadas", detalhes: "global" } });
     return { success: true, config: updated };
   } catch (error) {
     console.error("Erro ao atualizar config:", error);
@@ -395,6 +398,7 @@ export async function createAgendamento(data: any) {
         status: "Pendente"
       }
     });
+    await prisma.systemLog.create({ data: { nivel: "INFO", acao: "Create Agendamento", mensagem: "Novo agendamento criado", detalhes: `Serviço: ${data.servico}` } });
     return { success: true, agendamento };
   } catch (error: any) {
     return { success: false, error: error.message };
@@ -412,6 +416,7 @@ export async function updateAgendamento(id: string, data: any) {
         valorTotal: data.valorTotal ? parseFloat(data.valorTotal) : 0,
       }
     });
+    await prisma.systemLog.create({ data: { nivel: "INFO", acao: "Update Agendamento", mensagem: "Agendamento atualizado", detalhes: `ID: ${id}` } });
     return { success: true, agendamento: updated };
   } catch (error: any) {
     return { success: false, error: error.message };
@@ -428,6 +433,7 @@ export async function updateAgendaStatus(id: string, status: string, pagamentoSt
         ...(pagamentoStatus && { pagamentoStatus })
       }
     });
+    await prisma.systemLog.create({ data: { nivel: "INFO", acao: "Update Status Agendamento", mensagem: `Status alterado para ${status}`, detalhes: `ID: ${id}` } });
     return { success: true, agenda: updated };
   } catch (error: any) {
     return { success: false, error: error.message };
@@ -483,6 +489,7 @@ export async function sendAdminMessage(ticketId: string, texto: string) {
       data: { updatedAt: new Date() }
     });
 
+    await prisma.systemLog.create({ data: { nivel: "INFO", acao: "Send Ticket Message", mensagem: "Mensagem enviada no chamado", detalhes: `Ticket: ${ticketId}` } });
     return { success: true, mensagem };
   } catch (error: any) {
     return { success: false, error: error.message };
@@ -496,6 +503,7 @@ export async function updateTicketStatus(ticketId: string, status: string) {
       where: { id: ticketId },
       data: { status }
     });
+    await prisma.systemLog.create({ data: { nivel: "INFO", acao: "Update Ticket Status", mensagem: `Status do chamado alterado para ${status}`, detalhes: `Ticket: ${ticketId}` } });
     return { success: true };
   } catch (error: any) {
     return { success: false, error: error.message };
@@ -515,6 +523,7 @@ export async function createMedicao(clienteId: string, data: any) {
         data: new Date()
       }
     });
+    await prisma.systemLog.create({ data: { nivel: "INFO", acao: "Create Medicao", mensagem: "Nova medição registrada", detalhes: `Cliente: ${clienteId}` } });
     return { success: true, medicao };
   } catch (error: any) {
     return { success: false, error: error.message };
@@ -551,6 +560,7 @@ export async function updateCliente(id: string, data: any) {
       }
     });
 
+    await prisma.systemLog.create({ data: { nivel: "INFO", acao: "Update Cliente", mensagem: "Cliente atualizado", detalhes: `ID: ${updated.id} - ${updated.nome}` } });
     return { success: true, cliente: updated };
   } catch (error: any) {
     console.error("Erro ao atualizar cliente:", error);
@@ -571,6 +581,7 @@ export async function deleteCliente(id: string) {
     await prisma.equipamento.deleteMany({ where: { clienteId: id } });
 
     await prisma.cliente.delete({ where: { id } });
+    await prisma.systemLog.create({ data: { nivel: "WARNING", acao: "Delete Cliente", mensagem: "Cliente removido do sistema", detalhes: `ID: ${id}` } });
     return { success: true };
   } catch (error: any) {
     console.error("Erro ao deletar cliente:", error);
@@ -598,6 +609,7 @@ export async function createPatrimonio(data: any) {
         observacoes: cleanData.observacoes || null
       }
     });
+    await prisma.systemLog.create({ data: { nivel: "INFO", acao: "Create Patrimonio", mensagem: "Novo patrimônio cadastrado", detalhes: patrimonio.nome } });
     return { success: true, patrimonio };
   } catch (error: any) {
     return { success: false, error: error.message };
@@ -625,6 +637,7 @@ export async function updatePatrimonio(id: string, data: any) {
         observacoes: cleanData.observacoes || null
       }
     });
+    await prisma.systemLog.create({ data: { nivel: "INFO", acao: "Update Patrimonio", mensagem: "Patrimônio atualizado", detalhes: `ID: ${id}` } });
     return { success: true, patrimonio: updated };
   } catch (error: any) {
     return { success: false, error: error.message };
@@ -635,6 +648,7 @@ export async function deletePatrimonio(id: string) {
   try {
     await checkAdmin();
     await prisma.patrimonio.delete({ where: { id } });
+    await prisma.systemLog.create({ data: { nivel: "WARNING", acao: "Delete Patrimonio", mensagem: "Patrimônio removido", detalhes: `ID: ${id}` } });
     return { success: true };
   } catch (error: any) {
     return { success: false, error: error.message };
@@ -659,6 +673,7 @@ export async function updateEquipamento(id: string, data: any) {
         proximaTroca: data.proximaTroca ? new Date(data.proximaTroca) : null
       }
     });
+    await prisma.systemLog.create({ data: { nivel: "INFO", acao: "Update Equipamento", mensagem: "Equipamento atualizado", detalhes: `ID: ${id}` } });
     return { success: true, equipamento: updated };
   } catch (error: any) {
     return { success: false, error: error.message };
@@ -683,6 +698,7 @@ export async function createEquipamento(data: any) {
         proximaTroca: data.proximaTroca ? new Date(data.proximaTroca) : null
       }
     });
+    await prisma.systemLog.create({ data: { nivel: "INFO", acao: "Create Equipamento", mensagem: "Novo equipamento cadastrado", detalhes: equipamento.nome } });
     return { success: true, equipamento };
   } catch (error: any) {
     return { success: false, error: error.message };
@@ -693,6 +709,7 @@ export async function deleteEquipamento(id: string) {
   try {
     await checkAdmin();
     await prisma.equipamento.delete({ where: { id } });
+    await prisma.systemLog.create({ data: { nivel: "WARNING", acao: "Delete Equipamento", mensagem: "Equipamento removido", detalhes: `ID: ${id}` } });
     return { success: true };
   } catch (error: any) {
     return { success: false, error: error.message };

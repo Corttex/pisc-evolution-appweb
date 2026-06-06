@@ -22,6 +22,7 @@ export default function RootLayout({
     <html
       lang="pt-BR"
       className="h-full antialiased"
+      suppressHydrationWarning
     >
       <head>
         <script
