@@ -28,7 +28,6 @@ const menuItems = [
   { icon: DollarSign, label: "Financeiro", href: "/admin/financeiro" },
   { icon: Package, label: "Estoque", href: "/admin/estoque" },
   { icon: Building, label: "Patrimônio", href: "/admin/patrimonio" },
-  { icon: Layout, label: "Editor de Telas", href: "/admin/editor" },
   { icon: Settings, label: "Configurações", href: "/admin/configuracoes" },
 ];
 

@@ -10,6 +10,7 @@ import {
   Delete,
   FileText,
   Home,
+  Layout,
   Settings as SettingsIcon,
   ShieldAlert
 } from "lucide-react";
@@ -19,6 +20,7 @@ import { DarkModeToggle } from "@/components/DarkModeToggle";
 const menuItems = [
   { icon: LayoutDashboard, label: "Painel Webmaster", href: "/webmaster" },
   { icon: FileText, label: "Logs de Sistema", href: "/webmaster/logs" },
+  { icon: Layout, label: "Editor do Site", href: "/webmaster/editor" },
   { icon: SettingsIcon, label: "Configurações Avançadas", href: "/webmaster/configuracoes" },
   { icon: ShieldAlert, label: "Segurança", href: "/webmaster/seguranca" },
 ];
