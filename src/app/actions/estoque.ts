@@ -2,16 +2,8 @@
 
 import { prisma } from "@/lib/db";
 import { revalidatePath } from "next/cache";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { checkAdmin } from "./admin";
 import { sanitizeObject } from "@/lib/sanitize";
-
-async function checkAdmin() {
-  const session = await getServerSession(authOptions);
-  if (!session || (session.user as any).role !== "ADMIN") {
-    throw new Error("Não autorizado");
-  }
-}
 
 export async function getEstoque() {
   await checkAdmin();

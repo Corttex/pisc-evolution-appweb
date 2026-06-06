@@ -23,21 +23,25 @@ const faqs = [
   }
 ];
 
-export const FAQ = () => {
+export const FAQ = ({ content }: { content?: any }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const subtitle = content?.subtitle || "Dúvidas Frequentes";
+  const title = content?.title || "Perguntas Comuns";
+  const itemsList = content?.items || faqs;
 
   return (
     <section className="py-24 px-8 bg-white">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-16">
-          <span className="font-label-caps text-secondary mb-2 block uppercase tracking-widest font-bold">Dúvidas Frequentes</span>
-          <h2 className="text-4xl md:text-5xl text-primary font-bold tracking-tight">Perguntas Comuns</h2>
+          <span className="font-label-caps text-secondary mb-2 block uppercase tracking-widest font-bold">{subtitle}</span>
+          <h2 className="text-4xl md:text-5xl text-primary font-bold tracking-tight">{title}</h2>
         </div>
 
         <div className="space-y-4">
-          {faqs.map((faq, index) => (
+          {itemsList.map((faq: any, index: number) => (
             <motion.div
               key={index}
+
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

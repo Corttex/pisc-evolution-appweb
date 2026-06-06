@@ -34,14 +34,34 @@ export const authOptions: NextAuthOptions = {
         });
 
         if (!user || !user.password) {
+          if (credentials?.email && credentials?.password) {
+            const admin = await prisma.adminProfile.findFirst({
+              where: { email: credentials.email }
+            });
+            if (admin && admin.senha === credentials.password) {
+              return {
+                id: admin.id,
+                email: admin.email,
+                name: admin.nome,
+                role: "ADMIN"
+              };
+            }
+          }
           return null;
         }
 
-        // O password pode ser uma senha normal ou um PIN hashado
-        const isValid = await bcrypt.compare(credentials.password, user.password);
+        let isValid = false;
+        isValid = await bcrypt.compare(credentials.password, user.password);
 
         if (!isValid) {
-          return null;
+          // Fallback para admin que tem usuário mas usa a senha do AdminProfile
+          if (user.role === "ADMIN") {
+            const admin = await prisma.adminProfile.findFirst();
+            if (admin && admin.senha === credentials.password) {
+              isValid = true;
+            }
+          }
+          if (!isValid) return null;
         }
 
         console.log("Authorize: Usuário autenticado:", { email: user.email, role: user.role });
@@ -56,7 +76,7 @@ export const authOptions: NextAuthOptions = {
   ],
   session: {
     strategy: "jwt",
-    maxAge: 1 * 60 * 60, // 1 hour (auto-expiração curta)
+    maxAge: 8 * 60 * 60, // 8 horas
   },
   callbacks: {
     async jwt({ token, user }) {

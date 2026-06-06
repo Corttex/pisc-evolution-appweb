@@ -31,13 +31,14 @@ export default function AgendamentoPage() {
     
     if (res.success) {
       setSuccess(true);
-      setResult(res.agenda);
+      setResult(res);
     } else {
       alert("Erro ao agendar: " + res.error);
     }
   };
 
   if (success) {
+    const agenda = result?.agenda;
     return (
       <main className="min-h-screen bg-[#F1F5F9]">
         <div className="max-w-2xl mx-auto py-24 px-8 text-center">
@@ -46,20 +47,20 @@ export default function AgendamentoPage() {
           </div>
           <h1 className="text-4xl font-bold text-primary mb-4">Agendamento Realizado!</h1>
           <p className="text-slate-600 text-lg mb-12">
-            {result?.pixQrCode 
-              ? <>Recebemos seu pedido. Para confirmar sua visita, realize o pagamento do sinal de <strong>R$ {result?.valorSinal?.toFixed(2)}</strong> via PIX.</>
+            {agenda?.pixQrCode 
+              ? <>Recebemos seu pedido. Para confirmar sua visita, realize o pagamento do sinal de <strong>R$ {agenda?.valorSinal?.toFixed(2)}</strong> via PIX.</>
               : result?.message || "Seu agendamento foi registrado com sucesso. Nossa equipe entrará em contato em breve."}
           </p>
 
           
           <div className="bg-white p-8 rounded-3xl pool-shadow border border-slate-200 mb-8">
-            {result?.pixQrCode ? (
+            {agenda?.pixQrCode ? (
               <div className="flex flex-col items-center">
-                <img src={`data:image/png;base64,${result.pixQrCode}`} alt="QR Code Pix" className="w-64 h-64 mb-6" />
-                <p className="text-sm text-slate-500 mb-4 font-mono break-all">{result.pixCopiaECola}</p>
+                <img src={`data:image/png;base64,${agenda.pixQrCode}`} alt="QR Code Pix" className="w-64 h-64 mb-6" />
+                <p className="text-sm text-slate-500 mb-4 font-mono break-all">{agenda.pixCopiaECola}</p>
                 <button 
                   onClick={() => {
-                    navigator.clipboard.writeText(result.pixCopiaECola);
+                    navigator.clipboard.writeText(agenda.pixCopiaECola);
                     alert("Código PIX copiado!");
                   }}
                   className="bg-primary text-white px-6 py-2 rounded-xl text-sm font-bold"

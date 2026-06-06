@@ -5,16 +5,17 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { MessageCircle, Image as ImageIcon } from "lucide-react";
 
-export const Hero = ({ config }: { config: any }) => {
-  const headline = "Engenharia e Conforto Térmico de Elite";
-  const subheadline = "Projetos exclusivos de aquecimento, construção e automação para piscinas de alto padrão em Brasília.";
-  const whatsapp = config?.site_whatsapp || "5561999999999";
+export const Hero = ({ config, content }: { config: any; content?: any }) => {
+  const headline = content?.headline || "Engenharia e Conforto Térmico de Elite";
+  const subheadline = content?.subheadline || "Projetos exclusivos de aquecimento, construção e automação para piscinas de alto padrão em Brasília.";
+  const whatsapp = content?.whatsapp || config?.site_whatsapp || "5561999999999";
+  const bgImage = content?.bgImage || "/res_pool_1.png";
 
   return (
     <section className="relative h-[95vh] flex items-center overflow-hidden">
       <div className="absolute inset-0 z-0">
         <Image
-          src="/res_pool_1.png"
+          src={bgImage}
           alt="Piscina Residencial Evolution"
 
           fill
@@ -23,6 +24,7 @@ export const Hero = ({ config }: { config: any }) => {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/70 to-transparent"></div>
       </div>
+
       
       <div className="relative z-10 max-w-[1400px] mx-auto px-8 w-full">
         <motion.div 

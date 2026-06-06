@@ -193,5 +193,14 @@ model AdminProfile {
   pixKey    String?
   pixTipo   String? @default("E-mail")
   darkMode  Boolean @default(false)
+  senha     String  @default("000000")
   createdAt DateTime @default(now())
 }
+
+model PaginaSection {
+  id        String   @id @default(uuid())
+  section   String   @unique
+  content   Json
+  updatedAt DateTime @updatedAt
+}
+

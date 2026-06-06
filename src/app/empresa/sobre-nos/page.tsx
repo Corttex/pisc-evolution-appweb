@@ -9,10 +9,10 @@ import Link from "next/link";
 
 export default function SobreNosPage() {
   const stats = [
-    { label: "Anos de Experiência", value: "15+" },
-    { label: "Projetos Entregues", value: "1.200+" },
-    { label: "Clientes Ativos", value: "850+" },
-    { label: "Técnicos Especializados", value: "24" }
+    { label: "Anos de Experiência", value: "5+" },
+    { label: "Projetos Entregues", value: "400+" },
+    { label: "Clientes Ativos", value: "283+" },
+    { label: "Técnicos Especializados", value: "8" }
   ];
 
   return (

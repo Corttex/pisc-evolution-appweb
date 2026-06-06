@@ -72,7 +72,7 @@ export default function AdminDashboard() {
            <motion.h1 
              initial={{ opacity: 0, x: -20 }}
              animate={{ opacity: 1, x: 0 }}
-             className="text-4xl font-black text-slate-900 tracking-tight"
+             className="text-4xl font-black text-slate-900 dark:text-white tracking-tight"
            >
              Painel Administrativo
            </motion.h1>
@@ -80,13 +80,13 @@ export default function AdminDashboard() {
              initial={{ opacity: 0, x: -20 }}
              animate={{ opacity: 1, x: 0 }}
              transition={{ delay: 0.1 }}
-             className="text-slate-500 font-medium"
+             className="text-slate-500 dark:text-slate-400 font-medium"
            >
              Bem-vindo de volta! Aqui está o resumo das Piscinas Evolution.
            </motion.p>
         </div>
         <div className="flex gap-3">
-           <Link href="/admin/perfil" className="bg-white text-slate-600 p-4 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:bg-slate-50 transition-all">
+           <Link href="/admin/perfil" className="bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:bg-slate-50 dark:hover:bg-slate-700 transition-all">
               <Settings size={24} />
            </Link>
            <Link href="/admin/clientes/novo" className="bg-primary text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-2 shadow-xl shadow-primary/30 hover:scale-[1.02] hover:shadow-2xl transition-all">
@@ -103,7 +103,7 @@ export default function AdminDashboard() {
              initial={{ opacity: 0, y: 20 }}
              animate={{ opacity: 1, y: 0 }}
              transition={{ delay: i * 0.1 }}
-             className="bg-white p-7 rounded-[2.5rem] border border-slate-100 shadow-xl shadow-slate-200/40 hover:shadow-2xl hover:-translate-y-1 transition-all group relative overflow-hidden"
+             className="bg-white dark:bg-slate-900 p-7 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 shadow-xl shadow-slate-200/40 dark:shadow-none hover:shadow-2xl hover:-translate-y-1 transition-all group relative overflow-hidden"
            >
               {loading ? (
                 <div className="animate-pulse space-y-4">
@@ -118,7 +118,7 @@ export default function AdminDashboard() {
                         <stat.icon size={24} />
                      </div>
                      <div className="flex flex-col items-end">
-                        <div className="flex items-center gap-1.5 bg-slate-50 px-2 py-1 rounded-lg border border-slate-100">
+                        <div className="flex items-center gap-1.5 bg-slate-50 dark:bg-slate-800 px-2 py-1 rounded-lg border border-slate-100 dark:border-slate-700">
                            <div className={`w-1.5 h-1.5 rounded-full ${stat.color.replace('text', 'bg')} animate-pulse`} />
                            <span className={`text-[9px] font-black uppercase tracking-tighter ${stat.color}`}>
                               {stat.trend}
@@ -127,8 +127,8 @@ export default function AdminDashboard() {
                      </div>
                   </div>
                   <div className="mt-8 relative z-10">
-                    <p className="text-slate-400 text-[10px] font-black uppercase tracking-[0.25em] ml-1">{stat.label}</p>
-                    <h3 className="text-4xl font-black text-slate-900 mt-2 tracking-tighter">{stat.value}</h3>
+                    <p className="text-slate-400 dark:text-slate-500 text-[10px] font-black uppercase tracking-[0.25em] ml-1">{stat.label}</p>
+                    <h3 className="text-4xl font-black text-slate-900 dark:text-white mt-2 tracking-tighter">{stat.value}</h3>
                   </div>
                 </>
               )}
@@ -139,11 +139,11 @@ export default function AdminDashboard() {
 
       {/* Charts Section */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div className="lg:col-span-2 bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-xl shadow-slate-200/50">
+        <div className="lg:col-span-2 bg-white dark:bg-slate-900 p-8 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 shadow-xl shadow-slate-200/50 dark:shadow-none">
           <div className="flex justify-between items-center mb-8">
             <div>
-              <h3 className="text-xl font-black text-slate-900">Fluxo de Operação</h3>
-              <p className="text-xs text-slate-400 font-bold uppercase tracking-widest mt-1">Desempenho dos Últimos 7 Dias</p>
+              <h3 className="text-xl font-black text-slate-900 dark:text-white">Fluxo de Operação</h3>
+              <p className="text-xs text-slate-400 dark:text-slate-500 font-bold uppercase tracking-widest mt-1">Desempenho dos Últimos 7 Dias</p>
             </div>
             <div className="flex gap-4">
                <div className="flex items-center gap-2">
@@ -242,21 +242,21 @@ export default function AdminDashboard() {
       </div>
 
       {/* Bottom Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 gap-8">
          {/* Support Preview */}
-         <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-xl shadow-slate-200/50">
+         <div className="bg-white dark:bg-slate-900 p-8 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 shadow-xl shadow-slate-200/50 dark:shadow-none">
             <div className="flex justify-between items-center mb-8">
                 <div className="flex items-center gap-3">
-                  <div className="p-3 bg-red-50 text-red-500 rounded-2xl">
+                  <div className="p-3 bg-red-50 dark:bg-red-900/20 text-red-500 rounded-2xl">
                      <MessageSquare size={24} />
                   </div>
                   <div>
-                    <h3 className="font-black text-slate-900 text-lg">Chamados de Suporte</h3>
-                    <p className="text-[10px] text-slate-400 font-black uppercase tracking-widest">Aguardando Resposta</p>
+                    <h3 className="font-black text-slate-900 dark:text-white text-lg">Chamados de Suporte</h3>
+                    <p className="text-[10px] text-slate-400 dark:text-slate-500 font-black uppercase tracking-widest">Aguardando Resposta</p>
                   </div>
                </div>
-               <Link href="/admin/chamados" className="p-2 hover:bg-slate-50 rounded-xl transition-all">
-                  <ArrowUpRight size={24} className="text-slate-300 hover:text-primary transition-colors" />
+               <Link href="/admin/chamados" className="p-2 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all">
+                  <ArrowUpRight size={24} className="text-slate-300 hover:text-primary dark:hover:text-white transition-colors" />
                </Link>
             </div>
             
@@ -266,13 +266,13 @@ export default function AdminDashboard() {
                ) : (stats?.tickets || []).length === 0 ? (
                  <p className="text-center py-4 text-slate-400">Nenhum chamado aberto.</p>
                ) : (stats?.tickets || []).slice(0, 3).map((item: any, idx: number) => (
-                 <div key={idx} className="flex items-center gap-4 p-5 rounded-[1.5rem] bg-slate-50 hover:bg-white hover:shadow-lg border border-transparent hover:border-slate-100 transition-all cursor-pointer group">
-                    <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-slate-400 border border-slate-100 group-hover:border-primary/20 group-hover:text-primary transition-all">
+                 <div key={idx} className="flex items-center gap-4 p-5 rounded-[1.5rem] bg-slate-50 dark:bg-slate-800/50 hover:bg-white dark:hover:bg-slate-800 hover:shadow-lg border border-transparent hover:border-slate-100 dark:hover:border-slate-700 transition-all cursor-pointer group">
+                    <div className="w-12 h-12 bg-white dark:bg-slate-900 rounded-2xl flex items-center justify-center text-slate-400 border border-slate-100 dark:border-slate-700 group-hover:border-primary/20 group-hover:text-primary transition-all">
                        <Ticket size={24} />
                     </div>
                     <div className="flex-grow">
-                       <h4 className="text-sm font-bold text-slate-900">{item.assunto}</h4>
-                       <p className="text-[10px] text-slate-500 font-bold uppercase tracking-tighter">{item.cliente?.nome || "Cliente"} • {item.status}</p>
+                       <h4 className="text-sm font-bold text-slate-900 dark:text-white">{item.assunto}</h4>
+                       <p className="text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase tracking-tighter">{item.cliente?.nome || "Cliente"} • {item.status}</p>
                     </div>
                     <div className="text-right">
                        <span className={`text-[9px] font-black px-2 py-1 rounded-lg uppercase ${
@@ -285,47 +285,6 @@ export default function AdminDashboard() {
                     </div>
                  </div>
                ))}
-            </div>
-         </div>
-
-         {/* Monitoring / Quality */}
-         <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-xl shadow-slate-200/50">
-            <div className="flex justify-between items-center mb-8">
-               <div className="flex items-center gap-3">
-                  <div className="p-3 bg-blue-50 text-blue-500 rounded-2xl">
-                     <Droplets size={24} />
-                  </div>
-                  <div>
-                    <h3 className="font-black text-slate-900 text-lg">Qualidade da Água</h3>
-                    <p className="text-[10px] text-slate-400 font-black uppercase tracking-widest">Monitoramento em Tempo Real</p>
-                  </div>
-               </div>
-               <Activity className="text-slate-200" size={24} />
-            </div>
-
-            <div className="grid grid-cols-2 gap-4">
-               <div className="p-6 rounded-[2rem] bg-slate-50 border border-slate-100">
-                  <p className="text-[10px] font-black text-slate-400 uppercase mb-2 tracking-widest">pH Médio</p>
-                  <div className="flex items-end gap-2">
-                     <span className="text-3xl font-black text-slate-900 tracking-tighter">7.2</span>
-                     <span className="text-[10px] font-black text-emerald-500 mb-1 uppercase">Ideal</span>
-                  </div>
-               </div>
-               <div className="p-6 rounded-[2rem] bg-slate-50 border border-slate-100">
-                  <p className="text-[10px] font-black text-slate-400 uppercase mb-2 tracking-widest">Cloro Médio</p>
-                  <div className="flex items-end gap-2">
-                     <span className="text-3xl font-black text-slate-900 tracking-tighter">2.5</span>
-                     <span className="text-[10px] font-black text-emerald-500 mb-1 uppercase">ppm</span>
-                  </div>
-               </div>
-            </div>
-
-            <div className="mt-6 p-10 rounded-[2rem] border-2 border-dashed border-slate-100 flex items-center justify-center text-center">
-               <div>
-                  <Waves className="mx-auto mb-4 text-primary opacity-20" size={40} />
-                  <p className="text-sm font-bold text-slate-400 mb-2">Todas as piscinas monitoradas estão dentro dos parâmetros.</p>
-                  <button className="text-primary font-black text-[10px] hover:underline uppercase tracking-[0.2em]">Ver Detalhes Técnicos</button>
-               </div>
             </div>
          </div>
       </div>

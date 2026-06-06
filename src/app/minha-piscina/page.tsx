@@ -77,32 +77,10 @@ export default function MinhaPiscinaPage() {
   }
 
   if (!session || !session.cliente) {
-    return (
-      <div className="min-h-screen bg-[#020617] flex items-center justify-center p-8">
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="max-w-md w-full bg-white/5 border border-white/10 rounded-[3rem] p-12 text-center space-y-8 backdrop-blur-3xl shadow-2xl"
-        >
-          <div className="w-24 h-24 bg-rose-500/10 rounded-[2rem] flex items-center justify-center mx-auto text-rose-500 shadow-inner">
-            <Activity size={48} />
-          </div>
-          <div className="space-y-4">
-            <h1 className="text-3xl font-black text-white tracking-tighter">Sessão Expirada</h1>
-            <p className="text-slate-400 font-medium leading-relaxed">
-              Por favor, realize o login novamente para acessar sua piscina e o centro de controle inteligente.
-            </p>
-          </div>
-          <a 
-            href="/login" 
-            className="flex items-center justify-center gap-3 w-full py-5 bg-primary text-white rounded-2xl font-black uppercase tracking-[0.2em] text-xs hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-primary/20"
-          >
-            Realizar Login <ArrowRight size={18} />
-          </a>
-          <p className="text-[10px] text-slate-600 font-bold uppercase tracking-[0.3em]">Piscinas Evolution • Segurança de Dados</p>
-        </motion.div>
-      </div>
-    );
+    if (typeof window !== "undefined") {
+      window.location.href = "/login";
+    }
+    return null;
   }
 
   const { cliente, config } = session;

@@ -17,8 +17,20 @@ export const Navbar = ({ config }: { config: any }) => {
       submenu: [
         { name: "Aquecimento Solar", href: "/servicos/aquecimento-solar" },
         { name: "Trocador de Calor", href: "/servicos/trocador-de-calor" },
-        { name: "Spa & Sauna", href: "/servicos/spa-sauna" },
-        { name: "Manutenção Preventiva", href: "/servicos/manutencao" }
+        { name: "Boiler", href: "/servicos/boiler" },
+        { name: "Limpeza de Placas", href: "/servicos/limpeza-de-placas" },
+        { name: "Manutenção e Trocas", href: "/servicos/manutencao-e-trocas" },
+        { name: "Banheiras", href: "/servicos/banheiras" },
+        { name: "Saunas", href: "/servicos/saunas" },
+        { name: "Spas", href: "/servicos/spas" },
+        { name: "Cascata", href: "/servicos/cascata" },
+        { name: "Iluminação LED", href: "/servicos/iluminacao-led" },
+        { name: "Cerca de Proteção", href: "/servicos/cerca-de-protecao" },
+        { name: "Casa de Máquinas", href: "/servicos/casa-de-maquinas" },
+        { name: "Higienização", href: "/servicos/higienizacao" },
+        { name: "Aquecimento de Piscina", href: "/servicos/aquecimento-de-piscina" },
+        { name: "Reforma Técnica", href: "/servicos/reforma-tecnica" },
+        { name: "Automação", href: "/servicos/automacao" }
       ]
     },
     { 
@@ -33,7 +45,7 @@ export const Navbar = ({ config }: { config: any }) => {
   return (
     <header className="glass-premium z-50 sticky top-0 border-b border-slate-100/50">
       <nav className="flex justify-between items-center px-8 py-3 max-w-[1400px] mx-auto w-full">
-        <Link href="/" className="hover:opacity-80 transition-opacity">
+        <Link href="/" className="hover:opacity-80 transition-all block dark:bg-white/90 dark:backdrop-blur-sm dark:p-2 dark:-m-2 dark:rounded-xl dark:shadow-sm">
           <img 
             src="/Logo/Logo Horizontal.svg" 
             alt={title} 

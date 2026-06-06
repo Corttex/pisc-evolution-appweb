@@ -65,17 +65,18 @@ const GlassCard = ({ children, className = "" }: { children: React.ReactNode; cl
   <motion.div 
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
-    className={`bg-white rounded-[2rem] border border-slate-100 shadow-xl shadow-slate-200/40 p-8 ${className}`}
+    className={`bg-white dark:bg-slate-900 rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-xl shadow-slate-200/40 dark:shadow-none p-8 ${className}`}
   >
     {children}
   </motion.div>
 );
 
-const StatCard = ({ label, value, change, positive, icon: Icon, color }: any) => (
+
+const StatCard = ({ label, value, change, positive, icon: Icon, color, textColor }: any) => (
   <GlassCard className="relative overflow-hidden group">
     <div className={`absolute top-0 right-0 w-24 h-24 ${color} opacity-[0.03] rounded-full translate-x-8 -translate-y-8 group-hover:scale-150 transition-transform duration-700`} />
     <div className="flex justify-between items-start mb-6">
-      <div className={`p-4 rounded-2xl ${color} bg-opacity-10 text-${color.replace('bg-', '')}`}>
+      <div className={`p-4 rounded-2xl ${color}/10 ${textColor}`}>
         <Icon size={24} />
       </div>
       <div className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black tracking-wider ${positive ? "bg-emerald-50 text-emerald-600" : "bg-rose-50 text-rose-600"}`}>
@@ -129,6 +130,34 @@ export default function FinanceiroPage() {
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const handleExportBI = () => {
+    if (!stats || !stats.agendas) {
+      alert("Nenhum dado disponível para exportar.");
+      return;
+    }
+    
+    const headers = ["Cliente", "Serviço", "Data", "Valor Total (R$)", "Status", "Pagamento"];
+    const rows = stats.agendas.map((item: any) => [
+      item.cliente?.nome || "Desconhecido",
+      item.servico || "-",
+      new Date(item.data).toLocaleDateString('pt-BR'),
+      (item.valorTotal || 0).toFixed(2),
+      item.status || "-",
+      item.pagamentoStatus || "-"
+    ]);
+
+    const csvContent = "data:text/csv;charset=utf-8," 
+      + [headers.join(","), ...rows.map((e: any) => e.join(","))].join("\n");
+      
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", `Inteligencia_Financeira_BI_${new Date().getTime()}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div className="space-y-10 pb-20">
       {/* Header Section */}
@@ -142,7 +171,10 @@ export default function FinanceiroPage() {
               <CalendarIcon size={18} />
               Últimos 30 dias
            </button>
-           <button className="h-14 px-8 rounded-2xl bg-slate-900 text-white font-bold text-sm flex items-center gap-3 shadow-xl shadow-slate-900/20 hover:scale-[1.02] active:scale-95 transition-all">
+           <button 
+             onClick={handleExportBI}
+             className="h-14 px-8 rounded-2xl bg-slate-900 text-white font-bold text-sm flex items-center gap-3 shadow-xl shadow-slate-900/20 hover:scale-[1.02] active:scale-95 transition-all"
+           >
               <Download size={18} />
               Exportar BI
            </button>
@@ -158,6 +190,7 @@ export default function FinanceiroPage() {
           positive={true} 
           icon={DollarSign} 
           color="bg-blue-600" 
+          textColor="text-blue-600"
         />
         <StatCard 
           label="A Receber (Pendentes)" 
@@ -166,6 +199,7 @@ export default function FinanceiroPage() {
           positive={false} 
           icon={Clock} 
           color="bg-amber-600" 
+          textColor="text-amber-600"
         />
         <StatCard 
           label="Eficiência de Cobrança" 
@@ -174,6 +208,7 @@ export default function FinanceiroPage() {
           positive={true} 
           icon={CheckCircle2} 
           color="bg-emerald-600" 
+          textColor="text-emerald-600"
         />
         <StatCard 
           label="Tickets Financeiros" 
@@ -182,8 +217,10 @@ export default function FinanceiroPage() {
           positive={false} 
           icon={CreditCard} 
           color="bg-rose-600" 
+          textColor="text-rose-600"
         />
       </div>
+
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Main Growth Chart */}
@@ -313,47 +350,47 @@ export default function FinanceiroPage() {
       <GlassCard>
         <div className="flex justify-between items-center mb-8">
            <div className="flex items-center gap-3">
-              <div className="p-3 bg-indigo-50 text-indigo-600 rounded-2xl">
+              <div className="p-3 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 rounded-2xl">
                  <Activity size={24} />
               </div>
               <div>
-                <h3 className="font-black text-slate-900 text-lg">Controle de Recebíveis</h3>
-                <p className="text-[10px] text-slate-400 font-black uppercase tracking-widest text-left">Acompanhamento de Pagamentos por Serviço</p>
+                <h3 className="font-black text-slate-900 dark:text-white text-lg">Controle de Recebíveis</h3>
+                <p className="text-[10px] text-slate-400 dark:text-slate-500 font-black uppercase tracking-widest text-left">Acompanhamento de Pagamentos por Serviço</p>
               </div>
            </div>
            <div className="flex gap-2">
-              <button className="px-4 py-2 bg-slate-50 text-slate-400 rounded-xl text-[10px] font-black uppercase tracking-widest border border-slate-100 hover:bg-slate-100 transition-all">Todos</button>
-              <button className="px-4 py-2 bg-rose-50 text-rose-500 rounded-xl text-[10px] font-black uppercase tracking-widest border border-rose-100 hover:bg-rose-100 transition-all">Pendentes</button>
+              <button className="px-4 py-2 bg-slate-50 dark:bg-slate-800 text-slate-400 dark:text-slate-300 rounded-xl text-[10px] font-black uppercase tracking-widest border border-slate-100 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 transition-all">Todos</button>
+              <button className="px-4 py-2 bg-rose-50 dark:bg-rose-900/20 text-rose-500 rounded-xl text-[10px] font-black uppercase tracking-widest border border-rose-100 dark:border-rose-950 hover:bg-rose-100 dark:hover:bg-rose-900/20 transition-all">Pendentes</button>
            </div>
         </div>
         
         <div className="overflow-x-auto">
            <table className="w-full text-left">
               <thead>
-                 <tr className="border-b border-slate-50">
-                    <th className="pb-4 text-[10px] font-black text-slate-400 uppercase tracking-widest">Cliente / Serviço</th>
-                    <th className="pb-4 text-[10px] font-black text-slate-400 uppercase tracking-widest">Data</th>
-                    <th className="pb-4 text-[10px] font-black text-slate-400 uppercase tracking-widest">Valor</th>
-                    <th className="pb-4 text-[10px] font-black text-slate-400 uppercase tracking-widest">Status</th>
-                    <th className="pb-4 text-[10px] font-black text-slate-400 uppercase tracking-widest text-right">Ação</th>
+                 <tr className="border-b border-slate-50 dark:border-slate-800">
+                    <th className="pb-4 text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">Cliente / Serviço</th>
+                    <th className="pb-4 text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">Data</th>
+                    <th className="pb-4 text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">Valor</th>
+                    <th className="pb-4 text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">Status</th>
+                    <th className="pb-4 text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest text-right">Ação</th>
                  </tr>
               </thead>
-              <tbody className="divide-y divide-slate-50">
+              <tbody className="divide-y divide-slate-50 dark:divide-slate-800">
                  {loading ? (
-                   <tr><td colSpan={5} className="py-8 text-center text-slate-400">Sincronizando dados...</td></tr>
+                   <tr><td colSpan={5} className="py-8 text-center text-slate-400 dark:text-slate-500">Sincronizando dados...</td></tr>
                  ) : (stats?.agendas || []).length === 0 ? (
-                   <tr><td colSpan={5} className="py-8 text-center text-slate-400">Nenhuma transação registrada.</td></tr>
+                   <tr><td colSpan={5} className="py-8 text-center text-slate-400 dark:text-slate-500">Nenhuma transação registrada.</td></tr>
                  ) : stats.agendas.map((item: any, i: number) => (
-                   <tr key={i} className="group hover:bg-slate-50/50 transition-all">
+                   <tr key={i} className="group hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-all">
                       <td className="py-4">
-                         <p className="font-bold text-slate-900">{item.cliente?.nome}</p>
-                         <p className="text-[10px] font-bold text-slate-400 uppercase">{item.servico}</p>
+                         <p className="font-bold text-slate-900 dark:text-white">{item.cliente?.nome}</p>
+                         <p className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase">{item.servico}</p>
                       </td>
-                      <td className="py-4 text-sm font-medium text-slate-600">{new Date(item.data).toLocaleDateString('pt-BR')}</td>
-                      <td className="py-4 font-black text-slate-900 text-sm">R$ {item.valorTotal.toLocaleString('pt-BR')}</td>
+                      <td className="py-4 text-sm font-medium text-slate-600 dark:text-slate-300">{new Date(item.data).toLocaleDateString('pt-BR')}</td>
+                      <td className="py-4 font-black text-slate-900 dark:text-white text-sm">R$ {item.valorTotal.toLocaleString('pt-BR')}</td>
                       <td className="py-4">
                          <span className={`px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest ${
-                            item.pagamentoStatus === 'pago' ? "bg-emerald-50 text-emerald-600" : "bg-amber-50 text-amber-600"
+                            item.pagamentoStatus === 'pago' ? "bg-emerald-50 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400" : "bg-amber-50 dark:bg-amber-950/20 text-amber-600 dark:text-amber-400"
                          }`}>
                             {item.pagamentoStatus}
                          </span>

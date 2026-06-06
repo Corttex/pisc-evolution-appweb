@@ -1,13 +1,11 @@
 "use server";
 
 import { prisma } from "@/lib/db";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { checkAdmin } from "./admin";
 import { sanitize } from "@/lib/sanitize";
 
 export async function gerarCobrancaPix(amount: number, description: string) {
-  const session = await getServerSession(authOptions);
-  if (!session) throw new Error("Não autorizado");
+  await checkAdmin();
   
   const cleanDescription = sanitize(description);
   try {

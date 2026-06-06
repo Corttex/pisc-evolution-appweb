@@ -32,7 +32,22 @@ const differentials = [
   },
 ];
 
-export const Differentials = () => {
+// Mapeamento local para ícones de Diferenciais
+const LOCAL_DIFF_ICONS: Record<string, any> = {
+  CheckCircle2,
+  Award,
+  ShieldCheck,
+  Users,
+  MapPin
+};
+
+export const Differentials = ({ content }: { content?: any }) => {
+  const subtitle = content?.subtitle || "Por que escolher a Evolution?";
+  const title = content?.title || "Compromisso com o Conforto Térmico";
+  const description = content?.description || "Mais que uma empresa de piscinas, somos parceiros do seu lazer. Nossa engenharia é focada em economia de energia e máximo prazer térmico.";
+  const buttonText = content?.buttonText || "Fale com um Especialista";
+  const itemsList = content?.items || differentials;
+
   return (
     <section className="bg-primary py-24 relative overflow-hidden">
       <div className="absolute top-0 right-0 w-1/3 h-full bg-secondary opacity-5 -skew-x-12 translate-x-1/2"></div>
@@ -40,39 +55,46 @@ export const Differentials = () => {
       <div className="max-w-[1280px] mx-auto px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
-            <span className="font-label-caps text-tertiary mb-2 block uppercase tracking-widest font-bold">Por que escolher a Evolution?</span>
-            <h2 className="text-4xl md:text-5xl text-white font-bold mb-8">Compromisso com o Conforto Térmico</h2>
+            <span className="font-label-caps text-tertiary mb-2 block uppercase tracking-widest font-bold">{subtitle}</span>
+            <h2 className="text-4xl md:text-5xl text-white font-bold mb-8">{title}</h2>
             <p className="text-white/70 font-body text-lg mb-12 leading-relaxed max-w-lg">
-              Mais que uma empresa de piscinas, somos parceiros do seu lazer. Nossa engenharia é focada em economia de energia e máximo prazer térmico.
+              {description}
             </p>
             
             <button className="bg-tertiary text-primary px-8 py-4 rounded-xl font-bold text-lg shadow-xl shadow-tertiary/10 hover:scale-105 transition-all">
-              Fale com um Especialista
+              {buttonText}
             </button>
           </div>
           
           <div className="grid gap-4">
-            {differentials.map((diff, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-white/5 backdrop-blur-md p-6 rounded-2xl border border-white/10 flex items-start gap-6 group hover:bg-white/10 transition-all"
-              >
-                <div className="w-12 h-12 bg-tertiary rounded-xl flex items-center justify-center text-primary shrink-0 group-hover:scale-110 transition-transform">
-                  <diff.icon className="w-6 h-6" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-white mb-2">{diff.title}</h3>
-                  <p className="text-white/60 font-body text-sm leading-relaxed">{diff.description}</p>
-                </div>
-              </motion.div>
-            ))}
+            {itemsList.map((diff: any, index: number) => {
+              const IconComponent = typeof diff.icon === "string" 
+                ? (LOCAL_DIFF_ICONS[diff.icon] || CheckCircle2)
+                : (diff.icon || CheckCircle2);
+
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="bg-white/5 backdrop-blur-md p-6 rounded-2xl border border-white/10 flex items-start gap-6 group hover:bg-white/10 transition-all"
+                >
+                  <div className="w-12 h-12 bg-tertiary rounded-xl flex items-center justify-center text-primary shrink-0 group-hover:scale-110 transition-transform">
+                    <IconComponent className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-white mb-2">{diff.title}</h3>
+                    <p className="text-white/60 font-body text-sm leading-relaxed">{diff.description}</p>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </div>
     </section>
   );
 };
+

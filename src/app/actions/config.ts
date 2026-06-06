@@ -1,16 +1,8 @@
 "use server";
 
 import { prisma } from "@/lib/db";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { checkAdmin } from "./admin";
 import { sanitizeObject } from "@/lib/sanitize";
-
-async function checkAdmin() {
-  const session = await getServerSession(authOptions);
-  if (!session || (session.user as any).role !== "ADMIN") {
-    throw new Error("Não autorizado");
-  }
-}
 
 export async function getConfig() {
   try {
@@ -48,26 +40,26 @@ export async function getConfig() {
 }
 
 export async function updateConfig(data: any) {
-  await checkAdmin();
-  const cleanData = sanitizeObject(data);
-  
-  // Mapeamento explícito para garantir que apenas campos válidos sejam enviados ao Prisma
-  const updateData = {
-    site_titulo: cleanData.site_titulo,
-    site_headline: cleanData.site_headline,
-    site_subheadline: cleanData.site_subheadline,
-    site_whatsapp: cleanData.site_whatsapp,
-    site_email: cleanData.site_email,
-    social_instagram: cleanData.social_instagram,
-    social_facebook: cleanData.social_facebook,
-    asaasKey: cleanData.asaasKey,
-    asaasEnv: cleanData.asaasEnv,
-    pixSinal: parseFloat(cleanData.pixSinal) || 50.0,
-    pixChave: cleanData.pixChave,
-    pixBeneficiario: cleanData.pixBeneficiario
-  };
-
   try {
+    await checkAdmin();
+    const cleanData = sanitizeObject(data);
+    
+    // Mapeamento explícito para garantir que apenas campos válidos sejam enviados ao Prisma
+    const updateData = {
+      site_titulo: cleanData.site_titulo,
+      site_headline: cleanData.site_headline,
+      site_subheadline: cleanData.site_subheadline,
+      site_whatsapp: cleanData.site_whatsapp,
+      site_email: cleanData.site_email,
+      social_instagram: cleanData.social_instagram,
+      social_facebook: cleanData.social_facebook,
+      asaasKey: cleanData.asaasKey,
+      asaasEnv: cleanData.asaasEnv,
+      pixSinal: parseFloat(cleanData.pixSinal) || 50.0,
+      pixChave: cleanData.pixChave,
+      pixBeneficiario: cleanData.pixBeneficiario
+    };
+
     console.log("Tentando salvar configurações:", updateData);
     const config = await prisma.configuracao.upsert({
       where: { id: "global" },

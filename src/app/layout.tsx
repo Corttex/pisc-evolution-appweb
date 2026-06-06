@@ -11,6 +11,7 @@ export const metadata: Metadata = {
 };
 
 import { Toaster } from "react-hot-toast";
+import { DarkModeToggle } from "@/components/DarkModeToggle";
 
 export default function RootLayout({
   children,
@@ -22,10 +23,30 @@ export default function RootLayout({
       lang="pt-BR"
       className="h-full antialiased"
     >
-      <body className="min-h-full flex flex-col">
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  const theme = localStorage.getItem('theme');
+                  if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.classList.add('dark');
+                  } else {
+                    document.documentElement.classList.remove('dark');
+                  }
+                } catch (e) {}
+              })()
+            `
+          }}
+        />
+      </head>
+      <body className="min-h-full flex flex-col bg-background text-text transition-colors duration-300">
         <Toaster position="top-right" reverseOrder={false} />
         {children}
+        <DarkModeToggle />
       </body>
     </html>
   );
 }
+

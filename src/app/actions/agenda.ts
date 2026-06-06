@@ -5,11 +5,13 @@ import { createAsaasPayment, getPixQrCode } from "@/lib/asaas";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { sanitize, sanitizeObject } from "@/lib/sanitize";
+import { checkAdmin } from "./admin";
 
-async function checkAdmin() {
-  const session = await getServerSession(authOptions);
-  if (!session || (session.user as any).role !== "ADMIN") {
-    throw new Error("Não autorizado");
+export async function createAgendamento(data: any) {
+  try {
+    await checkAdmin();
+  } catch (error: any) {
+    return { success: false, error: error.message };
   }
 }
 
@@ -38,11 +40,15 @@ export async function criarAgendamento(formData: any) {
     if (cleanDocumento) {
       cliente = await prisma.cliente.upsert({
         where: { documento: cleanDocumento },
-        update: { nome, email, telefone },
+        update: { 
+          nome: nome || undefined, 
+          email: email || undefined, 
+          telefone: telefone || undefined 
+        },
         create: { 
-          nome, 
-          email, 
-          telefone, 
+          nome: nome || "Cliente Padrão", 
+          email: email || null, 
+          telefone: telefone || "", 
           documento: cleanDocumento 
         },
       });
@@ -55,11 +61,18 @@ export async function criarAgendamento(formData: any) {
       if (existingCliente) {
         cliente = await prisma.cliente.update({
           where: { id: existingCliente.id },
-          data: { nome, email }
+          data: { 
+            nome: nome || undefined, 
+            email: email || undefined 
+          }
         });
       } else {
         cliente = await prisma.cliente.create({
-          data: { nome, email, telefone }
+          data: { 
+            nome: nome || "Cliente Padrão", 
+            email: email || null, 
+            telefone: telefone || "" 
+          }
         });
       }
     }

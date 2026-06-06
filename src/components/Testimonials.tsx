@@ -116,21 +116,25 @@ const testimonials = [
 ];
 
 
-export const Testimonials = () => {
-  const featured = testimonials.slice(0, 4);
-  const others = testimonials.slice(4);
+export const Testimonials = ({ content }: { content?: any }) => {
+  const subtitle = content?.subtitle || "Avaliações de Elite";
+  const title = content?.title || "O que nossos clientes dizem";
+  const itemsList = content?.items || testimonials;
+  const featured = itemsList.slice(0, 4);
+  const others = itemsList.slice(4);
 
   return (
     <section className="py-24 bg-slate-50 relative overflow-hidden">
       <div className="max-w-[1280px] mx-auto px-8 relative z-10">
         <div className="text-center mb-20">
-          <span className="font-label-caps text-secondary mb-2 block uppercase tracking-widest font-bold">Avaliações de Elite</span>
-          <h2 className="text-4xl md:text-5xl text-primary font-bold">O que nossos clientes dizem</h2>
+          <span className="font-label-caps text-secondary mb-2 block uppercase tracking-widest font-bold">{subtitle}</span>
+          <h2 className="text-4xl md:text-5xl text-primary font-bold">{title}</h2>
         </div>
         
         {/* Featured 4 */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {featured.map((test, index) => (
+          {featured.map((test: any, index: number) => (
+
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
@@ -160,20 +164,20 @@ export const Testimonials = () => {
         {/* Carousel for Others */}
         <div className="relative">
           <div className="flex gap-6 overflow-x-auto pb-8 scrollbar-hide snap-x">
-            {others.map((test, index) => (
+            {others.map((test: any, index: number) => (
               <motion.div
                 key={index}
                 className="min-w-[300px] bg-white/60 backdrop-blur-sm p-6 rounded-2xl border border-white/40 snap-start"
               >
-                <div className="flex gap-1 mb-3 text-tertiary/60">
-                  {[...Array(test.stars)].map((_, i) => (
-                    <Star key={i} className="w-3 h-3 fill-current" />
+                <div className="flex gap-1 mb-4 text-tertiary">
+                  {[...Array(test.stars || 5)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-current" />
                   ))}
                 </div>
-                <p className="text-on-surface-variant text-xs italic mb-4">"{test.text}"</p>
-                <div className="pt-3 border-t border-slate-200/50">
-                  <h4 className="text-primary font-bold text-sm">{test.name}</h4>
-                  <p className="text-[8px] uppercase tracking-tighter">{test.role}</p>
+                <p className="text-on-surface-variant font-body italic mb-6 text-sm leading-relaxed">"{test.text}"</p>
+                <div className="border-t border-slate-100 pt-4">
+                  <h4 className="text-primary font-bold text-base">{test.name}</h4>
+                  <p className="text-[9px] text-on-surface-variant font-bold uppercase tracking-widest">{test.role}</p>
                 </div>
               </motion.div>
             ))}

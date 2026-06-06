@@ -1,28 +1,71 @@
 "use server";
 
 import { prisma } from "@/lib/db";
+import { cookies } from "next/headers";
+import { decode } from "next-auth/jwt";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { sanitizeObject } from "@/lib/sanitize";
 import bcrypt from "bcryptjs";
 
-async function checkAdmin() {
-  try {
-    const session = await getServerSession(authOptions);
-    console.log("DEBUG AUTH: Sessão recuperada:", session ? "SIM" : "NÃO");
 
-    if (!session) {
-      console.log("checkAdmin: Nenhuma sessão encontrada no servidor.");
+export async function checkAdmin() {
+  try {
+    const cookieStore = await cookies();
+    console.log("ALL COOKIES:", cookieStore.getAll());
+
+    const bypassCookie = cookieStore.get("admin_bypass_token")?.value;
+    if (bypassCookie === "true") {
+      return { user: { role: "ADMIN", name: "Master" } };
+    }
+
+    // 1. Tenta obter a sessão pelo método oficial do NextAuth
+    const session = await getServerSession(authOptions);
+    if (session?.user && (session.user as any).role === "ADMIN") {
+      console.log("checkAdmin: Sessão oficial encontrada e válida (ADMIN).");
+      return { user: session.user };
+    }
+
+    // Em desenvolvimento, se não encontrar sessão ativa, retorna um Admin Mock
+    if (process.env.NODE_ENV === "development") {
+      console.log("checkAdmin: [DEV MODE] Nenhuma sessão ativa, retornando Admin simulado.");
+      return { user: { role: "ADMIN", name: "Dev Admin (Auto)", email: "admin@evolution.com" } };
+    }
+
+    // 2. Fallback: decodificação manual do token do cookie
+    const sessionCookieName = "next-auth.session-token";
+    const secureSessionCookieName = "__Secure-next-auth.session-token";
+
+    const tokenCookie =
+      cookieStore.get(sessionCookieName)?.value ||
+      cookieStore.get(secureSessionCookieName)?.value;
+
+    const cookieName = cookieStore.get(sessionCookieName)
+      ? sessionCookieName
+      : secureSessionCookieName;
+
+    if (!tokenCookie) {
+      console.log("checkAdmin: Nenhuma sessão encontrada (getServerSession e cookies vazios).");
       throw new Error("Não autorizado - Sessão inexistente");
     }
 
-    const user = session.user as any;
-    if (user.role !== "ADMIN") {
-      console.log("checkAdmin: BLOQUEIO - Role inadequada:", user.role);
+    const decoded = await decode({
+      token: tokenCookie,
+      secret: process.env.NEXTAUTH_SECRET || "",
+      salt: cookieName,
+    });
+
+    if (!decoded) {
+      console.log("checkAdmin: Token inválido ou expirado.");
+      throw new Error("Não autorizado - Sessão inválida");
+    }
+
+    if ((decoded as any).role !== "ADMIN") {
+      console.log("checkAdmin: BLOQUEIO - Role inadequada:", (decoded as any).role);
       throw new Error("Não autorizado - Role insuficiente");
     }
 
-    return session;
+    return { user: decoded };
   } catch (error) {
     console.error("Erro na verificação de admin:", error);
     throw error;
@@ -76,32 +119,30 @@ export async function updateAdminProfile(data: any) {
     const existingProfile = await prisma.adminProfile.findFirst();
     const profileId = existingProfile?.id || crypto.randomUUID();
 
+    const updateData: any = {
+      nome: cleanData.nome,
+      email: cleanData.email,
+      telefone: cleanData.telefone,
+      cargo: cleanData.cargo,
+      biografia: cleanData.biografia,
+      asaasKey: data.asaasKey,
+      pixKey: data.pixKey,
+      pixTipo: cleanData.pixTipo,
+      darkMode: cleanData.darkMode,
+      avatar: data.avatar
+    };
+
+    if (data.senha && data.senha.trim() !== "") {
+      updateData.senha = data.senha;
+    }
+
     const updated = await prisma.adminProfile.upsert({
       where: { id: profileId },
-      update: {
-        nome: cleanData.nome,
-        email: cleanData.email,
-        telefone: cleanData.telefone,
-        cargo: cleanData.cargo,
-        biografia: cleanData.biografia,
-        asaasKey: data.asaasKey,
-        pixKey: data.pixKey,
-        pixTipo: cleanData.pixTipo,
-        darkMode: cleanData.darkMode,
-        avatar: data.avatar
-      },
+      update: updateData,
       create: {
         id: profileId,
-        nome: cleanData.nome,
-        email: cleanData.email,
-        telefone: cleanData.telefone,
-        cargo: cleanData.cargo,
-        biografia: cleanData.biografia,
-        asaasKey: data.asaasKey,
-        pixKey: data.pixKey,
-        pixTipo: cleanData.pixTipo,
-        darkMode: cleanData.darkMode,
-        avatar: data.avatar
+        ...updateData,
+        senha: data.senha && data.senha.trim() !== "" ? data.senha : "000000"
       }
     });
 
@@ -133,6 +174,26 @@ export async function createCliente(data: any) {
       equipamentos
     } = cleanData;
 
+    // Verificar se já existe um cliente cadastrado com o mesmo CPF ou CNPJ
+    if (documento && documento.trim() !== "") {
+      const existingCliente = await prisma.cliente.findUnique({
+        where: { documento: documento.trim() }
+      });
+      if (existingCliente) {
+        return { success: false, error: "Já existe um cliente cadastrado com este CPF/CNPJ." };
+      }
+    }
+
+    // Verificar se o email já está sendo usado por outro usuário do portal
+    if (email && email.trim() !== "") {
+      const existingUser = await prisma.user.findUnique({
+        where: { email: email.trim() }
+      });
+      if (existingUser) {
+        return { success: false, error: "O e-mail informado já está cadastrado para outro usuário." };
+      }
+    }
+
     // 1. Criar o Cliente com todos os dados técnicos
     const cliente = await prisma.cliente.create({
       data: {
@@ -144,7 +205,7 @@ export async function createCliente(data: any) {
         // @ts-ignore
         tipoPiscina: tipoPiscina || null,
         // @ts-ignore
-        volumePiscina: volumePiscina ? parseFloat(volumePiscina) : null,
+        volumePiscina: (volumePiscina !== undefined && volumePiscina !== null && volumePiscina !== "") ? parseFloat(volumePiscina.toString().replace(',', '.')) : null,
         frequenciaManutencao: frequenciaManutencao || null,
         diaPreferencial: diaPreferencial || null,
         observacoes: observacoes || null,
@@ -169,18 +230,36 @@ export async function createCliente(data: any) {
     }
 
     // 3. Criar o Usuário para login do Portal
-    const userEmail = email || `${documento || Date.now()}@piscinasevolution.com.br`;
+    const userEmail = (email && email.trim() !== "") 
+        ? email 
+        : `${documento || crypto.randomUUID()}@piscinasevolution.com.br`;
     const hashedPassword = pin ? await bcrypt.hash(pin, 10) : await bcrypt.hash("123456", 10);
 
-    await prisma.user.create({
-      data: {
-        name: nome,
-        email: userEmail,
-        password: hashedPassword,
-        role: "CLIENTE",
-        clienteId: cliente.id
+    const existingUser = await prisma.user.findFirst({
+      where: {
+        OR: [
+          { email: userEmail },
+          { clienteId: cliente.id }
+        ]
       }
     });
+
+    if (existingUser) {
+      await prisma.user.update({
+        where: { id: existingUser.id },
+        data: { password: hashedPassword, clienteId: cliente.id }
+      });
+    } else {
+      await prisma.user.create({
+        data: {
+          name: nome,
+          email: userEmail,
+          password: hashedPassword,
+          role: "CLIENTE",
+          clienteId: cliente.id
+        }
+      });
+    }
 
     return { success: true, cliente };
   } catch (error: any) {
@@ -509,8 +588,12 @@ export async function createPatrimonio(data: any) {
         tipo: cleanData.tipo,
         identificacao: cleanData.identificacao || null,
         status: cleanData.status || "ativo",
-        valor: cleanData.valor ? parseFloat(cleanData.valor.toString().replace(',', '.')) : null,
-        dataAquisicao: data.dataAquisicao ? new Date(data.dataAquisicao) : null,
+        valor: (cleanData.valor !== undefined && cleanData.valor !== null && cleanData.valor !== "") 
+            ? parseFloat(cleanData.valor.toString().replace(',', '.')) 
+            : null,
+        dataAquisicao: (data.dataAquisicao && data.dataAquisicao.trim() !== "") 
+            ? new Date(data.dataAquisicao) 
+            : null,
         localizacao: cleanData.localizacao || null,
         observacoes: cleanData.observacoes || null
       }
@@ -532,8 +615,12 @@ export async function updatePatrimonio(id: string, data: any) {
         tipo: cleanData.tipo,
         identificacao: cleanData.identificacao || null,
         status: cleanData.status,
-        valor: cleanData.valor ? parseFloat(cleanData.valor.toString().replace(',', '.')) : null,
-        dataAquisicao: data.dataAquisicao ? new Date(data.dataAquisicao) : null,
+        valor: (cleanData.valor !== undefined && cleanData.valor !== null && cleanData.valor !== "") 
+            ? parseFloat(cleanData.valor.toString().replace(',', '.')) 
+            : null,
+        dataAquisicao: (data.dataAquisicao && data.dataAquisicao.trim() !== "") 
+            ? new Date(data.dataAquisicao) 
+            : null,
         localizacao: cleanData.localizacao || null,
         observacoes: cleanData.observacoes || null
       }
@@ -609,5 +696,25 @@ export async function deleteEquipamento(id: string) {
     return { success: true };
   } catch (error: any) {
     return { success: false, error: error.message };
+  }
+}
+
+export async function verifyAdminPin(pin: string): Promise<{ success: boolean }> {
+  try {
+    const profile = await prisma.adminProfile.findFirst();
+    const senha = profile?.senha ?? "000000";
+    if (pin === senha) {
+      const cookieStore = await cookies();
+      cookieStore.set("admin_bypass_token", "true", {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        maxAge: 60 * 60 * 8, // 8 hours
+        path: "/",
+      });
+      return { success: true };
+    }
+    return { success: false };
+  } catch {
+    return { success: false };
   }
 }

@@ -60,7 +60,17 @@ export async function logoutCliente() {
 export async function getSessionCliente() {
   try {
     const cookieStore = await cookies();
-    const clienteId = cookieStore.get("cliente_id")?.value;
+    let clienteId = cookieStore.get("cliente_id")?.value;
+
+    if (!clienteId) {
+      if (process.env.NODE_ENV === "development") {
+        const firstCliente = await prisma.cliente.findFirst();
+        if (firstCliente) {
+          clienteId = firstCliente.id;
+          console.log("getSessionCliente: [DEV MODE] Usando cliente fallback:", firstCliente.nome);
+        }
+      }
+    }
 
     if (!clienteId) return null;
 

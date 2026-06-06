@@ -253,11 +253,18 @@ export default function PerfilPage() {
                   <h3 className="font-black text-xl text-slate-900 dark:text-white">Segurança</h3>
                </div>
                
-               <div className="flex flex-col md:flex-row gap-4">
-                  <button className="flex-grow px-6 py-4 rounded-2xl bg-slate-900 text-white font-bold text-xs uppercase tracking-widest hover:bg-slate-800 transition-all">
-                     Alterar Senha de Acesso
-                  </button>
-                  <button className="flex-grow px-6 py-4 rounded-2xl border-2 border-slate-100 dark:border-slate-800 text-slate-600 dark:text-slate-400 font-bold text-xs uppercase tracking-widest hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">
+               <div className="flex flex-col gap-4">
+                  <div className="space-y-3">
+                     <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">Nova Senha de Acesso (Deixe em branco para não alterar)</label>
+                     <input 
+                        type="password" 
+                        value={(formData as any).senha || ""}
+                        onChange={(e) => setFormData({...formData, senha: e.target.value} as any)}
+                        placeholder="••••••••"
+                        className="w-full px-6 py-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border-2 border-transparent focus:border-primary/20 outline-none transition-all text-slate-900 dark:text-white font-bold" 
+                      />
+                  </div>
+                  <button className="w-full md:w-1/2 px-6 py-4 rounded-2xl border-2 border-slate-100 dark:border-slate-800 text-slate-600 dark:text-slate-400 font-bold text-xs uppercase tracking-widest hover:bg-slate-50 dark:hover:bg-slate-800 transition-all mt-4">
                      Ativar 2FA (Segurança Dupla)
                   </button>
                </div>

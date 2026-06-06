@@ -12,25 +12,30 @@ import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { Sustainability } from "@/components/Sustainability";
 import { SmartMaintenance } from "@/components/SmartMaintenance";
 import { getConfig } from "./actions/config";
+import { getSections } from "./actions/sections";
 
 export default async function Home() {
   const config = await getConfig();
+  const sections = await getSections();
 
   return (
-    <main className="min-h-screen bg-background overflow-x-hidden">
+    <main className="min-h-screen bg-background">
       <Navbar config={config} />
-      <Hero config={config} />
-      <Services />
-      <Sustainability />
-      <BeforeAfter />
-      <Differentials />
-      <SmartMaintenance />
-      <Process />
-      <Testimonials />
-      <FAQ />
+      <div className="overflow-x-hidden">
+        <Hero config={config} content={sections.hero} />
+        <Services content={sections.services} />
+        <Sustainability content={sections.sustainability} />
+        <BeforeAfter />
+        <Differentials content={sections.differentials} />
+        <SmartMaintenance />
+        <Process />
+        <Testimonials content={sections.testimonials} />
+        <FAQ content={sections.faq} />
 
-      <Footer config={config} />
-      <WhatsAppButton config={config} />
+        <Footer config={config} />
+        <WhatsAppButton config={config} />
+      </div>
     </main>
   );
 }
+
