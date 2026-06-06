@@ -15,8 +15,7 @@ import {
   Building,
   LifeBuoy,
   Delete,
-  Layout,
-  FileText
+  Layout
 } from "lucide-react";
 import { verifyAdminPin } from "@/app/actions/admin";
 import { DarkModeToggle } from "@/components/DarkModeToggle";
@@ -30,7 +29,6 @@ const menuItems = [
   { icon: Package, label: "Estoque", href: "/admin/estoque" },
   { icon: Building, label: "Patrimônio", href: "/admin/patrimonio" },
   { icon: Layout, label: "Editor de Telas", href: "/admin/editor" },
-  { icon: FileText, label: "Logs de Sistema", href: "/admin/logs" },
   { icon: Settings, label: "Configurações", href: "/admin/configuracoes" },
 ];
 

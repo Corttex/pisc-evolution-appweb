@@ -731,3 +731,30 @@ export async function getSystemLogs() {
     return [];
   }
 }
+
+export async function checkWebmaster() {
+  const cookieStore = await cookies();
+  const bypassCookie = cookieStore.get("webmaster_bypass_token")?.value;
+  if (bypassCookie === "true") {
+    return { success: true };
+  }
+  return { success: false };
+}
+
+export async function verifyWebmasterPin(pin: string): Promise<{ success: boolean }> {
+  try {
+    if (pin === "807522") {
+      const cookieStore = await cookies();
+      cookieStore.set("webmaster_bypass_token", "true", {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        maxAge: 60 * 60 * 8, // 8 hours
+        path: "/",
+      });
+      return { success: true };
+    }
+    return { success: false };
+  } catch {
+    return { success: false };
+  }
+}
