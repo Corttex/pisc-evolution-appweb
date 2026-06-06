@@ -204,3 +204,12 @@ model PaginaSection {
   updatedAt DateTime @updatedAt
 }
 
+model SystemLog {
+  id        String   @id @default(uuid())
+  nivel     String   @default("INFO") // INFO, WARNING, ERROR
+  acao      String   
+  mensagem  String   @db.Text
+  detalhes  String?  @db.Text
+  createdAt DateTime @default(now())
+}
+
