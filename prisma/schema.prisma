@@ -178,7 +178,25 @@ model Configuracao {
   social_instagram String?
   social_facebook  String?
   
+  // Advanced Settings
+  maintenanceMode  Boolean @default(false)
+  cacheEnabled     Boolean @default(true)
+  smtpHost         String?
+  smtpPort         String?
+  smtpUser         String?
+  smtpPass         String?
+
+  // Security Settings
+  maxFailedLogins  Int     @default(5)
+
   updatedAt     DateTime @updatedAt
+}
+
+model BlockedIp {
+  id        String   @id @default(uuid())
+  ip        String   @unique
+  reason    String?  @db.Text
+  createdAt DateTime @default(now())
 }
 
 model AdminProfile {
