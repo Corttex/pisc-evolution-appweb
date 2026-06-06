@@ -231,3 +231,23 @@ model SystemLog {
   createdAt DateTime @default(now())
 }
 
+model EmailTemplate {
+  id        String   @id @default(uuid())
+  chave     String   @unique // ex: welcome, invoice, reset
+  nome      String
+  assunto   String
+  html      String   @db.Text
+  variaveis String?  @db.Text // JSON das variáveis possíveis
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model EmailLog {
+  id        String   @id @default(uuid())
+  to        String
+  subject   String
+  status    String   @default("ENVIADO") // ENVIADO, FALHA
+  error     String?  @db.Text
+  createdAt DateTime @default(now())
+}
+
