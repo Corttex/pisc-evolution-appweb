@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { checkWebmaster, verifyWebmasterPin } from "@/app/actions/admin";
 import { DarkModeToggle } from "@/components/DarkModeToggle";
+import { ScaleUI } from "@/components/ScaleUI";
 
 const menuItems = [
   { icon: LayoutDashboard, label: "Painel Webmaster", href: "/webmaster" },
@@ -154,6 +155,7 @@ export default function WebmasterLayout({
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-[#0A0A0A] flex">
+      <ScaleUI scale={85} />
       {/* Sidebar */}
       <aside className="w-72 bg-white dark:bg-[#111111] border-r border-slate-200 dark:border-white/5 flex flex-col shadow-sm fixed h-full z-20">
         <div className="h-20 flex items-center px-8 border-b border-slate-100 dark:border-white/5">

@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import { verifyAdminPin } from "@/app/actions/admin";
 import { DarkModeToggle } from "@/components/DarkModeToggle";
+import { ScaleUI } from "@/components/ScaleUI";
 
 const menuItems = [
   { icon: LayoutDashboard, label: "Dashboard", href: "/admin" },
@@ -167,6 +168,7 @@ export default function AdminLayout({
 
   return (
     <div className="flex h-screen bg-slate-50 dark:bg-slate-950 overflow-hidden transition-colors duration-500">
+      <ScaleUI scale={85} />
       {/* Sidebar */}
       <aside
         className={`${

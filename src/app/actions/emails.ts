@@ -6,7 +6,7 @@ import { checkAdmin } from "./admin";
 export async function getEmailTemplates() {
   try {
     const auth = await checkAdmin();
-    if (!auth.success) throw new Error("Unauthorized");
+    if (!auth?.user) throw new Error("Unauthorized");
 
     return await prisma.emailTemplate.findMany({
       orderBy: { nome: 'asc' }
@@ -19,7 +19,7 @@ export async function getEmailTemplates() {
 export async function getEmailTemplate(id: string) {
   try {
     const auth = await checkAdmin();
-    if (!auth.success) throw new Error("Unauthorized");
+    if (!auth?.user) throw new Error("Unauthorized");
 
     return await prisma.emailTemplate.findUnique({ where: { id } });
   } catch (error) {
@@ -30,7 +30,7 @@ export async function getEmailTemplate(id: string) {
 export async function saveEmailTemplate(data: any) {
   try {
     const auth = await checkAdmin();
-    if (!auth.success) throw new Error("Unauthorized");
+    if (!auth?.user) throw new Error("Unauthorized");
 
     let template;
     if (data.id) {
@@ -70,7 +70,7 @@ export async function saveEmailTemplate(data: any) {
 export async function getEmailLogs() {
   try {
     const auth = await checkAdmin();
-    if (!auth.success) throw new Error("Unauthorized");
+    if (!auth?.user) throw new Error("Unauthorized");
 
     return await prisma.emailLog.findMany({
       orderBy: { createdAt: 'desc' },
