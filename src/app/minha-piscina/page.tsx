@@ -45,11 +45,23 @@ export default function MinhaPiscinaPage() {
   const [session, setSession] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
+  // Mover todos os Hooks para o topo, antes de qualquer early return (Regras do React Hooks)
+  const [showSupport, setShowSupport] = useState(false);
+  const [tickets, setTickets] = useState<any[]>([]);
+  const [selectedTicket, setSelectedTicket] = useState<any>(null);
+  const [isOpeningTicket, setIsOpeningTicket] = useState(false);
+  const [newTicket, setNewTicket] = useState({ assunto: "", mensagem: "" });
+  const [sending, setSending] = useState(false);
+  const [chatMessage, setChatMessage] = useState("");
+
   useEffect(() => {
     async function loadSession() {
       try {
         const data = await getSessionCliente();
         setSession(data);
+        if (data?.cliente?.tickets) {
+          setTickets(data.cliente.tickets);
+        }
       } catch (err) {
         console.error("Session load failed:", err);
       } finally {
@@ -85,14 +97,6 @@ export default function MinhaPiscinaPage() {
 
   const { cliente, config } = session;
   const ultimaMedicao = cliente.medicoes?.[0] || { ph: 7.2, cloro: 2.0, temperatura: 28, alcalinidade: 100, data: new Date() };
-
-  const [showSupport, setShowSupport] = useState(false);
-  const [tickets, setTickets] = useState(cliente.tickets || []);
-  const [selectedTicket, setSelectedTicket] = useState<any>(null);
-  const [isOpeningTicket, setIsOpeningTicket] = useState(false);
-  const [newTicket, setNewTicket] = useState({ assunto: "", mensagem: "" });
-  const [sending, setSending] = useState(false);
-  const [chatMessage, setChatMessage] = useState("");
 
   const handleOpenTicket = async (e: React.FormEvent) => {
     e.preventDefault();
