@@ -193,18 +193,18 @@ export default function AdminLayout({
           isSidebarOpen ? "w-64" : "w-24"
         } bg-primary dark:bg-slate-900 text-white transition-all duration-500 ease-[0.16,1,0.3,1] flex flex-col z-50 border-r border-white/5 dark:border-white/10 shadow-2xl`}
       >
-        <div className="p-8 flex items-center justify-between">
+        <div className="pt-8 pb-4 px-[10%] w-full flex items-center justify-center">
           {isSidebarOpen ? (
             <img
               src="/Logo/Logo negativa White.svg"
               alt="Logo Evolution"
-              className="h-8 w-auto"
+              className="w-full h-auto object-contain"
             />
           ) : (
             <img
               src="/Logo/FavIcon.svg"
               alt="Logo Evolution"
-              className="h-10 w-auto"
+              className="w-full h-auto object-contain"
             />
           )}
         </div>
