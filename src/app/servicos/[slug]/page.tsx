@@ -270,7 +270,7 @@ export default function DynamicServicePage() {
             </span>
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
               {service.title.split(" ")[0]} <br />
-              <span className="text-secondary">{service.subtitle}</span>
+              <span className="text-secondary bg-white px-4 py-1 rounded-2xl inline-block mt-2 shadow-sm">{service.subtitle}</span>
             </h1>
             <p className="text-xl text-white/80 leading-relaxed mb-8 font-body max-w-2xl">
               {service.description}

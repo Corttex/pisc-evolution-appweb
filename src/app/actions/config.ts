@@ -19,7 +19,8 @@ export async function getConfig() {
       social_facebook: "https://facebook.com/piscinasevolution",
       asaasKey: "",
       asaasEnv: "sandbox",
-      pixSinal: 50.0
+      pixSinal: 50.0,
+      moduleEmailEnabled: true
     };
     return config || defaultConfig;
   } catch (error) {
@@ -34,7 +35,8 @@ export async function getConfig() {
       social_facebook: "https://facebook.com/piscinasevolution",
       asaasKey: "",
       asaasEnv: "sandbox",
-      pixSinal: 50.0
+      pixSinal: 50.0,
+      moduleEmailEnabled: true
     };
   }
 }
@@ -57,7 +59,8 @@ export async function updateConfig(data: any) {
       asaasEnv: cleanData.asaasEnv,
       pixSinal: parseFloat(cleanData.pixSinal) || 50.0,
       pixChave: cleanData.pixChave,
-      pixBeneficiario: cleanData.pixBeneficiario
+      pixBeneficiario: cleanData.pixBeneficiario,
+      moduleEmailEnabled: cleanData.moduleEmailEnabled !== undefined ? cleanData.moduleEmailEnabled : true
     };
 
     console.log("Tentando salvar configurações:", updateData);

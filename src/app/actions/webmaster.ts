@@ -38,7 +38,8 @@ export async function updateAdvancedConfig(data: any) {
         smtpPort: data.smtpPort,
         smtpUser: data.smtpUser,
         smtpPass: data.smtpPass,
-        maxFailedLogins: data.maxFailedLogins ? parseInt(data.maxFailedLogins) : 5
+        maxFailedLogins: data.maxFailedLogins ? parseInt(data.maxFailedLogins) : 5,
+        moduleEmailEnabled: data.moduleEmailEnabled !== undefined ? data.moduleEmailEnabled : true
       }
     });
 

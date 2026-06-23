@@ -155,12 +155,30 @@ export default function AdminLayout({
   const pathname = usePathname();
   const [isSidebarOpen] = React.useState(true);
   const [pinUnlocked, setPinUnlocked] = React.useState(false);
+  const [emailEnabled, setEmailEnabled] = React.useState(true);
 
   React.useEffect(() => {
     if (sessionStorage.getItem(PIN_SESSION_KEY) === "1") {
       setPinUnlocked(true);
     }
+    
+    // Fetch config to check if email module is enabled
+    import("@/app/actions/config").then((module) => {
+      module.getConfig().then((config) => {
+        if (config && (config as any).moduleEmailEnabled === false) {
+          setEmailEnabled(false);
+        }
+      });
+    });
   }, []);
+
+  const filteredMenuItems = React.useMemo(() => {
+    if (emailEnabled) return menuItems;
+    return menuItems.filter(item => 
+      item.href !== "/admin/email/templates" && 
+      item.href !== "/admin/email/historico"
+    );
+  }, [emailEnabled]);
 
   if (!pinUnlocked) {
     return <PinOverlay onUnlock={() => setPinUnlocked(true)} />;
@@ -192,7 +210,7 @@ export default function AdminLayout({
         </div>
 
         <nav className="flex-grow px-4 space-y-3 mt-8">
-          {menuItems.map((item) => {
+          {filteredMenuItems.map((item) => {
             const isActive = pathname === item.href;
             return (
               <Link
@@ -231,7 +249,7 @@ export default function AdminLayout({
         <header className="h-20 glass-premium dark:bg-slate-900/90 dark:border-white/10 flex items-center justify-between px-10 shrink-0 z-40">
           <div className="flex items-center gap-4">
              <h1 className="text-primary dark:text-white font-h1 font-bold text-2xl tracking-tighter">
-                {menuItems.find(m => m.href === pathname)?.label || "Gestão Master"}
+                {filteredMenuItems.find(m => m.href === pathname)?.label || "Gestão Master"}
              </h1>
           </div>
           <div className="flex items-center gap-6">

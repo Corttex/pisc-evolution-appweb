@@ -6,7 +6,7 @@ import { ChevronDown, Menu, X, Droplet, Sun, Wind, Activity, Home, Lightbulb, Sh
 import { motion, AnimatePresence } from "framer-motion";
 
 export const Navbar = ({ config }: { config: any }) => {
-  const whatsapp = config?.site_whatsapp || "556191441294";
+  const whatsapp = config?.site_whatsapp || "5561991441294";
   const title = config?.site_titulo || "Piscinas Evolution";
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -15,18 +15,18 @@ export const Navbar = ({ config }: { config: any }) => {
     { name: "Aquecimento Solar", href: "/servicos/aquecimento-solar", icon: Sun },
     { name: "Trocador de Calor", href: "/servicos/trocador-de-calor", icon: Activity },
     { name: "Boiler", href: "/servicos/boiler", icon: Droplet },
-    { name: "Limpeza de Placas", href: "/servicos/limpeza-de-placas", icon: Wind },
-    { name: "Manutenção e Trocas", href: "/servicos/manutencao-e-trocas", icon: Wrench },
-    { name: "Banheiras", href: "/servicos/banheiras", icon: Droplet },
-    { name: "Saunas", href: "/servicos/saunas", icon: Wind },
-    { name: "Spas", href: "/servicos/spas", icon: Droplet },
+    { name: "Limpeza de Placas", href: "/servicos/limpeza-placas", icon: Wind },
+    { name: "Manutenção e Trocas", href: "/servicos/manutencao", icon: Wrench },
+    { name: "Banheiras", href: "/servicos/banheira", icon: Droplet },
+    { name: "Saunas", href: "/servicos/spa-sauna", icon: Wind },
+    { name: "Spas", href: "/servicos/spa-sauna", icon: Droplet },
     { name: "Cascata", href: "/servicos/cascata", icon: Droplet },
-    { name: "Iluminação LED", href: "/servicos/iluminacao-led", icon: Lightbulb },
-    { name: "Cerca de Proteção", href: "/servicos/cerca-de-protecao", icon: Shield },
+    { name: "Iluminação LED", href: "/servicos/iluminacao", icon: Lightbulb },
+    { name: "Cerca de Proteção", href: "/servicos/cerca-protecao", icon: Shield },
     { name: "Casa de Máquinas", href: "/servicos/casa-de-maquinas", icon: Settings },
     { name: "Higienização", href: "/servicos/higienizacao", icon: PaintBucket },
-    { name: "Aquecimento de Piscina", href: "/servicos/aquecimento-de-piscina", icon: Sun },
-    { name: "Reforma Técnica", href: "/servicos/reforma-tecnica", icon: Wrench },
+    { name: "Aquecimento de Piscina", href: "/servicos/aquecimento", icon: Sun },
+    { name: "Reforma Técnica", href: "/servicos/reforma-casa-maquinas", icon: Wrench },
     { name: "Automação", href: "/servicos/automacao", icon: Smartphone }
   ];
 

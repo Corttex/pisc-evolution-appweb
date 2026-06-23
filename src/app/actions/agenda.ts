@@ -15,6 +15,8 @@ export async function createAgendamento(data: any) {
   }
 }
 
+import { gerarPixCobranca } from "@/lib/pix";
+
 export async function criarAgendamento(formData: any) {
   const cleanData = sanitizeObject(formData);
   try {
@@ -28,10 +30,8 @@ export async function criarAgendamento(formData: any) {
       valorTotal 
     } = cleanData;
 
-    // 1. Pegar configurações do banco (com fallback seguro)
-    const config = await prisma.configuracao.findUnique({ where: { id: "global" } }).catch(() => null);
-    const apiKey = config?.asaasKey || process.env.ASAAS_API_KEY || "";
-    const valorSinal = config?.pixSinal ?? 50.0;
+    // 1. Configurar valor de sinal fixo de R$ 49,90 conforme solicitado
+    const valorSinal = 49.90;
 
     // 2. Criar ou encontrar cliente de forma segura
     const cleanDocumento = documento ? sanitize(documento).replace(/\D/g, '') : null;
@@ -53,7 +53,6 @@ export async function criarAgendamento(formData: any) {
         },
       });
     } else {
-      // Se não tem documento, tenta pelo telefone (que não é único no schema, mas usaremos findFirst)
       const existingCliente = await prisma.cliente.findFirst({
         where: { telefone }
       });
@@ -90,54 +89,37 @@ export async function criarAgendamento(formData: any) {
       }
     });
 
-    // 4. Gerar Cobrança no Asaas (Sinal)
-    const isMockKey = !apiKey || apiKey === "SUA_CHAVE_AQUI";
-    
-    if (!isMockKey) {
-      try {
-        const dueDate = new Date();
-        dueDate.setDate(dueDate.getDate() + 1); // Vence em 1 dia
+    // 4. Gerar QR Code via Padrão PIX Banco Central
+    try {
+      const config = await prisma.configuracao.findUnique({ where: { id: "global" } }).catch(() => null);
+      // Chave PIX da empresa (usando o telefone se não configurado)
+      const chavePixEmpresa = config?.site_whatsapp || "5561991441294"; 
+      
+      const pixData = await gerarPixCobranca(
+        chavePixEmpresa,
+        "Piscinas Evolution",
+        "Brasilia",
+        valorSinal
+      );
 
-        const payment = await createAsaasPayment({
-          customer: cliente.id, 
-          billingType: "PIX",
-          value: valorSinal,
-          dueDate: dueDate.toISOString().split('T')[0],
-          description: `Sinal: ${servico} - Piscinas Evolution`,
-          externalReference: agendamento.id
-        }, apiKey);
+      // 5. Atualizar agendamento com dados do Pix
+      const updatedAgenda = await prisma.agenda.update({
+        where: { id: agendamento.id },
+        data: {
+          pixCopiaECola: pixData.pixCopiaECola,
+          pixQrCode: pixData.pixQrCode
+        }
+      });
 
-        // 5. Buscar QR Code do Pix
-        const pixData = await getPixQrCode(payment.id, apiKey);
-
-        // 6. Atualizar agendamento com dados do Pix
-        const updatedAgenda = await prisma.agenda.update({
-          where: { id: agendamento.id },
-          data: {
-            asaasId: payment.id,
-            pixCopiaECola: pixData.payload,
-            pixQrCode: pixData.encodedImage
-          }
-        });
-
-        return { success: true, agenda: updatedAgenda };
-      } catch (asaasError: any) {
-        console.error("Erro no Asaas, mas agendamento criado:", asaasError);
-        // Se der erro no Asaas, ainda retornamos sucesso do agendamento, mas sem o Pix
-        return { 
-          success: true, 
-          agenda: agendamento, 
-          message: "Agendamento realizado, mas houve um problema ao gerar o QR Code de pagamento." 
-        };
-      }
+      return { success: true, agenda: updatedAgenda };
+    } catch (pixError: any) {
+      console.error("Erro ao gerar Pix estático:", pixError);
+      return { 
+        success: true, 
+        agenda: agendamento, 
+        message: "Agendamento realizado, mas houve um problema ao gerar o QR Code de pagamento." 
+      };
     }
-
-    // Se for mock, retorna sucesso direto
-    return { 
-      success: true, 
-      agenda: agendamento,
-      message: "Modo Simulação: Agendamento salvo sem cobrança Asaas."
-    };
 
   } catch (error: any) {
     console.error("Erro ao criar agendamento:", error);

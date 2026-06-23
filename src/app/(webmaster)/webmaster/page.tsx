@@ -24,26 +24,26 @@ export default function WebmasterDashboard() {
             Visualize registros de erros, atualizações e atividades de infraestrutura.
           </p>
         </Link>
-        
-        <div className="bg-white/50 dark:bg-slate-900/50 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 opacity-70">
-          <div className="w-12 h-12 bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500 rounded-xl flex items-center justify-center mb-4">
+
+        <Link href="/webmaster/configuracoes" className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 hover:shadow-md hover:-translate-y-1 transition-all group">
+          <div className="w-12 h-12 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
             <Settings size={24} />
           </div>
           <h3 className="font-bold text-lg text-slate-800 dark:text-white">Configurações Avançadas</h3>
           <p className="text-slate-500 dark:text-slate-400 text-sm mt-2">
-            Em breve. Ajustes de servidor, cache e integrações de baixo nível.
+            Ajustes de servidor, cache e integrações de baixo nível.
           </p>
-        </div>
+        </Link>
 
-        <div className="bg-white/50 dark:bg-slate-900/50 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 opacity-70">
-          <div className="w-12 h-12 bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500 rounded-xl flex items-center justify-center mb-4">
+        <Link href="/webmaster/seguranca" className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 hover:shadow-md hover:-translate-y-1 transition-all group">
+          <div className="w-12 h-12 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
             <ShieldAlert size={24} />
           </div>
           <h3 className="font-bold text-lg text-slate-800 dark:text-white">Segurança</h3>
           <p className="text-slate-500 dark:text-slate-400 text-sm mt-2">
-            Em breve. Monitoramento de acessos e bloqueio de IPs.
+            Monitoramento de acessos e bloqueio de IPs.
           </p>
-        </div>
+        </Link>
       </div>
     </div>
   );

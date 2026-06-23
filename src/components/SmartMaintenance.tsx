@@ -32,7 +32,7 @@ export const SmartMaintenance = () => {
             className="order-1 md:order-2"
           >
             <span className="text-primary font-bold uppercase tracking-widest text-xs mb-4 block">Tecnologia Exclusiva</span>
-            <h2 className="text-4xl md:text-5xl font-black mb-8 leading-tight text-slate-900">Gestão na Palma da Mão.</h2>
+            <h2 className="text-4xl md:text-5xl font-black mb-8 leading-tight text-slate-900">Gestão na Palma da Mão (Em Breve).</h2>
             <p className="text-slate-600 text-lg mb-12">
               Esqueça as planilhas e o caderninho. Com a Plataforma Evolution, você tem o controle total do seu oásis de qualquer lugar do mundo.
             </p>

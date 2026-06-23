@@ -189,6 +189,9 @@ model Configuracao {
   // Security Settings
   maxFailedLogins  Int     @default(5)
 
+  // Modules Toggle
+  moduleEmailEnabled Boolean @default(true)
+
   updatedAt     DateTime @updatedAt
 }
 

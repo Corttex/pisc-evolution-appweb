@@ -103,6 +103,19 @@ export default function ConfiguracoesPage() {
                 className="w-5 h-5 accent-primary"
               />
             </label>
+
+            <label className="flex items-center justify-between cursor-pointer p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+              <div>
+                <p className="font-bold text-slate-700 dark:text-slate-200">Módulo de E-mail</p>
+                <p className="text-xs text-slate-500 mt-1">Ativa as funções de Caixa de Entrada e Artes de E-mail no painel.</p>
+              </div>
+              <input
+                type="checkbox"
+                checked={config.moduleEmailEnabled !== false}
+                onChange={e => setConfig({ ...config, moduleEmailEnabled: e.target.checked })}
+                className="w-5 h-5 accent-primary"
+              />
+            </label>
           </div>
         </div>
 

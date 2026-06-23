@@ -23,7 +23,7 @@ export default function AgendamentoPage() {
       documento: formData.get("documento"),
       servico: formData.get("servico"),
       data: `${formData.get("dia")}T${formData.get("horario")}:00.000Z`,
-      valorTotal: 350.0 // Valor fixo de visita técnica para exemplo
+      valorTotal: 49.90 // Taxa de marcação de horário
     };
 
     const res = await criarAgendamento(data);
@@ -201,8 +201,8 @@ export default function AgendamentoPage() {
               >
                 {loading ? "Processando..." : "Confirmar Agendamento"}
               </button>
-              <p className="text-[10px] text-center text-slate-400 uppercase tracking-widest px-8">
-                Ao confirmar, você concorda com o pagamento do sinal de reserva via Pix.
+              <p className="text-[11px] text-center text-slate-500 font-medium px-8">
+                Ao agendar, será cobrado um valor de marcação de horário de <strong>R$ 49,90</strong>. O pagamento deverá ser realizado via PIX gerado na próxima tela.
               </p>
             </form>
           </div>

@@ -47,7 +47,7 @@ export const Hero = ({ config, content }: { config: any; content?: any }) => {
           <div className="flex flex-wrap gap-5">
             <a 
               href="/agendamento"
-              className="bg-cta text-white flex items-center gap-3 px-10 py-5 rounded-2xl font-body font-bold text-lg hover:scale-105 transition-all shadow-2xl shadow-cta/40 group"
+              className="bg-white text-primary flex items-center gap-3 px-10 py-5 rounded-2xl font-body font-bold text-lg hover:scale-105 transition-all shadow-2xl shadow-white/20 group"
             >
               <MessageCircle className="w-6 h-6 group-hover:rotate-12 transition-transform" />
               Agendar Visita Técnica
@@ -57,7 +57,7 @@ export const Hero = ({ config, content }: { config: any; content?: any }) => {
                 const el = document.getElementById('servicos');
                 el?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="glass-premium text-white flex items-center gap-3 px-10 py-5 rounded-2xl font-body font-bold text-lg hover:bg-white/10 transition-all border border-white/20"
+              className="bg-white text-primary flex items-center gap-3 px-10 py-5 rounded-2xl font-body font-bold text-lg hover:bg-white/90 transition-all border border-white/20 shadow-xl shadow-white/10"
             >
               <ImageIcon className="w-6 h-6" />
               Nossas Soluções

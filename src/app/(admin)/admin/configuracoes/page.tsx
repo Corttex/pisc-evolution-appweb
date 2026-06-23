@@ -32,7 +32,8 @@ export default function ConfiguracoesPage() {
     asaasEnv: "sandbox",
     pixSinal: 50,
     pixChave: "",
-    pixBeneficiario: ""
+    pixBeneficiario: "",
+    moduleEmailEnabled: true
   });
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -54,7 +55,8 @@ export default function ConfiguracoesPage() {
           asaasEnv: (config as any).asaasEnv || "sandbox",
           pixSinal: (config as any).pixSinal || 50,
           pixChave: (config as any).pixChave || "",
-          pixBeneficiario: (config as any).pixBeneficiario || ""
+          pixBeneficiario: (config as any).pixBeneficiario || "",
+          moduleEmailEnabled: (config as any).moduleEmailEnabled !== false
         });
       }
       setLoading(false);
@@ -85,6 +87,7 @@ export default function ConfiguracoesPage() {
     { id: "site", label: "Geral & Headlines", icon: Globe },
     { id: "payments", label: "Pagamentos & API", icon: CreditCard },
     { id: "social", label: "Redes Sociais", icon: Share2 },
+    { id: "modules", label: "Módulos Adicionais", icon: Zap },
   ];
 
   return (
@@ -328,6 +331,37 @@ export default function ConfiguracoesPage() {
                             className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-transparent focus:bg-white focus:border-primary/20 outline-none transition-all" 
                           />
                         </div>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+
+              {activeTab === "modules" && (
+                <motion.div 
+                  key="modules"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  className="space-y-6"
+                >
+                  <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-xl shadow-slate-200/40 space-y-6">
+                    <div className="flex items-center gap-2 pb-4 border-b border-slate-50">
+                        <Zap size={18} className="text-primary" />
+                        <h3 className="font-bold text-slate-900">Módulos do Sistema</h3>
+                    </div>
+                    <div className="space-y-4">
+                        <label className="flex items-center justify-between cursor-pointer p-4 rounded-xl border border-slate-200 hover:bg-slate-50 transition-colors">
+                          <div>
+                            <p className="font-bold text-slate-700">Módulo de E-mail</p>
+                            <p className="text-xs text-slate-500 mt-1">Exibe os menus de Artes de E-mail e Caixa de E-mail.</p>
+                          </div>
+                          <input
+                            type="checkbox"
+                            checked={formData.moduleEmailEnabled}
+                            onChange={e => setFormData({ ...formData, moduleEmailEnabled: e.target.checked })}
+                            className="w-5 h-5 accent-primary"
+                          />
+                        </label>
                     </div>
                   </div>
                 </motion.div>
