@@ -1,10 +1,9 @@
 import { withAuth } from "next-auth/middleware";
 import { NextResponse } from "next/server";
 
-// Next.js 16 - Novo ponto de entrada 'proxy'
-// Substitui o antigo 'middleware'
+// Middleware padrão do Next.js
 export default withAuth(
-  function proxy(req) {
+  function middleware(req) {
     const token = req.nextauth.token;
     const isAuth = !!token;
     const isAuthPage = req.nextUrl.pathname.startsWith("/login");
@@ -39,11 +38,6 @@ export default withAuth(
     },
   }
 );
-
-// Named export 'proxy' obrigatório no Next.js 16
-export const proxy = (req: any, ev: any) => {
-  return NextResponse.next();
-};
 
 export const config = {
   matcher: ["/admin/:path*", "/minha-piscina/:path*", "/login"],

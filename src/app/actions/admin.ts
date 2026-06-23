@@ -26,12 +26,6 @@ export async function checkAdmin() {
       return { user: session.user };
     }
 
-    // Em desenvolvimento, se não encontrar sessão ativa, retorna um Admin Mock
-    if (process.env.NODE_ENV === "development") {
-      console.log("checkAdmin: [DEV MODE] Nenhuma sessão ativa, retornando Admin simulado.");
-      return { user: { role: "ADMIN", name: "Dev Admin (Auto)", email: "admin@evolution.com" } };
-    }
-
     // 2. Fallback: decodificação manual do token do cookie
     const sessionCookieName = "next-auth.session-token";
     const secureSessionCookieName = "__Secure-next-auth.session-token";
@@ -312,7 +306,7 @@ export async function getDashboardStats() {
     const todayStart = new Date(now.setHours(0, 0, 0, 0));
     const todayEnd = new Date(now.setHours(23, 59, 59, 999));
 
-    const [activeClients, agendasToday, revenueMonth, pendingRevenue, openTickets, tickets, agendas, totalVolume] = await Promise.all([
+    const [activeClients, agendasToday, revenueMonth, pendingRevenue, openTickets, tickets, totalVolume] = await Promise.all([
       prisma.cliente.count(),
       prisma.agenda.count({ where: { data: { gte: todayStart, lte: todayEnd } } }),
       prisma.agenda.aggregate({ where: { pagamentoStatus: "pago" }, _sum: { valorTotal: true } }),
@@ -322,10 +316,6 @@ export async function getDashboardStats() {
         where: { status: "Aberto" },
         orderBy: { createdAt: 'desc' },
         take: 5,
-        include: { cliente: true }
-      }),
-      prisma.agenda.findMany({
-        orderBy: { data: 'desc' },
         include: { cliente: true }
       }),
       // @ts-ignore
@@ -341,7 +331,7 @@ export async function getDashboardStats() {
       totalVolume: Number(totalVolume._sum.volumePiscina || 0),
       openTickets,
       tickets,
-      agendas,
+      agendas: [],
       chartData: [],
       dataVendas: [],
       dataDistribuicao: []
