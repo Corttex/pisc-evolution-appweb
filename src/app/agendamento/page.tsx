@@ -17,11 +17,11 @@ export default function AgendamentoPage() {
     
     const formData = new FormData(e.currentTarget);
     const data = {
-      nome: formData.get("nome"),
-      telefone: formData.get("telefone"),
-      email: formData.get("email"),
-      documento: formData.get("documento"),
-      servico: formData.get("servico"),
+      nome: formData.get("nome")?.toString() || "",
+      telefone: formData.get("telefone")?.toString() || "",
+      email: formData.get("email")?.toString() || "",
+      documento: formData.get("documento")?.toString() || "",
+      servico: formData.get("servico")?.toString() || "",
       data: `${formData.get("dia")}T${formData.get("horario")}:00.000Z`,
       valorTotal: 49.90 // Taxa de marcação de horário
     };

@@ -6,6 +6,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { sanitize, sanitizeObject } from "@/lib/sanitize";
 import { checkAdmin } from "./admin";
+import { gerarPixCobranca } from "@/lib/pix";
 
 export async function createAgendamento(data: any) {
   try {
@@ -14,8 +15,6 @@ export async function createAgendamento(data: any) {
     return { success: false, error: error.message };
   }
 }
-
-import { gerarPixCobranca } from "@/lib/pix";
 
 export async function criarAgendamento(formData: any) {
   const cleanData = sanitizeObject(formData);
