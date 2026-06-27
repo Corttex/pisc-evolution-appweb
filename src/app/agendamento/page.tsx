@@ -26,14 +26,19 @@ export default function AgendamentoPage() {
       valorTotal: 49.90 // Taxa de marcação de horário
     };
 
-    const res = await criarAgendamento(data);
-    setLoading(false);
-    
-    if (res.success) {
-      setSuccess(true);
-      setResult(res);
-    } else {
-      alert("Erro ao agendar: " + res.error);
+    try {
+      const res = await criarAgendamento(data);
+      setLoading(false);
+      
+      if (res.success) {
+        setSuccess(true);
+        setResult(res);
+      } else {
+        alert("Erro ao agendar: " + res.error);
+      }
+    } catch (err: any) {
+      setLoading(false);
+      alert("Erro de comunicação com o servidor. O banco de dados pode estar fora do ar.");
     }
   };
 
@@ -47,29 +52,29 @@ export default function AgendamentoPage() {
           </div>
           <h1 className="text-4xl font-bold text-primary mb-4">Agendamento Realizado!</h1>
           <p className="text-slate-600 text-lg mb-12">
-            {agenda?.pixQrCode 
+            {agenda?.pixCopiaECola 
               ? <>Recebemos seu pedido. Para confirmar sua visita, realize o pagamento do sinal de <strong>R$ {agenda?.valorSinal?.toFixed(2)}</strong> via PIX.</>
               : result?.message || "Seu agendamento foi registrado com sucesso. Nossa equipe entrará em contato em breve."}
           </p>
 
           
           <div className="bg-white p-8 rounded-3xl pool-shadow border border-slate-200 mb-8">
-            {agenda?.pixQrCode ? (
+            {agenda?.pixCopiaECola ? (
               <div className="flex flex-col items-center">
-                <img src={`data:image/png;base64,${agenda.pixQrCode}`} alt="QR Code Pix" className="w-64 h-64 mb-6" />
+                <img src={`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(agenda.pixCopiaECola)}`} alt="QR Code Pix" className="w-64 h-64 mb-6" />
                 <p className="text-sm text-slate-500 mb-4 font-mono break-all">{agenda.pixCopiaECola}</p>
                 <button 
                   onClick={() => {
                     navigator.clipboard.writeText(agenda.pixCopiaECola);
                     alert("Código PIX copiado!");
                   }}
-                  className="bg-primary text-white px-6 py-2 rounded-xl text-sm font-bold"
+                  className="bg-primary text-white px-6 py-2 rounded-xl text-sm font-bold hover:scale-105 transition-transform"
                 >
                   Copiar Código PIX
                 </button>
               </div>
             ) : (
-              <p className="text-amber-600">Aguardando geração do QR Code pelo sistema Asaas...</p>
+              <p className="text-amber-600">Aguardando geração do QR Code pelo sistema...</p>
             )}
           </div>
           
@@ -82,7 +87,7 @@ export default function AgendamentoPage() {
   return (
     <main className="min-h-screen bg-[#F1F5F9]">
       <Navbar config={null} />
-      <div className="max-w-[1200px] mx-auto py-20 px-8">
+      <div className="max-w-[1200px] mx-auto pt-32 pb-20 px-8">
         <div className="grid lg:grid-cols-2 gap-20">
           
           {/* Info Side */}

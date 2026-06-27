@@ -1,4 +1,4 @@
-import QRCode from 'qrcode';
+
 
 function crc16(str: string) {
   let crc = 0xFFFF;
@@ -69,14 +69,9 @@ export async function gerarPixCobranca(
   let crc = crc16(payload);
   const pixCopiaECola = payload + crc;
 
-  // Generate QR Code base64 image
-  const qrCodeImage = await QRCode.toDataURL(pixCopiaECola, {
-    margin: 1,
-    width: 400
-  });
-
+  // O QR Code será gerado diretamente no frontend via API para evitar dependência do Canvas na Vercel.
   return {
     pixCopiaECola,
-    pixQrCode: qrCodeImage.replace(/^data:image\/png;base64,/, '')
+    pixQrCode: ""
   };
 }
