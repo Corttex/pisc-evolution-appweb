@@ -36,7 +36,7 @@ export default withAuth(
     callbacks: {
       authorized: () => true, // Controle manual no corpo da função
     },
-    secret: process.env.NEXTAUTH_SECRET,
+    secret: process.env.NEXTAUTH_SECRET || "HYGQGAlyDWnlD4729PeuUtWe5Ma6Pdr4tuC6ERcPNXw=",
   }
 );
 
