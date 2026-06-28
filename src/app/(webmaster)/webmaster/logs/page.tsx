@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import React from "react";
 import { getSystemLogs } from "@/app/actions/admin";
 import { FileText, AlertTriangle, Info, XCircle } from "lucide-react";
