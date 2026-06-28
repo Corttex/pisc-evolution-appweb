@@ -1,9 +1,35 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+import { GoogleAnalytics } from '@next/third-parties/google';
+
 export const metadata: Metadata = {
-  title: "Piscinas Evolution — Engenharia e Conforto Térmico de Elite",
-  description: "Projetos, instalação e manutenção completa para piscinas, spa e sistemas térmicos em Brasília e Entorno. Engenharia aquática de alto padrão.",
+  title: {
+    template: '%s | Piscinas Evolution',
+    default: 'Piscinas Evolution — Engenharia e Conforto Térmico de Elite',
+  },
+  description: 'Projetos, instalação e manutenção completa para piscinas, spa e sistemas térmicos em Brasília e Entorno. Engenharia aquática de alto padrão e sustentabilidade.',
+  keywords: ['Piscinas', 'Aquecimento Solar', 'Casa de Máquinas', 'Manutenção de Piscinas', 'Brasília', 'Conforto Térmico', 'Sustentabilidade', 'Automação para Piscinas'],
+  authors: [{ name: 'Piscinas Evolution' }],
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'pt_BR',
+    url: 'https://pisc-evolution-appweb.vercel.app/',
+    siteName: 'Piscinas Evolution',
+    title: 'Piscinas Evolution — Engenharia e Conforto Térmico',
+    description: 'A mais alta tecnologia em aquecimento, manutenção e construção de piscinas e spas em Brasília.',
+  },
   icons: {
     icon: "/Logo/FavIcon.svg",
     apple: "/Logo/FavIcon.svg",
@@ -46,6 +72,7 @@ export default function RootLayout({
         <Toaster position="top-right" reverseOrder={false} />
         {children}
         <DarkModeToggle />
+        <GoogleAnalytics gaId="G-XYZ1234567" />
       </body>
     </html>
   );

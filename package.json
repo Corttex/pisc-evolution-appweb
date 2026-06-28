@@ -10,6 +10,7 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
+    "@next/third-parties": "^16.2.9",
     "@prisma/client": "^6.4.1",
     "bcryptjs": "^3.0.3",
     "crc": "^4.3.2",
