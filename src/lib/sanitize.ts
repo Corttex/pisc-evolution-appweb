@@ -1,16 +1,17 @@
-import DOMPurify from "isomorphic-dompurify";
-
 /**
- * Sanitizes a string to prevent XSS attacks.
+ * Sanitizes a string to prevent basic XSS attacks without relying on JSDOM.
  * @param text The string to sanitize.
  * @returns The sanitized string.
  */
 export function sanitize(text: string): string {
-  if (!text) return "";
-  return DOMPurify.sanitize(text, {
-    ALLOWED_TAGS: [], // No HTML allowed by default for plain text inputs
-    ALLOWED_ATTR: [],
-  });
+  if (!text || typeof text !== 'string') return "";
+  // Strip basic HTML tags and encode characters
+  return text
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#x27;")
+    .replace(/\//g, "&#x2F;");
 }
 
 /**
