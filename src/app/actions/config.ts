@@ -5,39 +5,33 @@ import { checkAdmin } from "./admin";
 import { sanitizeObject } from "@/lib/sanitize";
 
 export async function getConfig() {
+  const defaultConfig = {
+    site_titulo: "Piscinas Evolution",
+    site_headline: "Engenharia de Elite em Aquecimento de Piscinas",
+    site_subheadline: "Tecnologia, luxo e conforto térmico para o seu lazer.",
+    site_whatsapp: "556191441294",
+    site_email: "contato@piscinasevolution.com.br",
+    social_instagram: "https://instagram.com/piscinasevolution",
+    social_facebook: "https://facebook.com/piscinasevolution",
+    asaasKey: "",
+    asaasEnv: "sandbox",
+    pixSinal: 50.0,
+    moduleEmailEnabled: true
+  };
+
   try {
-    const config = await prisma.configuracao.findUnique({
+    const dbPromise = prisma.configuracao.findUnique({
       where: { id: "global" }
     });
-    const defaultConfig = {
-      site_titulo: "Piscinas Evolution",
-      site_headline: "Engenharia de Elite em Aquecimento de Piscinas",
-      site_subheadline: "Tecnologia, luxo e conforto térmico para o seu lazer.",
-      site_whatsapp: "556191441294",
-      site_email: "contato@piscinasevolution.com.br",
-      social_instagram: "https://instagram.com/piscinasevolution",
-      social_facebook: "https://facebook.com/piscinasevolution",
-      asaasKey: "",
-      asaasEnv: "sandbox",
-      pixSinal: 50.0,
-      moduleEmailEnabled: true
-    };
-    return config || defaultConfig;
+    const timeoutPromise = new Promise((_, reject) =>
+      setTimeout(() => reject(new Error("Database timeout")), 2500)
+    );
+
+    const config = await Promise.race([dbPromise, timeoutPromise]);
+    return (config as any) || defaultConfig;
   } catch (error) {
-    console.warn("Banco de dados offline. Usando configurações padrão.");
-    return {
-      site_titulo: "Piscinas Evolution",
-      site_headline: "Engenharia de Elite em Aquecimento de Piscinas",
-      site_subheadline: "Tecnologia, luxo e conforto térmico para o seu lazer.",
-      site_whatsapp: "556191441294",
-      site_email: "contato@piscinasevolution.com.br",
-      social_instagram: "https://instagram.com/piscinasevolution",
-      social_facebook: "https://facebook.com/piscinasevolution",
-      asaasKey: "",
-      asaasEnv: "sandbox",
-      pixSinal: 50.0,
-      moduleEmailEnabled: true
-    };
+    console.warn("Aviso: Banco offline ou lento ao buscar configurações. Usando configurações padrão.");
+    return defaultConfig;
   }
 }
 

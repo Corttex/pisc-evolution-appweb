@@ -21,6 +21,7 @@ export const SmartMaintenance = () => {
               src="/pool_dashboard_ui_mockup_1777262116743.png" 
               alt="Dashboard Evolution" 
               fill 
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover"
             />
           </motion.div>

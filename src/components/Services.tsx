@@ -181,6 +181,7 @@ export const Services = ({ content }: { content?: any }) => {
                   src={service.image || "/res_pool_1.png"}
                   alt={service.title}
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -236,6 +237,7 @@ export const Services = ({ content }: { content?: any }) => {
                 src={featured.image || "/pool_pump_machine_room_modern_1777262079827.png"}
                 alt={featured.title}
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover group-hover:scale-105 transition-all duration-700"
               />
             </div>

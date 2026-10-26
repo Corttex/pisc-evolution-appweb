@@ -39,6 +39,7 @@ export const BeforeAfter = () => {
               src="/messy_pool_pump_room_old_1777262313099.png" 
               alt="Antes da Reforma"
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover"
             />
             <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-md text-white px-4 py-1.5 rounded-full text-xs font-bold tracking-widest">ANTES</div>
@@ -55,6 +56,7 @@ export const BeforeAfter = () => {
               src="/pool_pump_machine_room_modern_1777262079827.png" 
               alt="Depois da Reforma"
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover"
             />
             <div className="absolute top-4 left-4 bg-secondary text-white px-4 py-1.5 rounded-full text-xs font-bold tracking-widest">DEPOIS (PADRÃO EVOLUTION)</div>

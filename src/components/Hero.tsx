@@ -17,10 +17,10 @@ export const Hero = ({ config, content }: { config: any; content?: any }) => {
         <Image
           src={bgImage}
           alt="Piscina Residencial Evolution"
-
           fill
-          className="object-cover"
           priority
+          sizes="100vw"
+          className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/70 to-transparent"></div>
       </div>

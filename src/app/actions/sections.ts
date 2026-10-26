@@ -251,7 +251,13 @@ const DEFAULT_SECTIONS: Record<string, any> = {
 
 export async function getSections() {
   try {
-    const records = await prisma.paginaSection.findMany();
+    // Timeout de 2.5s para evitar travar o SSR se o banco estiver indisponível
+    const dbPromise = prisma.paginaSection.findMany();
+    const timeoutPromise = new Promise((_, reject) =>
+      setTimeout(() => reject(new Error("Database timeout")), 2500)
+    );
+
+    const records = (await Promise.race([dbPromise, timeoutPromise])) as any[];
     const data: Record<string, any> = {};
 
     // Map database records
@@ -267,7 +273,7 @@ export async function getSections() {
 
     return merged;
   } catch (error) {
-    console.error("Erro ao obter seções do site:", error);
+    console.warn("Aviso: Banco offline ou lento ao buscar seções. Usando conteúdo padrão instantâneo.");
     return DEFAULT_SECTIONS;
   }
 }

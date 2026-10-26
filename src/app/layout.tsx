@@ -1,5 +1,20 @@
 import type { Metadata } from "next";
+import { Work_Sans, Manrope } from "next/font/google";
 import "./globals.css";
+
+const workSans = Work_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-work-sans",
+  display: "swap",
+});
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-manrope",
+  display: "swap",
+});
 
 import { GoogleAnalytics } from '@next/third-parties/google';
 
@@ -47,7 +62,7 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className="h-full antialiased"
+      className={`h-full antialiased ${workSans.variable} ${manrope.variable}`}
       suppressHydrationWarning
     >
       <head>

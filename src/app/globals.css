@@ -1,12 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap');
-
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-h1: "Work Sans", sans-serif;
-  --font-body: "Manrope", sans-serif;
+  --font-h1: var(--font-work-sans), sans-serif;
+  --font-body: var(--font-manrope), sans-serif;
   
   --color-primary: #0B3C5D;
   --color-secondary: #00658c;

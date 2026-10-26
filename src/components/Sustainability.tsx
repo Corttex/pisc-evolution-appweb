@@ -80,6 +80,7 @@ export const Sustainability = ({ content }: { content?: any }) => {
               src={image} 
               alt="Piscina Sustentável" 
               fill 
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent" />
