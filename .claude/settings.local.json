@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Select-String -Pattern '\"dev\"|\"start\"|\"build\"')",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
+      "Bash(node -e \"const p=require\\('/d/DevMaster/drive-pisc-evolution-app/pisc-evolution-appweb/node_modules/next/package.json'\\); console.log\\(p.version\\)\")",
+      "Bash(curl -s http://localhost:3000/)",
+      "Bash(curl -s http://localhost:3000/login)",
+      "Bash(curl -s -o /dev/null -w \"GET / → %{http_code}\\\\nGET /login → \" http://localhost:3000/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:3000/login)"
+    ]
+  }
+}
