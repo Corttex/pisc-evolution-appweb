@@ -4,7 +4,7 @@ import React, { useState, useEffect, Suspense } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Lock, User, ShieldCheck, ArrowRight, Loader2 } from "lucide-react";
+import { Lock, User, ShieldCheck, ArrowRight, Loader2, Delete } from "lucide-react";
 
 function LoginForm() {
   const router = useRouter();
@@ -31,7 +31,7 @@ function LoginForm() {
     }
   };
 
-  const handleLogin = async (e?: React.FormEvent) => {
+  const handleLogin = async (e?: React.FormEvent, customPassword?: string) => {
     e?.preventDefault();
     setLoading(true);
     setError("");
@@ -39,7 +39,7 @@ function LoginForm() {
     try {
       const res = await signIn("credentials", {
         email,
-        password: step === "pin" ? pin.join("") : password,
+        password: customPassword !== undefined ? customPassword : (step === "pin" ? pin.join("") : password),
         redirect: false,
       });
 
@@ -60,8 +60,6 @@ function LoginForm() {
   };
 
   const handlePinChange = (index: number, value: string) => {
-    if (!/^\d*$/.test(value)) return;
-    
     const newPin = [...pin];
     newPin[index] = value.slice(-1);
     setPin(newPin);
@@ -70,9 +68,30 @@ function LoginForm() {
       const nextInput = document.getElementById(`pin-${index + 1}`);
       nextInput?.focus();
     }
-    
-    if (index === 5 && value) {
-      // setTimeout(() => handleLogin(), 100);
+  };
+
+  const handleKeypadPress = (char: string) => {
+    const emptyIndex = pin.findIndex(d => d === "");
+    if (emptyIndex !== -1) {
+      const newPin = [...pin];
+      newPin[emptyIndex] = char;
+      setPin(newPin);
+      if (emptyIndex < 5) {
+        const nextInput = document.getElementById(`pin-${emptyIndex + 1}`);
+        nextInput?.focus();
+      }
+    }
+  };
+
+  const handleKeypadBackspace = () => {
+    const lastFilledIndex = [...pin].reverse().findIndex(d => d !== "");
+    if (lastFilledIndex !== -1) {
+      const realIndex = 5 - lastFilledIndex;
+      const newPin = [...pin];
+      newPin[realIndex] = "";
+      setPin(newPin);
+      const prevInput = document.getElementById(`pin-${realIndex}`);
+      prevInput?.focus();
     }
   };
 
@@ -192,25 +211,75 @@ function LoginForm() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
             onSubmit={handleLogin}
-            className="space-y-8"
+            className="space-y-6"
           >
-            <div className="space-y-4">
-              <label className="text-xs font-bold text-slate-400 uppercase tracking-widest block">Digite seu PIN de 6 dígitos</label>
-              <div className="flex justify-between gap-2">
+            <div className="space-y-3">
+              <label className="text-xs font-bold text-slate-400 uppercase tracking-widest block">Digite seu código / PIN</label>
+              <div className="flex justify-between gap-1.5 sm:gap-2">
                 {pin.map((digit, i) => (
                   <input
                     key={i}
                     id={`pin-${i}`}
                     type="text"
-                    inputMode="numeric"
                     maxLength={1}
                     value={digit}
                     onChange={(e) => handlePinChange(i, e.target.value)}
                     onKeyDown={(e) => handleKeyDown(i, e)}
-                    className="w-12 h-16 md:w-14 md:h-20 text-center text-2xl font-bold bg-slate-50 border-2 border-transparent focus:border-primary/20 focus:bg-white rounded-2xl outline-none transition-all text-slate-900"
+                    className="w-11 h-14 sm:w-13 sm:h-16 text-center text-xl sm:text-2xl font-bold bg-slate-50 border-2 border-slate-100 focus:border-primary/30 focus:bg-white rounded-2xl outline-none transition-all text-slate-900 shadow-sm"
                     autoFocus={i === 0}
                   />
                 ))}
+              </div>
+            </div>
+
+            {/* Teclado Numérico com @, 0 e # */}
+            <div className="pt-2">
+              <div className="grid grid-cols-3 gap-2.5 max-w-[280px] mx-auto">
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
+                  <button
+                    key={num}
+                    type="button"
+                    onClick={() => handleKeypadPress(num.toString())}
+                    className="h-13 rounded-2xl bg-slate-50 hover:bg-primary/10 hover:text-primary active:scale-95 border border-slate-100 font-bold text-xl text-slate-800 transition-all shadow-sm flex items-center justify-center cursor-pointer"
+                  >
+                    {num}
+                  </button>
+                ))}
+                {/* Linha 4: @ , 0 , # */}
+                <button
+                  type="button"
+                  onClick={() => handleKeypadPress("@")}
+                  className="h-13 rounded-2xl bg-slate-50 hover:bg-primary/10 hover:text-primary active:scale-95 border border-slate-100 font-black text-lg text-primary transition-all shadow-sm flex items-center justify-center cursor-pointer"
+                  title="Caractere @"
+                >
+                  @
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleKeypadPress("0")}
+                  className="h-13 rounded-2xl bg-slate-50 hover:bg-primary/10 hover:text-primary active:scale-95 border border-slate-100 font-bold text-xl text-slate-800 transition-all shadow-sm flex items-center justify-center cursor-pointer"
+                >
+                  0
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleKeypadPress("#")}
+                  className="h-13 rounded-2xl bg-slate-50 hover:bg-primary/10 hover:text-primary active:scale-95 border border-slate-100 font-black text-lg text-primary transition-all shadow-sm flex items-center justify-center cursor-pointer"
+                  title="Caractere #"
+                >
+                  #
+                </button>
+              </div>
+
+              {/* Ação de Apagar Teclado */}
+              <div className="flex justify-center mt-2">
+                <button
+                  type="button"
+                  onClick={handleKeypadBackspace}
+                  className="px-4 py-2 text-xs font-bold text-slate-400 hover:text-red-500 active:scale-95 flex items-center gap-1.5 transition-all cursor-pointer rounded-xl hover:bg-red-50"
+                >
+                  <Delete size={16} /> Apagar dígito
+                </button>
               </div>
             </div>
 
@@ -219,14 +288,14 @@ function LoginForm() {
             <button 
               type="submit"
               disabled={loading || pin.join("").length < 6}
-              className="w-full bg-primary text-white py-5 rounded-2xl font-bold text-lg shadow-xl shadow-primary/30 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 disabled:opacity-50 mt-4 mb-4"
+              className="w-full bg-primary text-white py-4 rounded-2xl font-bold text-lg shadow-xl shadow-primary/30 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 disabled:opacity-50 mt-2"
             >
-              {loading ? <Loader2 className="animate-spin" /> : "Confirmar PIN"}
+              {loading ? <Loader2 className="animate-spin" /> : "Confirmar Senha / PIN"}
             </button>
             
             <div className="text-center mt-2">
-              <p className="text-slate-400 text-sm mb-6">
-                Seu PIN é composto pelos 6 números definidos no seu cadastro.
+              <p className="text-slate-400 text-xs mb-4">
+                Digite os 6 dígitos numéricos ou caracteres especiais da sua senha.
               </p>
               <button 
                 type="button" 

@@ -16,35 +16,48 @@ export const authOptions: NextAuthOptions = {
           return null;
         }
 
-        // Tenta encontrar usuário por e-mail ou por CPF do cliente vinculado
-        const user = await prisma.user.findFirst({
-          where: {
-            OR: [
-              { email: credentials.email },
-              { 
-                cliente: {
-                  documento: credentials.email
+        let user: any = null;
+        try {
+          // Tenta encontrar usuário por e-mail ou por CPF do cliente vinculado
+          user = await prisma.user.findFirst({
+            where: {
+              OR: [
+                { email: credentials.email },
+                { 
+                  cliente: {
+                    documento: credentials.email
+                  }
                 }
-              }
-            ]
-          },
-          include: {
-            cliente: true
-          }
-        });
+              ]
+            },
+            include: {
+              cliente: true
+            }
+          });
+        } catch (dbError) {
+          console.warn("Prisma offline ou indisponível ao buscar user.");
+        }
 
         if (!user || !user.password) {
+          // Fallback para autenticação com AdminProfile caso exista
           if (credentials?.email && credentials?.password) {
-            const admin = await prisma.adminProfile.findFirst({
-              where: { email: credentials.email }
-            });
-            if (credentials.password === "807522" || credentials.password === "112233" || (admin && admin.senha === credentials.password)) {
-              return {
-                id: admin?.id || "master-admin",
-                email: admin?.email || credentials.email,
-                name: admin?.nome || "Admin Master",
-                role: "ADMIN"
-              };
+            try {
+              const admin = await prisma.adminProfile.findFirst({
+                where: { email: credentials.email }
+              });
+              if (admin && admin.senha) {
+                const isAdminValid = (admin.senha === credentials.password) || (await bcrypt.compare(credentials.password, admin.senha).catch(() => false));
+                if (isAdminValid) {
+                  return {
+                    id: admin.id || "master-admin",
+                    email: admin.email || credentials.email,
+                    name: admin.nome || "Admin Master",
+                    role: "ADMIN"
+                  };
+                }
+              }
+            } catch (adminError) {
+              console.warn("Prisma offline ao buscar AdminProfile.");
             }
           }
           return null;
@@ -54,12 +67,16 @@ export const authOptions: NextAuthOptions = {
         isValid = await bcrypt.compare(credentials.password, user.password);
 
         if (!isValid) {
-          // Fallback para admin que tem usuário mas usa a senha do AdminProfile ou senha master
-          if (user.role === "ADMIN") {
-            const admin = await prisma.adminProfile.findFirst();
-            if (credentials.password === "807522" || credentials.password === "112233" || (admin && admin.senha === credentials.password)) {
-              isValid = true;
-            }
+          // Fallback para AdminProfile se a senha não bateu com a tabela user
+          if (user.role === "ADMIN" && user.email) {
+            try {
+              const admin = await prisma.adminProfile.findFirst({
+                where: { email: user.email }
+              });
+              if (admin && admin.senha) {
+                isValid = (admin.senha === credentials.password) || (await bcrypt.compare(credentials.password, admin.senha).catch(() => false));
+              }
+            } catch (err) {}
           }
           if (!isValid) return null;
         }

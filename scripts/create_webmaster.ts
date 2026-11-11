@@ -4,8 +4,16 @@ import bcrypt from 'bcryptjs';
 const prisma = new PrismaClient();
 
 async function main() {
-  const email = '012.501.901-77';
-  const password = await bcrypt.hash('807522', 10);
+  const email = process.env.WEBMASTER_IDENTIFIER || '012.501.901-77';
+  const rawPassword = process.env.WEBMASTER_PASSWORD;
+
+  if (!rawPassword) {
+    console.error("ERRO DE SEGURANÇA: Defina a variável de ambiente WEBMASTER_PASSWORD antes de executar este script.");
+    console.error("Exemplo: WEBMASTER_PASSWORD='sua_senha_segura' npm run ... (ou passe no .env)");
+    process.exit(1);
+  }
+
+  const password = await bcrypt.hash(rawPassword, 10);
 
   const user = await prisma.user.upsert({
     where: { email },
