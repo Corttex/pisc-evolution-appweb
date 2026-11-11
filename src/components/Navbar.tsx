@@ -52,7 +52,7 @@ export const Navbar = ({ config }: { config: any }) => {
         {/* Logo Modern Pill */}
         <Link 
           href="/" 
-          className="relative group flex items-center bg-white/90 dark:bg-slate-900/90 backdrop-blur-md px-4 py-2.5 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 hover:shadow-md transition-all duration-300"
+          className="relative group flex items-center bg-white/90 dark:bg-white max-lg:dark:bg-white max-lg:dark:shadow-md lg:dark:bg-white px-4 py-2 rounded-2xl shadow-sm border border-slate-100 dark:border-white/20 hover:shadow-md transition-all duration-300"
         >
           <img 
             src="/Logo/Logo Horizontal.svg" 
